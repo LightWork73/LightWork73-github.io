@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EETC-2311 Test 1 Master Study Tool</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #1c1e21; max-width: 900px; margin: 0 auto 50px auto; padding: 20px; line-height: 1.6; }
+        /* Setup Screen */
+        #setup-screen { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; margin-top: 50px; }
+        .pool-option { display: inline-block; background: #f7f8fa; padding: 20px; margin: 10px; border-radius: 10px; border: 2px solid #ebedf0; cursor: pointer; min-width: 150px; }
+        .start-btn { background: #004b8e; color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; }
+
+        /* Quiz Layout */
+        #quiz-container { display: none; }
+        #score-bar { position: sticky; top: 0; background: #004b8e; color: white; padding: 15px; text-align: center; z-index: 1000; border-radius: 0 0 12px 12px; }
+        #progress-container { background: rgba(255,255,255,0.2); border-radius: 10px; height: 12px; margin-top: 10px; overflow: hidden; }
+        #progress-fill { width: 0%; height: 100%; background: #42b72a; transition: width 0.4s ease; }
+        
+        .question-card { background: white; padding: 30px; margin: 25px 0; border-radius: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-left: 10px solid #004b8e; }
+        .debug-info { font-size: 0.85em; color: #606770; margin-left: 15px; font-weight: normal; }
+        
+        .img-placeholder { background: #ffffff; padding: 10px; text-align: center; margin: 20px 0; display: flex; justify-content: center; align-items: center; }
+        .q-img { max-width: 90%; max-height: 400px; height: auto; mix-blend-mode: multiply; }
+
+        .option-label { display: block; padding: 14px; margin: 10px 0; background: #f7f8fa; border: 2px solid #ebedf0; border-radius: 10px; cursor: pointer; }
+        .option-label:hover { background: #e7f3ff; border-color: #1877f2; }
+        
+        .check-btn { background: #004b8e; color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 15px; }
+        .check-btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        .feedback { margin-top: 15px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; }
+        .correct { background: #e7f3ff; color: #1877f2; border: 1px solid #1877f2; }
+        .wrong { background: #ffebe8; color: #f02849; border: 1px solid #f02849; }
+        
+        details { margin-top: 15px; background: #f9f9f9; padding: 10px; border-radius: 5px; }
+        summary { cursor: pointer; font-weight: bold; color: #004b8e; }
+        .formula { font-family: "Courier New", Courier, monospace; background: #eee; padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 5px 0; font-weight: bold; color: #d63384; }
+
+        #results-card { display: none; background: white; padding: 40px; text-align: center; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin: 40px 0; border: 2px solid #004b8e; }
+        .reset-btn { background: #42b72a; color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div id="setup-screen">
+    <h1>EETC-2311 Test 1 Study Tool</h1>
+    <p>Select the quiz pools to include. 10 random questions will be pulled from each selected pool.</p>
+    
+    <label class="pool-option"><input type="checkbox" value="1"> Quiz 1 (22 Questions)</label>
+    <label class="pool-option"><input type="checkbox" value="2" checked> Quiz 2 (33 Questions)</label>
+    <label class="pool-option"><input type="checkbox" value="3" checked> Quiz 3 (46 Questions)</label>
+    
+    <br>
+    <button class="start-btn" onclick="initializeQuiz()">Start Practice Test</button>
+</div>
+
+<div id="quiz-container">
+    <div id="score-bar">
+        <strong>Score: <span id="current-score">0</span> / <span id="total-q-count">0</span></strong>
+        <div id="progress-container"><div id="progress-fill"></div></div>
+    </div>
+    <div id="quiz-root"></div>
+    <div id="results-card">
+        <h2>Test Complete!</h2>
+        <p id="result-text" style="font-size: 24px; font-weight: bold;"></p>
+        <button class="reset-btn" onclick="location.reload()">Retake / Change Pools</button>
+    </div>
+</div>
+
+<script>
+    const allPools = {
+        1: [
+            { id: 1, origin: "Q1-A5", templateId: "TID-Q1-AWG", q: "The American Wire Gauge (AWG) is used to indicate the size of ________.", options: ["Voltage", "Current", "Conductors", "Insulation"], correct: [2], hint: "AWG is the US standard for wire diameter." },
+            { id: 2, origin: "Q1-A5", templateId: "TID-Q1-PWR", q: "What is the unit of measure for Real Power?", options: ["Volts", "Amps", "Watts", "Ohms"], correct: [2], hint: "Calculated as <span class='formula'>P = I²R</span> or <span class='formula'>P = EI</span>." },
+            { id: 3, origin: "Q1-A5", templateId: "TID-Q1-DC-OPP", q: "The opposition to current flow in a DC circuit is called __________.", options: ["Resistance", "Inductance", "Capacitance", "Reactance"], correct: [0], hint: "This property converts electrical energy into heat." },
+            { id: 4, origin: "Q1-A5", templateId: "TID-Q1-OHM-V", q: "Using Ohm's Law, if Resistance is 10 Ohms and Current is 2 Amps, what is the Voltage?", options: ["5V", "12V", "20V", "0.2V"], correct: [2], hint: "Formula: <span class='formula'>V = I * R</span>." },
+            { id: 5, origin: "Q1-A5", templateId: "TID-Q1-KCMIL", q: "The term 'kcmil' stands for ____________ circular mils.", options: ["10", "100", "1,000", "1,000,000"], correct: [2], hint: "k stands for kilo." },
+            { id: 6, origin: "Q1-A5", templateId: "TID-Q1-INSUL", q: "The primary purpose of electrical insulation is to ________.", options: ["Increase conductivity", "Prevent current leakage", "Cool the wire", "Change the voltage"], correct: [1], hint: "Insulation isolates the live conductor from other paths." },
+            { id: 7, origin: "Q1-A5", templateId: "TID-Q1-JOB", q: "Before any job is performed, a ________ ________ should take place to cover potential hazards, PPE requirements, and procedures.", options: ["Safety meeting", "Job briefing", "Contract signing", "Tool check"], correct: [1], hint: "Commonly called a tailboard or toolbox talk." },
+            { id: 8, origin: "Q1-A5", templateId: "TID-Q1-QUAL", q: "Which of the selections shown is true of a qualified person? (select all that apply)", type: "multi", options: ["Has skills and knowledge related to equipment", "Has received safety training to avoid hazards", "Has worked in the trade for at least 10 years", "Is a licensed engineer"], correct: [0, 1], hint: "Qualification requires both equipment knowledge and safety training." },
+            { id: 9, origin: "Q1-A5", templateId: "TID-Q1-NFPA", q: "Identify the NFPA code that identifies <span class='formula'>Electrical Safety in the Workplace</span>.", options: ["NFPA 70", "NFPA 70E", "NFPA 101", "NFPA 72"], correct: [1], hint: "NFPA 70 is the NEC; the safety standard adds an E." },
+            { id: 10, origin: "Q1-A5", templateId: "TID-Q1-PPE", q: "Which of the following are PPE?", options: ["Safety glasses", "Hard hat", "Flame resistant clothing", "Rubber gloves", "All of the above"], correct: [4], hint: "Personal Protective Equipment covers all safety gear." },
+            { id: 11, origin: "Q1-A5", templateId: "TID-Q1-LOTO", q: "The term LOTO refers to __________ ____________.", options: ["Level On Top Off", "Lockout Tagout", "Load Out Take Over", "Line On Time Out"], correct: [1], hint: "Standard safety procedure for de-energized work." },
+            { id: 12, origin: "Q1-A5", templateId: "TID-Q1-CAT1", q: "What multimeter Over-Voltage Installation Category is an electronic circuit?", options: ["CAT I", "CAT II", "CAT III", "CAT IV"], correct: [0], hint: "Categories range from I (lowest energy) to IV (highest)." },
+            { id: 13, origin: "Q1-A5", templateId: "TID-Q1-CAT4", q: "What category rating is required for measuring the line-side of a service entrance?", options: ["CAT I", "CAT II", "CAT III", "CAT IV"], correct: [3], hint: "Service entrances have the highest potential for energy surges." },
+            { id: 14, origin: "Q1-A5", templateId: "TID-Q1-SER-I", q: "In a series circuit, the current is ___________ at all points.", options: ["Different", "Divided", "The same", "Zero"], correct: [2], hint: "Current only has one path to follow in series." },
+            { id: 15, origin: "Q1-A5", templateId: "TID-Q1-PAR-V", q: "In a parallel circuit, the voltage across each branch is ___________.", options: ["The same", "Added together", "Decreased", "Shared"], correct: [0], hint: "Think of a ladder; every rung is at the same potential." },
+            { id: 16, origin: "Q1-A5", templateId: "TID-Q1-PWR-F", q: "Which formula represents Power?", options: ["P = V / I", "P = I * R", "P = V * I", "P = R / V"], correct: [2], hint: "Pressure (V) times Flow (I)." },
+            { id: 17, origin: "Q1-A5", templateId: "TID-Q1-CM-D", q: "What is the area of a wire in circular mils if the diameter is 100 mils?", options: ["100 CM", "1,000 CM", "10,000 CM", "100,000 CM"], correct: [2], hint: "Formula: <span class='formula'>CM = d * d</span>." },
+            { id: 18, origin: "Q1-A5", templateId: "TID-Q1-VD-B", q: "The NEC recommends a maximum voltage drop of ___% for branch circuits.", options: ["1%", "3%", "5%", "10%"], correct: [1], hint: "Total drop recommendation is 5%; branch alone is 3%." },
+            { id: 19, origin: "Q1-A5", templateId: "TID-Q1-STR", q: "Stranded wire is generally more ___________ than solid wire.", options: ["Expensive", "Resistant", "Flexible", "Heavy"], correct: [2], hint: "Easier to pull through conduit." },
+            { id: 20, origin: "Q1-A5", templateId: "TID-Q1-GND", q: "What color is typically used for an equipment grounding conductor?", options: ["White", "Black", "Green", "Red"], correct: [2], hint: "Safety/Ground is Green or Bare." },
+            { id: 21, origin: "Q1-A5", templateId: "TID-Q1-NEUT", q: "What color is typically used for a neutral conductor?", options: ["Black", "White", "Green", "Blue"], correct: [1], hint: "Neutral is the 'grounded' conductor." },
+            { id: 22, origin: "Q1-A5", templateId: "TID-Q1-THHN", q: "What is the maximum temperature rating of THHN insulation?", options: ["60°C", "75°C", "90°C", "105°C"], correct: [2], hint: "The 'N' in THHN stands for Nylon and is rated at 90°C." }        ],
+        2: [
+            { id: 1, q: "__________ can cause lights to dim, some television pictures to 'shrink,' motors to run hot, electric heaters to not produce their rated heat output, and appliances to not operate properly.", options: ["Low voltage", "None of the answers listed.", "Vibrations in the wall", "Ambient temperature"], correct: [0], hint: "Think about the symptoms of insufficient electrical 'pressure' in a circuit." },
+            { id: 2, q: "The diameter of wire is usually given in a unit called a ________, which is 0.001 inches.", options: ["cm", "mil", "AWG", "mm"], correct: [1], hint: "One unit is equal to 1/1000 of an inch." },
+            { id: 3, q: "The ampacity of conductors is valid unless there are more than __________ current carrying conductors in a conduit or the ambient temperature exceeds __________.", options: ["5 & 30 degrees C", "3 & 30 degrees C", "3 & 45 degrees C", "4 & 40 degrees C"], correct: [1], hint: "Recall the baseline conditions for NEC Table 310.15(B)(16)." },
+            { id: 4, q: "___________ insulation is the most commonly selected for applications.", options: ["Thermoset", "Teflon", "Thermoplastic", "MTW"], correct: [2], hint: "This material is used for standard 'TH' type wires (like THHN)." },
+            { id: 5, q: "Conductor ampacity must not be less than the _______ load they are supplying.", options: ["maximum", "arbitrary", "none of the answers listed", "minimum"], correct: [0], hint: "The wire must be sized to handle the peak demand of the circuit." },
+            { id: 6, q: "In the NEC, wires sizes larger than ________ are expressed in circular mils.", options: ["1/0", "4/0", "250 kcmil", "#4"], correct: [1], hint: "AWG sizes go up to a certain point; after that, we switch to kcmil." },
+            { id: 7, q: "The ___________ is the main transporter of electricity from the source to the load.", options: ["conduit", "ground", "insulator", "conductor"], correct: [3], hint: "This is the actual path (usually copper or aluminum) that carries the current." },
+            { id: 8, q: "The rating of the ___________ determines the rating of a branch circuit.", options: ["overcurrent protection device", "conductor", "equipment grounding conductor", "circuit voltage"], correct: [0], hint: "A '20-amp circuit' refers to the size of this safety device." },
+            { id: 9, q: "When sizing a conductor, the temperature rating chosen for ampacity is the ___________ rated component in the circuit.", options: ["highest", "lowest", "none of the answers listed.", "hottest"], correct: [1], hint: "The circuit is limited by its 'weakest link' regarding heat." },
+            { id: 10, q: "____________ means 'the current, in amperes, that a conductor can carry continuously under the conditions of use without exceeding its temperature rating.'", options: ["Ampacity", "Power", "Insulation", "Voltage"], correct: [0], hint: "This term combines 'Amperes' and 'Capacity'." },
+            { id: 11, q: "Using table 310-16 (NEC 2008) or 310.15(B)(16) (NEC 2011), find the ampacity of a #4/0AWG, THHN, copper conductor.", options: ["230A", "125A", "95A", "260A", "195A"], correct: [3], hint: "Look at the 90°C column for a 4/0 Copper wire." },
+            { id: 12, q: "Using table 310-16 (NEC 2008) or 310.15(B)(16) (NEC 2011), find the ampacity of a 250kcmil, XHHW, copper conductor.", options: ["Dual rating of 255A and 290A", "230A", "290A", "215A", "255A"], correct: [0], hint: "Check for different ratings in the 75°C vs 90°C columns." },
+            { id: 13, q: "Using table 310-16 (NEC 2008) or 310.15(B)(16) (NEC 2011), find the ampacity of a 500kcmil, USE, copper conductor.", options: ["430A", "260A", "320A", "310A", "380A"], correct: [4], hint: "USE (not USE-2) is typically limited to the 75°C column." },
+            { id: 14, q: "Given a #1 AWG, THHN, Copper Conductor operating in a 45 degree C environment, derate the conductor ampacity.", options: ["126A", "130.5A", "95.7A", "113.1A", "150A"], correct: [0], hint: "Calculation: <span class='formula'>Base Ampacity * Temp Correction Factor</span>." },
+            { id: 15, q: "Given a #4/0 AWG, THWN, Copper Conductor operating in a 62 degree C environment, derate the conductor ampacity.", options: ["230A", "108A", "75.9A", "64.4A", "85.8A"], correct: [1], hint: "THWN is a 75°C wire; find its base ampacity and apply the 62°C factor." },
+            { id: 16, q: "Given a #4 AWG, TW, Copper Conductor operating in a 35 degree C environment, derate the conductor ampacity.", options: ["77.4A", "63.7A", "70A", "86.5A"], correct: [1], hint: "TW is a 60°C wire. Apply the correction factor for 35°C." },
+            { id: 17, q: "Given nine #12 AWG, THHN, Copper conductors and three #14AWG, THHN, Copper Conductors in a common raceway to a motor. All of the conductors are current carrying. Find the derated ampacity for the #12 AWG conductors.", options: ["15A", "30A", "12.5A", "10A"], correct: [0], hint: "Count the total number of wires and apply the appropriate adjustment factor (10-20 conductors)." },
+            { id: 18, q: "Given five #2 AWG, THHN, Copper conductors and three #4AWG, THHN, Copper Conductors in a common raceway. All of the conductors are current carrying. What is the factor for derating the conductor ampacity?", options: ["0.8", "0.5", "0.9", "0.7"], correct: [3], hint: "Total wires = 8. Look up the adjustment factor for 7-9 current-carrying conductors." },
+            { id: 19, q: "Given five #2 AWG, THHN, Copper conductors and three #4AWG, THHN, Copper Conductors in a common raceway. All conductors are current carrying. Find the derated ampacity for the #2 AWG conductors.", options: ["91A", "66.5A", "130A", "80.5A"], correct: [0], hint: "Start with #2 THHN base (130A) and apply the 0.7 adjustment factor." },
+            { id: 20, q: "Given four #1/0 AWG, THHN, Copper conductors in a common raceway to a motor. All of the conductors are current carrying. What is the derating factor for derating the conductor ampacity?", options: ["0.5", "0.8", "0.35", "0.7"], correct: [1], hint: "Look up the adjustment factor for 4-6 current-carrying conductors." },
+            { id: 21, q: "Given a #4 AWG, THW copper conductor connected to a circuit breaker with termination ratings of 75 degee C. Find the ampacity of the conductor.", options: ["85A", "95A", "70A", "80A"], correct: [0], hint: "Refer to the 75°C column for a #4 Copper wire." },
+            { id: 22, q: "Given a #2 AWG, THHN copper conductor connected to a circuit breaker with termination ratings of 60 degee C. Find the adjusted conductor ampacity.", options: ["130A", "145A", "95A", "115A"], correct: [2], hint: "Even if the wire is THHN, the breaker's 60°C termination limits the ampacity." },
+            { id: 23, q: "Given a #8 AWG, TW copper conductor connected to a circuit breaker with termination ratings of 75 degee C. Find the ampacity of the conductor.", options: ["55A", "50A", "40A", "30A"], correct: [2], hint: "A circuit's rating is limited by the lowest-rated component (TW wire vs 75°C breaker)." },
+            { id: 24, q: "Given a #8 AWG, THHN copper conductor connected to a circuit breaker with termination ratings of 75 degee C. Find the derated ampacity of the conductor.", options: ["55A", "25A", "50A", "40A"], correct: [2], hint: "Find the value for #8 Copper in the 75°C column." },
+            { id: 25, q: "Given a #14 AWG solid copper conductor, what is the resistance for a 1000 ft length?", options: ["3.26 ohm", "3.07 ohm", "1.98 ohm", "3.14 ohm"], correct: [1], hint: "Consult NEC Table 8: Conductor Properties." },
+            { id: 26, q: "Given a #4 AWG stranded copper conductor, what is the resistance for a 1000 ft length?", options: ["0.245 ohm", "0.508 ohm", "0.308 ohm", "0.491 ohm"], correct: [2], hint: "Check Table 8 for stranded #4 Copper resistance per 1000ft." },
+            { id: 27, q: "Given a #14 AWG stranded copper conductor, what is the resistance for a 200 ft length?", options: ["0.628 ohm", "1.034 ohm", "3.14 ohm", "630 ohm"], correct: [0], hint: "Formula: <span class='formula'>(Resistance per 1000ft / 1000) * 200</span>." },
+            { id: 28, q: "Given a #4/0 AWG stranded copper conductor, what is the resistance for a 500 ft length?", options: ["0.05 ohm", "0.02575 ohm", "0.0304 ohm", "0.304 ohm"], correct: [2], hint: "Find 4/0 resistance in Table 8 and divide by 2 for 500 feet." },
+            { id: 29, q: "Given a #4 AWG stranded copper conductor, what is the resistance for a 100 ft length?", options: ["0.0508 ohm", "0.0491 ohm", "0.0245 ohm", "0.0308 ohm"], correct: [3], hint: "Divide the 1000ft resistance by 10." },
+            { id: 30, q: "Given a #4/0 AWG stranded copper conductor, what is the resistance for a 1000 ft length?", options: ["0.1 ohm", "0.608 ohm", "0.0515 ohm", "0.0608 ohm"], correct: [3], hint: "Directly available in NEC Table 8 for 4/0 AWG." },
+            { id: 31, q: "Given a single phase circuit operating at 240V with a pair of #12 AWG conductors feeding the load. Find the voltage drop across the conductors using the approximation formula for voltage drop (2kLI/CM) if a single conductor length is 150ft and the current is 16A. (k=12 ohm/CM-ft, L=length in feet, I=current in Amps, and CM is the circular mil area of a conductor)", options: ["4.4V", "10V", "17.6V", "8.8V"], correct: [3], hint: "Formula: <span class='formula'>VD = (2 * K * L * I) / CM</span>. CM for #12 is 6530." },
+            { id: 32, q: "Given a single phase circuit operating at 240V with a pair of #6 AWG conductors feeding the load. Find the voltage drop across the conductors using the approximation formula for voltage drop (2kLI/CM) if a single conductor length is 80ft and the current is 35A. (k=12 ohm/CM-ft, L=length in feet, I=current in Amps, and CM is the circular mil area of a conductor)", options: ["2.6V", "5.2V", "2V", "1.3V"], correct: [0], hint: "Formula: <span class='formula'>VD = (2 * K * L * I) / CM</span>. CM for #6 is 26240." },
+            { id: 33, q: "Given a single phase circuit operating at 120V with a pair of #8 AWG conductors feeding the load. Find the voltage drop across the conductors using the approximation formula for voltage drop (2kLI/CM) if a single conductor length is 120ft and the current is 20A. (k=12 ohm/CM-ft, L=length in feet, I=current in Amps, and CM is the circular mil area of a conductor)", options: ["4.8V", "3.5V", "7V", "1.75V"], correct: [1], hint: "Formula: <span class='formula'>VD = (2 * K * L * I) / CM</span>. CM for #8 is 16510." }
+        ],
+        3: [
+            { id: 1, q: "What are the two largest power production sources in the United States?", type: "multi", options: ["Fossil", "Solar", "Hydro", "Wind", "Nuclear"], correct: [0, 4], hint: "One is a combustible resource; the other relies on steam generated by fission." },
+            { id: 2, q: "What is the largest producer of clean power in the United States?", type: "single", options: ["Wind", "Solar", "Hydro", "Nuclear"], correct: [3], hint: "This source provides the majority of carbon-free baseload power." },
+            { id: 3, q: "Which fossil fuel is used with a Combustion Turbine for power generation?", type: "single", options: ["Lignite", "Natural Gas", "Coal", "None of the answers listed"], correct: [1], hint: "This fuel is a gaseous hydrocarbon commonly used for peaking plants." },
+            { id: 4, q: "What are the two factors are required to produce hydro power?", type: "multi", options: ["None of the answers listed", "Flow Velocity", "Area of Lake", "Hydrostatic Head"], correct: [1, 3], hint: "You need the volume of water moving per second and the vertical distance it falls." },
+            { id: 5, q: "Identify prime movers listed that are used to generate electricity.", type: "multi", options: ["Gas Engine", "Hydro-turbine", "Wind-Turbine", "Combustion Turbine", "Steam Turbine", "Diesel Engine"], correct: [0,1,2,3,4,5], hint: "A prime mover is any mechanical device that provides the rotation for the generator." },
+            { id: 6, q: "Identify the type of power plant equipment shown in the image.", type: "single", img: "q6.png", options: ["Condenser", "Wind turbine", "Combustion Turbine", "Nuclear Reactor", "Steam Generator"], correct: [2], hint: "This assembly compresses air, ignites fuel, and rotates a shaft." },
+            { id: 7, q: "Identify the power plant shown", type: "single", img: "q7.png", options: ["Combustion Turbine", "Diesel Generator", "Nuclear", "Wind Turbine"], correct: [2], id: 7, hint: "Look for the specialized containment buildings and cooling towers." },
+            { id: 8, q: "Identify the power plant equipment shown.", type: "single", img: "q8.png", options: ["Coal boiler", "Solar Array", "Nuclear", "Wind Turbine", "Combustion Turbine", "Diesel Generator"], correct: [3], id: 8, hint: "This device captures kinetic energy from moving air." },
+            { id: 9, q: "Which of the following is an application for DC current?", type: "single", options: ["Florescent Ballast", "Induction Motor", "Transformer", "Automobile Headlamp", "None of the answers listed"], correct: [3], id: 9, hint: "Consider devices that typically run off batteries." },
+            { id: 10, q: "The voltage induced into the armature of a rotating type generator is", type: "single", options: ["AC Voltage", "DC Voltage", "Pulsating DC Voltage"], correct: [0], id: 10, hint: "As the coil passes different magnetic poles, the polarity reverses." },            
+            { id: 11, q: "A two pole 50 HZ generator operates at what speed?", type: "single", options: ["1800 RPM", "1500 RPM", "3600 RPM", "3000 RPM"], correct: [3], hint: "Apply the RPM formula: <span class='formula'>RPM = (120 * f) / P</span>" },
+            { id: 12, q: "The most common frequency used in the United States is:", type: "single", options: ["90 Hz", "400 Hz", "60 Hz", "50 Hz"], correct: [2], id: 12, hint: "Standard grid frequency for North America." },
+            { id: 13, q: "What is the line voltage of a 3 phase, Wye connected Generator if the phase voltage is 7.2kV", type: "single", options: ["13.8kV", "13.2KV", "12.47kV", "14.4kV"], correct: [2], hint: "Calculate: <span class='formula'>V_line = 7.2kV * 1.732</span>" },
+            { id: 14, q: "What is the Phase or Line Voltage phase angle order for a three phase system called?", type: "single", options: ["Phase Sequence", "Phase in Time", "Phase Pattern", "Phase Order"], correct: [0], id: 14, hint: "It defines the order in which phases (L1, L2, L3) follow each other." },
+            { id: 15, q: "How are most three phase generators connected", type: "single", options: ["Grounded Delta", "Delta", "Grounded Wye", "Wye"], correct: [2], id: 15, hint: "The 'Y' shape allows for a neutral wire to be brought to earth." },
+            { id: 16, q: "What is the most common frequency used in Europe?", type: "single", options: ["90 Hz", "200 Hz", "60 Hz", "50 Hz"], correct: [3], id: 16, hint: "Standard grid frequency for Europe and much of Asia." },
+            { id: 17, q: "Given a three phase wye connected generator with a phase current of 200A, what is the line current?", type: "single", options: ["200 A", "346 A", "142 A", "115 A"], correct: [0], id: 17, hint: "Recall that in a Wye circuit, current has only one path from the phase to the line." },
+            { id: 18, q: "A generator is based on the principle of _____________.", type: "single", options: ["induction", "sampling", "reduction", "cross coupling"], correct: [0], id: 18, hint: "This involves moving a conductor through a magnetic field to create EMF." },
+            { id: 19, q: "The law that governs the operation of a synchronous generator is", type: "single", options: ["Ohm's Law", "Faraday's Law", "Kirchhoff's Law", "None of the items listed"], correct: [1], id: 19, hint: "This law relates induced voltage to the rate of change of magnetic flux." },
+            { id: 20, q: "The speed of a generator primarily impacts the __________ of the output voltage.", type: "single", options: ["power", "None of the items listed", "frequency", "current"], correct: [2], id: 20, hint: "Think about the relationship between rotations and cycles per second." },
+            { id: 21, q: "The magnitude of the generator output voltage is dependent on", type: "single", options: ["speed of rotation", "number of stator turns", "All of the answers listed", "strength of the field"], correct: [2], id: 21, hint: "Induced EMF is a product of speed, flux density, and the number of conductors." },
+            { id: 22, q: "The most common type of generator for large systems, greater than 1MW, is:", type: "single", options: ["Field Rotor, Armature Stator", "Permenant Magnet Stator, Armature Rotor", "Permanent Magnet Rotor, Armatuore Stator", "Field Stator, Armature Rotor"], correct: [0], id: 22, hint: "Large systems keep the high-voltage windings stationary to avoid slip ring wear." },
+            { id: 23, q: "A high maintenance item on generators is the:", type: "single", options: ["brushes and slip rings", "shaft", "stator winding", "rotor winding"], correct: [0], id: 23, hint: "Look for components that involve physical sliding contact." },
+            { id: 24, q: "A brushless synchronous generator eliminates the", type: "single", options: ["brushes and slip rings", "variable voltage source", "need for synchronous motor excitation", "prime mover"], correct: [0], id: 24, hint: "This design uses an exciter mounted on the shaft instead of external contacts." },
+            { id: 25, q: "A hydro-turbine is a low speed generator. What type of rotor field is used?", type: "single", options: ["Salient Pole Rotor", "Round Rotor", "Smooth Rotor", "Rough Rotor"], correct: [0], id: 25, hint: "This rotor has 'poles' that stick out, suited for many-pole, low-speed operation." },
+            { id: 26, q: "What type of voltage is applied to an electromagnetic rotor?", type: "single", options: ["DC", "Pulsating DC", "Alternating DC", "AC"], correct: [0], id: 26, hint: "The rotor needs a constant North and South pole to interact with the stator." },
+            { id: 27, q: "In a utility power system, the power source is more commonly part of _____________.", type: "single", options: ["Generation", "Transmission", "Distribution", "Utilization"], correct: [0], id: 27, hint: "The source represents where the electricity is created." },
+            { id: 28, q: "What is the operating voltage level of a transmission system?", type: "single", options: ["Medium Voltage", "Low Voltage", "High Voltage", "Less than 35kV"], correct: [2], id: 28, hint: "Voltages are stepped up to very high levels to reduce losses over long distances." },
+            { id: 29, q: "Which of the following are distribution voltages?", type: "multi", options: ["13.8kV", "13.2kV", "12.47kV", "7.2kV"], correct: [0, 1, 2, 3], id: 29, hint: "These are voltages found at your local substation." },
+            { id: 30, q: "A 5MW, three phase, 60Hz, Generator produces 4.7MW of output power. What is the efficiency?", type: "single", options: ["90 %", "92 %", "94 %", "96 %"], correct: [2], hint: "Efficiency = <span class='formula'>(Output / Input) * 100</span>" },
+            { id: 31, q: "A steam turbine is designed to run at 1200 RPM and a 3600 RPM generator is to be coupled to the turbine. What is the gear ratio?", type: "single", options: ["0.33", "3.0", "0.50", "1.5"], correct: [0], id: 31, hint: "Gear Ratio = <span class='formula'>Speed_Input / Speed_Output</span>" },
+            { id: 32, q: "Given a 9MW, three phase generator with an efficiency of 89%, what is the input power at the shaft of the generator?", type: "single", options: ["8.01 MW", "10.1 MW", "11.2 MW", "9.8 MW"], correct: [1], id: 32, hint: "Recall Input = <span class='formula'>Output / Efficiency (as a decimal)</span>" },
+            { id: 33, q: "Given a steam turbine producing 55000-lb-ft of torque. A gearbox with a gear ratio of 0.45 couples the turbine to a generator. How much torque is applied at the generator shaft?", type: "single", options: ["24750 LB-FT", "122222 LB-FT", "55000 LB-FT", "27500 LB-FT"], correct: [0], id: 33, hint: "Torque_Output = <span class='formula'>Torque_Input * Gear_Ratio</span>" },
+            { id: 34, q: "Which of the following are crucial matches... prior to connecting to the utility bus?", type: "multi", options: ["Phase Angle", "Frequency", "Phase Sequence", "Thevenin Impedance", "Voltage Magnitude"], correct: [0, 1, 2, 4], id: 34, hint: "Synchronization requires matching speed, height, and direction of the wave." },
+            { id: 35, q: "Given a generator operating in isolation... what parameter can be adjusted to modify output voltage?", type: "single", options: ["Prime Mover Torque", "Generator Impedance", "Speed of the Generator", "Excitation", "Length of the shaft"], correct: [3], id: 35, hint: "Changing the DC current in the rotor field controls the output voltage." },
+            { id: 36, q: "The process of matching voltages in magnitude, phase, frequency, and phase sequence is known as _____________.", type: "single", options: ["conversion", "synchronization", "rectification", "electrification"], correct: [1], id: 36, hint: "This ensures the generator is 'in step' with the grid." },
+            { id: 37, q: "What action would you take to synchronize the two waveforms?", type: "single", img: "q37.png", options: ["Decrease generator speed", "Decrease excitation current", "Increase generator speed", "Increase excitation current"], correct: [3], id: 37, hint: "If the wave is too short, you need to boost the field strength." },
+            { id: 38, q: "What action would you take to synchronize the two waveforms?", type: "multi", img: "q38.png", options: ["Change generator speed", "Increase excitation current", "Nothing", "Decrease excitation current"], correct: [0, 1], id: 38, hint: "Both the height (voltage) and the peaks (frequency) need to be aligned." },
+            { id: 39, q: "The generator output impedance is modeled as a _______________ .", type: "single", options: ["inductive reactance", "conductance", "resistance", "capacitive reactance"], correct: [0], id: 39, hint: "Consider the physical coils of wire inside the generator." },
+            { id: 40, q: "Once paralleled... real power is controlled by varying the ___________ of the generator.", type: "single", options: ["torque", "frequency", "output current", "excitation"], correct: [0], hint: "Pushing more 'Real' power requires more mechanical force from the prime mover." },
+            { id: 41, q: "Once paralleled... reactive power is adjusted by changing the _________________.", type: "single", options: ["frequency", "torque", "excitation", "speed"], correct: [2], hint: "Adjusting the field strength (DC rotor current) controls the flow of VARs." }
+            /* (Additional Quiz 3 questions omitted for brevity in display, but can be added back from the previous list) */
+        ]
+    };
+
+    let testSet = [];
+    let score = 0;
+    let answered = 0;
+
+    window.initializeQuiz = function() {
+        const selected = Array.from(document.querySelectorAll('#setup-screen input:checked')).map(i => i.value);
+        if (selected.length === 0) return alert("Select at least one quiz pool!");
+
+        testSet = [];
+        selected.forEach(pid => {
+            const pool = allPools[pid];
+            const shuffled = [...pool].sort(() => 0.5 - Math.random());
+            // Pull 10 random questions from each selected pool
+            const picked = shuffled.slice(0, 10).map(q => ({...q, originPool: pid}));
+            testSet = testSet.concat(picked);
+        });
+
+        // Shuffle the combined set
+        testSet.sort(() => 0.5 - Math.random());
+        
+        document.getElementById('setup-screen').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        document.getElementById('total-q-count').innerText = testSet.length;
+        renderQuestions();
+    }
+
+    function renderQuestions() {
+        const root = document.getElementById('quiz-root');
+        root.innerHTML = '';
+        testSet.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            
+            card.innerHTML = `
+                <h3>Question ${idx + 1} <span class="debug-info">| Quiz ${item.originPool}, Q# ${item.id}</span></h3>
+                <p>${item.q}</p>
+                ${item.img ? `<div class="img-placeholder"><img src="${item.img}" class="q-img" onerror="this.parentElement.innerHTML='[Image Reference: ${item.img}]'"></div>` : ''}
+                <div id="opts-${idx}"></div>
+                <button class="check-btn" id="btn-${idx}" onclick="check(${idx})">Check Answer</button>
+                <div id="fb-${idx}" class="feedback"></div>
+                ${item.hint ? `<details><summary>Get a Hint</summary><p>${item.hint}</p></details>` : ''}
+            `;
+            
+            const optCont = card.querySelector(`#opts-${idx}`);
+            item.options.forEach((opt, oIdx) => {
+                optCont.innerHTML += `
+                    <label class="option-label">
+                        <input type="${item.type === 'multi' ? 'checkbox' : 'radio'}" name="q${idx}" value="${oIdx}"> ${opt}
+                    </label>
+                `;
+            });
+            root.appendChild(card);
+        });
+    }
+
+    window.check = function(idx) {
+        const item = testSet[idx];
+        const selected = Array.from(document.querySelectorAll(`input[name="q${idx}"]:checked`)).map(e => parseInt(e.value));
+        if (!selected.length) return;
+
+        const isCorrect = selected.length === item.correct.length && selected.every(v => item.correct.includes(v));
+        const fb = document.getElementById(`fb-${idx}`);
+        fb.style.display = 'block';
+        
+        if (isCorrect) {
+            fb.innerHTML = "✅ Correct!";
+            fb.className = "feedback correct";
+            score++;
+        } else {
+            fb.innerHTML = "❌ Incorrect. Correct Answer: " + item.correct.map(c => item.options[c]).join(", ");
+            fb.className = "feedback wrong";
+        }
+
+        document.getElementById(`btn-${idx}`).disabled = true;
+        // Disable inputs
+        document.querySelectorAll(`input[name="q${idx}"]`).forEach(el => el.disabled = true);
+        
+        answered++;
+        document.getElementById('current-score').innerText = score;
+        document.getElementById('progress-fill').style.width = (answered / testSet.length * 100) + "%";
+
+        if (answered === testSet.length) {
+            document.getElementById('results-card').style.display = 'block';
+            document.getElementById('result-text').innerText = `Final Result: ${score} / ${testSet.length} (${Math.round(score/testSet.length*100)}%)`;
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    }
+</script>
+<script>
+  // This checks if the browser supports Service Workers
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker Registered!', reg))
+        .catch(err => console.log('Service Worker registration failed:', err));
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "EETC-2311 Power Tech Study Tool",
+  "short_name": "PowerTech",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f0f2f5",
+  "theme_color": "#004b8e",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2991/2991160.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
