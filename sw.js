@@ -1,7 +1,8 @@
-const CACHE_NAME = 'powertech-v1';
+const CACHE_NAME = 'powertech-v2';
 const ASSETS = [
   'index.html',
-  'manifest.json'
+  'manifest.json',
+  'PTHW8.html'
 ];
 
 self.addEventListener('install', (e) => {
