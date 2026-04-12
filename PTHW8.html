@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Technology HW 8 - DC Motors & Types</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #1c1e21; max-width: 900px; margin: 0 auto 50px auto; padding: 20px; line-height: 1.6; }
+        /* Setup Screen */
+        #setup-screen { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; margin-top: 50px; }
+        .start-btn { background: #004b8e; color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; }
+
+        /* Quiz Layout */
+        #quiz-container { display: none; }
+        #score-bar { position: sticky; top: 0; background: #004b8e; color: white; padding: 15px; text-align: center; z-index: 1000; border-radius: 0 0 12px 12px; }
+        #progress-container { background: rgba(255,255,255,0.2); border-radius: 10px; height: 12px; margin-top: 10px; overflow: hidden; }
+        #progress-fill { width: 0%; height: 100%; background: #42b72a; transition: width 0.4s ease; }
+        
+        .question-card { background: white; padding: 30px; margin: 25px 0; border-radius: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-left: 10px solid #004b8e; }
+        .debug-info { font-size: 0.85em; color: #606770; margin-left: 15px; font-weight: normal; }
+        
+        .img-placeholder { background: #ffffff; padding: 10px; text-align: center; margin: 20px 0; display: flex; justify-content: center; align-items: center; }
+        .q-img { max-width: 90%; max-height: 400px; height: auto; mix-blend-mode: multiply; }
+
+        .option-label { display: block; padding: 14px; margin: 10px 0; background: #f7f8fa; border: 2px solid #ebedf0; border-radius: 10px; cursor: pointer; }
+        .option-label:hover { background: #e7f3ff; border-color: #1877f2; }
+        
+        .check-btn { background: #004b8e; color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 15px; }
+        .check-btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        .feedback { margin-top: 15px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; }
+        .correct { background: #e7f3ff; color: #1877f2; border: 1px solid #1877f2; }
+        .wrong { background: #ffebe8; color: #f02849; border: 1px solid #f02849; }
+        
+        details { margin-top: 15px; background: #f9f9f9; padding: 10px; border-radius: 5px; }
+        summary { cursor: pointer; font-weight: bold; color: #004b8e; }
+        .formula { font-family: "Courier New", Courier, monospace; background: #eee; padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 5px 0; font-weight: bold; color: #d63384; }
+
+        #results-card { display: none; background: white; padding: 40px; text-align: center; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin: 40px 0; border: 2px solid #004b8e; }
+        .reset-btn { background: #42b72a; color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div id="setup-screen">
+    <h1>EETC-2311 Power Technology HW 8</h1>
+    <p>DC Motors & Motor Types - 18 Matching Questions + 18 Computational/Conceptual Questions</p>
+    <p style="font-size: 14px; color: #666;">36 Total Questions</p>
+    
+    <br>
+    <button class="start-btn" onclick="startQuiz()">Start Homework 8</button>
+</div>
+
+<div id="quiz-container">
+    <div id="score-bar">
+        <strong>Score: <span id="current-score">0</span> / <span id="total-q-count">0</span></strong>
+        <div id="progress-container"><div id="progress-fill"></div></div>
+    </div>
+    <div id="quiz-root"></div>
+    <div id="results-card">
+        <h2>Homework Complete!</h2>
+        <p id="result-text" style="font-size: 24px; font-weight: bold;"></p>
+        <button class="reset-btn" onclick="location.reload()">Retake</button>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        /* --- Question 1: The 18 Matching Parts --- */
+        { text: "Q1.1. An unloaded series motor can develop excessive _______ and self-destruct.", options: ["CEMF", "Torque", "Speed", "Current"], correct: [2], hint: "Runaway speed is the danger of series motors." },
+        { text: "Q1.2. Speed of a DC motor can be decreased below base speed by varying the voltage of the:", options: ["Field", "Armature", "Commutator", "Brushes"], correct: [1], hint: "Armature voltage control is for below-base speed." },
+        { text: "Q1.3. A device that disconnects the armature if shunt field current drops below a level is a:", options: ["Circuit Breaker", "Overload", "Field Loss Relay", "Starter"], correct: [2], hint: "Prevents runaway if the magnetic field is lost." },
+        { text: "Q1.4. Brushes are small blocks made of _______ that supply power to the armature.", options: ["Carbon/Graphite", "Copper", "Plastic", "Aluminum"], correct: [0], hint: "Carbon provides lubrication and conductivity." },
+        { text: "Q1.5. A mechanical switch that reverses current direction in the armature is the:", options: ["Stator", "Brushes", "Commutator", "Rotor"], correct: [2], hint: "The 'split ring' that keeps it spinning." },
+        { text: "Q1.6. A DC motor generates _______ which limits current as the motor gains speed.", options: ["Torque", "CEMF", "Resistance", "Heat"], correct: [1], hint: "Counter-Electromotive Force." },
+        { text: "Q1.7. In a shunt motor, the field is connected in _______ with the armature.", options: ["Series", "Parallel", "Delta", "Star"], correct: [1], hint: "Shunt = Parallel." },
+        { text: "Q1.8. As a DC motor comes up to speed, its armature current:", options: ["Increases", "Decreases", "Stays constant", "Pulsates"], correct: [1], hint: "CEMF pushes back, reducing current draw." },
+        { text: "Q1.9. A series motor develops high _______ at starting (cranes/locomotives).", options: ["Speed", "Voltage", "Torque", "Efficiency"], correct: [2], hint: "Used for massive starting loads." },
+        { text: "Q1.10. Type of DC motor with the best speed regulation characteristics:", options: ["Series", "Shunt", "Compound", "Stepper"], correct: [1], hint: "Maintains RPM under load changes." },
+        { text: "Q1.11. In a compound motor, the shunt field is connected in parallel with the armature.", options: ["True", "False"], correct: [0], hint: "Shunt fields are always parallel." },
+        { text: "Q1.12. In a compound motor, the series field is connected in series with the armature.", options: ["True", "False"], correct: [0], hint: "Series fields are always in line with the armature." },
+        { text: "Q1.13. Current flow in the armature of a DC motor is _______ current.", options: ["Direct", "Alternating", "Pulsating", "Static"], correct: [1], hint: "Because of the commutator, the coils actually see AC." },
+        { text: "Q1.14. Permanent magnet motors are usually _______ than wound-field motors of same HP.", options: ["Larger", "Smaller", "Heavier", "More expensive"], correct: [1], hint: "Magnets save space compared to coils." },
+        { text: "Q1.15. The stationary part of a DC motor is called the:", options: ["Rotor", "Stator", "Commutator", "Shaft"], correct: [1], hint: "Static = Stator." },
+        { text: "Q1.16. The rotating part of a DC motor is called the:", options: ["Armature", "Stator", "Frame", "End bell"], correct: [0], hint: "Also known as the Rotor." },
+        { text: "Q1.17. The amount of twisting force produced by a motor is called:", options: ["Work", "Power", "Torque", "Momentum"], correct: [2], hint: "Torque = Force x Distance." },
+        { text: "Q1.18. A compound motor that has the two fields connected so they 'help' each other is:", options: ["Differential", "Cumulative", "Series", "Shunt"], correct: [1], hint: "Cumulative means adding together." },
+
+        /* --- Standalone Questions (2 - 18) --- */
+        { text: "Q2. Compute start up torque: 60 VDC, 4 ohm resistance, K = 0.40 Nm/A.", options: ["15.0 Nm", "6.0 Nm", "24.0 Nm", "2.4 Nm"], correct: [1], hint: "(60 / 4) * 0.40" },
+        { text: "Q3. Compute start up current: 10 VDC, 5 ohm resistance.", options: ["50 A", "0.5 A", "2.0 A", "15 A"], correct: [2], hint: "I = V / R" },
+        { text: "Q4. Speed Reg %: Rated 1725 rpm, Measured 1550 rpm.", options: ["10.1%", "11.3%", "8.5%", "15.2%"], correct: [1], hint: "((1725-1550)/1550)*100" },
+        { text: "Q5. Open-loop motor moved by pulses:", options: ["Shunt", "Stepper", "Induction", "Series"], correct: [1], hint: "Moves in discrete steps." },
+        { text: "Q6. Permanent magnet rotor, 3-phase stator, requires pulsed DC:", options: ["Stepper", "AC Induction", "Brushless DC", "Shunt"], correct: [2], hint: "Electronic commutation instead of brushes." },
+        { text: "Q7. Full Step has more torque than Wave Step.", options: ["True", "False"], correct: [0], hint: "Two coils vs one coil energized." },
+        { text: "Q8. Stepper control where two phases are ON at once:", options: ["Wave", "Full Step", "Half Step", "Micro"], correct: [1], hint: "Maximum magnetic grip." },
+        { text: "Q9. Servo Motors use tachometers to detect angular velocity.", options: ["True", "False"], correct: [0], hint: "Tachometers measure RPM." },
+        { text: "Q10. Uses negative feedback for precise positioning:", options: ["Standard DC", "Servo", "Brushless", "Induction"], correct: [1], hint: "Feedback loop = Servo." },
+        { text: "Q11. The part that converts electricity into mechanical rotation is the:", options: ["Field", "Armature", "Stator", "Frame"], correct: [1], hint: "The main power-handling winding." },
+        { text: "Q12. If you reverse the leads of the armature, the motor will:", options: ["Stop", "Reverse direction", "Burn out", "Speed up"], correct: [1], hint: "DC motors reverse if polarity is flipped." },
+        { text: "Q13. Interpoles are used to reduce _______ at the brushes.", options: ["Heat", "Friction", "Sparking", "Vibration"], correct: [2], hint: "Improves commutation under load." },
+        { text: "Q14. The neutral plane in a DC motor shifts as _______ increases.", options: ["Voltage", "Load", "Resistance", "CEMF"], correct: [1], hint: "Armature reaction causes this shift." },
+        { text: "Q15. Standard DC motors are generally _______ efficient than AC motors.", options: ["More", "Less", "Equally", "Not"], correct: [0], hint: "DC motors have high efficiency across speed ranges." },
+        { text: "Q16. A motor that runs at exactly the same speed regardless of load is:", options: ["Series", "Shunt", "Synchronous", "Compound"], correct: [2], hint: "Locks to the frequency." },
+        { text: "Q17. The HP of a motor is a measurement of its _______ capacity.", options: ["Torque", "Work", "Speed", "Current"], correct: [1], hint: "Power is the rate of doing work." },
+        { text: "Q18. If the field of a shunt motor is opened while running, it will:", options: ["Stop", "Slow down", "Run away", "Reverse"], correct: [2], hint: "Loss of CEMF leads to dangerous speed." }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+
+    function startQuiz() {
+        document.getElementById('setup-screen').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        document.getElementById('total-q-count').textContent = quizData.length;
+        displayQuestion();
+    }
+
+    function displayQuestion() {
+        if (currentQuestionIndex >= quizData.length) {
+            showResults();
+            return;
+        }
+
+        const q = quizData[currentQuestionIndex];
+        const html = `
+            <div class="question-card">
+                <h3>${q.text}</h3>
+                <form id="answer-form">
+                    ${q.options.map((opt, i) => `
+                        <label class="option-label">
+                            <input type="radio" name="answer" value="${i}" required>
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </form>
+                <button class="check-btn" onclick="checkAnswer()">Check Answer</button>
+                <div class="feedback" id="feedback"></div>
+                <details>
+                    <summary>Hint</summary>
+                    <p>${q.hint}</p>
+                </details>
+            </div>
+        `;
+        document.getElementById('quiz-root').innerHTML = html;
+    }
+
+    function checkAnswer() {
+        const form = document.getElementById('answer-form');
+        const selectedValue = form.querySelector('input[name="answer"]:checked');
+        
+        if (!selectedValue) {
+            alert('Please select an answer');
+            return;
+        }
+
+        const answerIndex = parseInt(selectedValue.value);
+        const q = quizData[currentQuestionIndex];
+        const isCorrect = q.correct.includes(answerIndex);
+
+        userAnswers.push({
+            question: q.text,
+            selected: q.options[answerIndex],
+            correct: q.options[q.correct[0]],
+            isCorrect
+        });
+
+        if (isCorrect) {
+            score++;
+            document.getElementById('feedback').className = 'feedback correct';
+            document.getElementById('feedback').textContent = '✓ Correct!';
+        } else {
+            document.getElementById('feedback').className = 'feedback wrong';
+            document.getElementById('feedback').textContent = `✗ Incorrect. Correct answer: ${q.options[q.correct[0]]}`;
+        }
+
+        document.getElementById('feedback').style.display = 'block';
+        document.getElementById('current-score').textContent = score;
+        document.querySelector('.check-btn').disabled = true;
+
+        const progress = ((currentQuestionIndex + 1) / quizData.length) * 100;
+        document.getElementById('progress-fill').style.width = progress + '%';
+
+        setTimeout(() => {
+            currentQuestionIndex++;
+            displayQuestion();
+        }, 2000);
+    }
+
+    function showResults() {
+        document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('results-card').style.display = 'block';
+        
+        const percentage = ((score / quizData.length) * 100).toFixed(1);
+        let message = '';
+        
+        if (percentage >= 90) message = `Excellent! ${percentage}% - Master of DC Motors!`;
+        else if (percentage >= 80) message = `Great job! ${percentage}% - Very Good Understanding`;
+        else if (percentage >= 70) message = `Good effort! ${percentage}% - Solid Foundation`;
+        else if (percentage >= 60) message = `Fair result. ${percentage}% - Keep studying!`;
+        else message = `${percentage}% - More review needed.`;
+
+        document.getElementById('result-text').textContent = `${score}/${quizData.length} Correct\n${message}`;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+(async function() {
+    const PANORAMA_SERVER_URL = 'https://panorama-api.yuja.com';
+    const panoramaIdentifierKey = '259e78f8b1f3b90ce973a3eef073bfaa88f6e6f5e69c12da97f71669377d81a3';
+    const PANORAMA_CDN_URL = 'https://cdn-panorama.yuja.com';
+
+    window.PANORAMA_SERVER_URL = PANORAMA_SERVER_URL;
+    window.panoramaIdentifierKey = panoramaIdentifierKey;
+    window.PANORAMA_CDN_URL = PANORAMA_CDN_URL;
+
+    function loadScript(url) {
+        const script = document.createElement('script');
+        script.src = url;
+        document.head.appendChild(script);
+    }
+
+    try {
+        const response = await fetch(`${PANORAMA_SERVER_URL}/panorama-visualizer/d2l`, {cache: 'no-store'});
+        const scriptUrl = await response.text();
+        loadScript(scriptUrl);
+    } catch (e) {
+        console.error('Failed to load Panorama: ', e);
+    }
+})();

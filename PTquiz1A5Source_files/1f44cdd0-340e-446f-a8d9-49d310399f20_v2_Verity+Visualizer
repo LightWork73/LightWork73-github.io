@@ -1,0 +1,25 @@
+(async function () {
+  const VERITY_SERVER_URL = document.currentScript.dataset.VerityServerURL;
+  const VERITY_INSTITUTE_ID = document.currentScript.dataset.VerityID;
+
+  window.VERITY_SERVER_URL = VERITY_SERVER_URL;
+  window.verityInstituteId = VERITY_INSTITUTE_ID;
+
+  function loadScript(url) {
+    const script = document.createElement("script");
+    script.src = url;
+    script.type = "module";
+    script.classList.add("yuja-verity-canvas-theme-inject");
+    document.head.appendChild(script);
+  }
+
+  try {
+    const response = await fetch(VERITY_SERVER_URL + "/resources/themes/d2l", {
+      cache: "no-store",
+    });
+    const scriptUrl = await response.text();
+    loadScript(scriptUrl);
+  } catch (e) {
+    console.error("Failed to load Verity: ", e);
+  }
+})();

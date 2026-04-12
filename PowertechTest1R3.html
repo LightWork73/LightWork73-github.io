@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EETC-2311 Test 1 Study Tool</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #1c1e21; max-width: 900px; margin: 0 auto 50px auto; padding: 20px; line-height: 1.6; }
+        
+        /* Setup Screen */
+        #setup-screen { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; margin-top: 50px; }
+        .pool-option { display: inline-block; background: #f7f8fa; padding: 20px; margin: 10px; border-radius: 10px; border: 2px solid #ebedf0; cursor: pointer; min-width: 150px; }
+        .start-btn { background: #004b8e; color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; }
+
+        /* Quiz Layout */
+        #quiz-container { display: none; }
+        #score-bar { position: sticky; top: 0; background: #004b8e; color: white; padding: 15px; text-align: center; z-index: 1000; border-radius: 0 0 12px 12px; }
+        #progress-container { background: rgba(255,255,255,0.2); border-radius: 10px; height: 12px; margin-top: 10px; overflow: hidden; }
+        #progress-fill { width: 0%; height: 100%; background: #42b72a; transition: width 0.4s ease; }
+        
+        .question-card { background: white; padding: 30px; margin: 25px 0; border-radius: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-left: 10px solid #004b8e; }
+        .debug-info { font-size: 0.85em; color: #606770; margin-left: 15px; font-weight: normal; }
+        
+        .img-placeholder { background: #ffffff; padding: 10px; text-align: center; margin: 20px 0; display: flex; justify-content: center; align-items: center; }
+        .q-img { max-width: 90%; max-height: 400px; height: auto; mix-blend-mode: multiply; }
+
+        .option-label { display: block; padding: 14px; margin: 10px 0; background: #f7f8fa; border: 2px solid #ebedf0; border-radius: 10px; cursor: pointer; }
+        .option-label:hover { background: #e7f3ff; border-color: #1877f2; }
+        
+        .check-btn { background: #004b8e; color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 15px; }
+        .check-btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        .feedback { margin-top: 15px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; }
+        .correct { background: #e7f3ff; color: #1877f2; border: 1px solid #1877f2; }
+        .wrong { background: #ffebe8; color: #f02849; border: 1px solid #f02849; }
+        
+        details { margin-top: 15px; background: #f9f9f9; padding: 10px; border-radius: 5px; }
+        summary { cursor: pointer; font-weight: bold; color: #004b8e; }
+        .formula { font-family: "Courier New", Courier, monospace; background: #eee; padding: 2px 5px; border-radius: 3px; }
+
+        #results-card { display: none; background: white; padding: 40px; text-align: center; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin: 40px 0; border: 2px solid #004b8e; }
+        .reset-btn { background: #42b72a; color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div id="setup-screen">
+    <h1>EETC-2311 Test 1 Study Tool</h1>
+    <p>Select the quiz pools to include. 10 random questions will be pulled from each.</p>
+    
+    <label class="pool-option"><input type="checkbox" value="1"> Quiz 1</label>
+    <label class="pool-option"><input type="checkbox" value="2" checked> Quiz 2</label>
+    <label class="pool-option"><input type="checkbox" value="3" checked> Quiz 3</label>
+    
+    <br>
+    <button class="start-btn" onclick="initializeQuiz()">Start Practice Test</button>
+</div>
+
+<div id="quiz-container">
+    <div id="score-bar">
+        <strong>Score: <span id="current-score">0</span> / <span id="total-q-count">0</span></strong>
+        <div id="progress-container"><div id="progress-fill"></div></div>
+    </div>
+    <div id="quiz-root"></div>
+    <div id="results-card">
+        <h2>Test Complete!</h2>
+        <p id="result-text" style="font-size: 24px; font-weight: bold;"></p>
+        <button class="reset-btn" onclick="location.reload()">Retake / Change Pools</button>
+    </div>
+</div>
+
+<script>
+    const allPools = {
+        1: [
+            { id: 1, q: "Placeholder: What is the unit of measure for Real Power?", options: ["Volts", "Amps", "Watts", "Ohms"], correct: [2], hint: "Think about the power consumed by a resistor." }
+            // Add other Quiz 1 questions here
+        ],
+        2: [
+            { id: 1, q: "Which of the following is an application for AC current?", options: ["Transformer", "Automobile Headlamp", "Flashlight", "None of the items listed"], correct: [0], hint: "This device relies on electromagnetic induction, which requires a varying magnetic field." },
+            { id: 2, q: "The voltage induced into the armature of a rotating type generator is", options: ["DC Voltage", "AC Voltage", "Pulsating DC Voltage"], correct: [1], hint: "Consider the physical rotation of a coil through magnetic poles." },
+            { id: 3, q: "What is the frequency of a 4 pole generator operating at 1800 RPM?", options: ["50 Hz", "60 Hz", "400 Hz", "None of the items listed"], correct: [1], hint: "Use the formula: f = (P * RPM) / 120" },
+            { id: 4, q: "A 4 pole 60 Hz generator operates at what speed?", options: ["3600 RPM", "1800 RPM", "1200 RPM", "900 RPM"], correct: [1], hint: "Rearrange the frequency formula: RPM = (120 * f) / P" },
+            { id: 5, q: "The most common frequency used in the United States is:", options: ["50 Hz", "60 Hz", "400 Hz", "None of the items listed"], correct: [1], hint: "This is the standard for the North American power grid." },
+            { id: 6, q: "What is the line voltage of a 3 phase, Wye connected Generator if the phase voltage is 120V?", options: ["120V", "208V", "240V", "480V"], correct: [1], hint: "In a Wye connection: V_line = V_phase * √3 (approx 1.732)" },
+            { id: 7, q: "What is the Phase or Line Voltage phase angle order for a three phase system called?", options: ["Phase Rotation", "Phase Sequence", "Phase Angle", "None of the items listed"], correct: [1], hint: "This term describes the order (e.g., A-B-C) in which the phases reach their peak." },
+            { id: 8, q: "How are most three phase generators connected?", options: ["Wye", "Delta", "Star", "None of the items listed"], correct: [0], hint: "This connection type provides a neutral point for grounding." },
+            { id: 9, q: "What is the most common frequency used in Europe?", options: ["50 Hz", "60 Hz", "400 Hz", "None of the items listed"], correct: [0], hint: "Most of the world outside the Americas uses this standard." },
+            { id: 10, q: "Given a three phase delta connected generator with a phase current of 100A, what is the line current?", options: ["100A", "173.2A", "57.7A", "None of the items listed"], correct: [1], hint: "In a Delta connection: I_line = I_phase * √3" }
+        ],
+        3: [
+            { id: 1, q: "What are the two largest power production sources in the United States?", type: "multi", options: ["Fossil", "Solar", "Hydro", "Wind", "Nuclear"], correct: [0, 4], hint: "One is a combustible resource; the other relies on steam generated by fission." },
+            { id: 2, q: "What is the largest producer of clean power in the United States? (Clean = Low CO2 production)", type: "single", options: ["Wind", "Solar", "Hydro", "Nuclear"], correct: [3], hint: "This source provides the majority of carbon-free baseload power." },
+            { id: 3, q: "Which fossil fuel is used with a Combustion Turbine for power generation?", type: "single", options: ["Lignite", "Natural Gas", "Coal", "None of the answers listed"], correct: [1], hint: "This fuel is a gaseous hydrocarbon commonly used for peaking plants." },
+            { id: 4, q: "What are the two factors are required to produce hydro power?", type: "multi", options: ["None of the answers listed", "Flow Velocity", "Area of Lake", "Hydrostatic Head"], correct: [1, 3], hint: "You need the volume of water moving per second and the vertical distance it falls." },
+            { id: 5, q: "Identify prime movers listed that are used to generate electricity.", type: "multi", options: ["Gas Engine", "Hydro-turbine", "Wind-Turbine", "Combustion Turbine", "Steam Turbine", "Diesel Engine"], correct: [0,1,2,3,4,5], hint: "A prime mover is any mechanical device that provides the rotation for the generator." },
+            { id: 6, q: "Identify the type of power plant equipment shown in the image.", type: "single", img: "q6.png", options: ["Condenser", "Wind turbine", "Combustion Turbine", "Nuclear Reactor", "Steam Generator"], correct: [2], id: 6, hint: "This assembly compresses air, ignites fuel, and rotates a shaft." },
+            { id: 7, q: "Identify the power plant shown", type: "single", img: "q7.png", options: ["Combustion Turbine", "Diesel Generator", "Nuclear", "Wind Turbine"], correct: [2], id: 7, hint: "Look for the specialized containment buildings and cooling towers." },
+            { id: 8, q: "Identify the power plant equipment shown.", type: "single", img: "q8.png", options: ["Coal boiler", "Solar Array", "Nuclear", "Wind Turbine", "Combustion Turbine", "Diesel Generator"], correct: [3], id: 8, hint: "This device captures kinetic energy from moving air." },
+            { id: 9, q: "Which of the following is an application for DC current?", type: "single", options: ["Florescent Ballast", "Induction Motor", "Transformer", "Automobile Headlamp", "None of the answers listed"], correct: [3], id: 9, hint: "Consider devices that typically run off batteries." },
+            { id: 10, q: "The voltage induced into the armature of a rotating type generator is", type: "single", options: ["AC Voltage", "DC Voltage", "Pulsating DC Voltage"], correct: [0], id: 10, hint: "As the coil passes different magnetic poles, the polarity reverses." },
+            { id: 11, q: "A two pole 50 HZ generator operates at what speed?", type: "single", options: ["1800 RPM", "1500 RPM", "3600 RPM", "3000 RPM"], correct: [3], id: 11, hint: "Apply the RPM formula: <span class='formula'>RPM = (120 * f) / P</span>" },
+            { id: 12, q: "The most common frequency used in the United States is:", type: "single", options: ["90 Hz", "400 Hz", "60 Hz", "50 Hz"], correct: [2], id: 12, hint: "Standard grid frequency for North America." },
+            { id: 13, q: "What is the line voltage of a 3 phase, Wye connected Generator if the phase voltage is 7.2kV", type: "single", options: ["13.8kV", "13.2KV", "12.47kV", "14.4kV"], correct: [2], id: 13, hint: "Calculate: <span class='formula'>V_line = 7.2kV * 1.732</span>" },
+            { id: 14, q: "What is the Phase or Line Voltage phase angle order for a three phase system called?", type: "single", options: ["Phase Sequence", "Phase in Time", "Phase Pattern", "Phase Order"], correct: [0], id: 14, hint: "It defines the order in which phases (L1, L2, L3) follow each other." },
+            { id: 15, q: "How are most three phase generators connected", type: "single", options: ["Grounded Delta", "Delta", "Grounded Wye", "Wye"], correct: [2], id: 15, hint: "The 'Y' shape allows for a neutral wire to be brought to earth." },
+            { id: 16, q: "What is the most common frequency used in Europe?", type: "single", options: ["90 Hz", "200 Hz", "60 Hz", "50 Hz"], correct: [3], id: 16, hint: "Standard grid frequency for Europe and much of Asia." },
+            { id: 17, q: "Given a three phase wye connected generator with a phase current of 200A, what is the line current?", type: "single", options: ["200 A", "346 A", "142 A", "115 A"], correct: [0], id: 17, hint: "Recall that in a Wye circuit, current has only one path from the phase to the line." },
+            { id: 18, q: "A generator is based on the principle of _____________.", type: "single", options: ["induction", "sampling", "reduction", "cross coupling"], correct: [0], id: 18, hint: "This involves moving a conductor through a magnetic field to create EMF." },
+            { id: 19, q: "The law that governs the operation of a synchronous generator is", type: "single", options: ["Ohm's Law", "Faraday's Law", "Kirchhoff's Law", "None of the items listed"], correct: [1], id: 19, hint: "This law relates induced voltage to the rate of change of magnetic flux." },
+            { id: 20, q: "The speed of a generator primarily impacts the __________ of the output voltage.", type: "single", options: ["power", "None of the items listed", "frequency", "current"], correct: [2], id: 20, hint: "Think about the relationship between rotations and cycles per second." },
+            { id: 21, q: "The magnitude of the generator output voltage is dependent on", type: "single", options: ["speed of rotation", "number of stator turns", "All of the answers listed", "strength of the field"], correct: [2], id: 21, hint: "Induced EMF is a product of speed, flux density, and the number of conductors." },
+            { id: 22, q: "The most common type of generator for large systems, greater than 1MW, is:", type: "single", options: ["Field Rotor, Armature Stator", "Permenant Magnet Stator, Armature Rotor", "Permanent Magnet Rotor, Armatuore Stator", "Field Stator, Armature Rotor"], correct: [0], id: 22, hint: "Large systems keep the high-voltage windings stationary to avoid slip ring wear." },
+            { id: 23, q: "A high maintenance item on generators is the:", type: "single", options: ["brushes and slip rings", "shaft", "stator winding", "rotor winding"], correct: [0], id: 23, hint: "Look for components that involve physical sliding contact." },
+            { id: 24, q: "A brushless synchronous generator eliminates the", type: "single", options: ["brushes and slip rings", "variable voltage source", "need for synchronous motor excitation", "prime mover"], correct: [0], id: 24, hint: "This design uses an exciter mounted on the shaft instead of external contacts." },
+            { id: 25, q: "A hydro-turbine is a low speed generator. What type of rotor field is used?", type: "single", options: ["Salient Pole Rotor", "Round Rotor", "Smooth Rotor", "Rough Rotor"], correct: [0], id: 25, hint: "This rotor has 'poles' that stick out, suited for many-pole, low-speed operation." },
+            { id: 26, q: "What type of voltage is applied to an electromagnetic rotor?", type: "single", options: ["DC", "Pulsating DC", "Alternating DC", "AC"], correct: [0], id: 26, hint: "The rotor needs a constant North and South pole to interact with the stator." },
+            { id: 27, q: "In a utility power system, the power source is more commonly part of _____________.", type: "single", options: ["Generation", "Transmission", "Distribution", "Utilization"], correct: [0], id: 27, hint: "The source represents where the electricity is created." },
+            { id: 28, q: "What is the operating voltage level of a transmission system?", type: "single", options: ["Medium Voltage", "Low Voltage", "High Voltage", "Less than 35kV"], correct: [2], id: 28, hint: "Voltages are stepped up to very high levels to reduce losses over long distances." },
+            { id: 29, q: "Which of the following are distribution voltages?", type: "multi", options: ["13.8kV", "13.2kV", "12.47kV", "7.2kV"], correct: [0, 1, 2, 3], id: 29, hint: "These are voltages found at your local substation." },
+            { id: 30, q: "A 5MW, three phase, 60Hz, Generator produces 4.7MW of output power. What is the efficiency?", type: "single", options: ["90 %", "92 %", "94 %", "96 %"], correct: [2], id: 30, hint: "Efficiency = <span class='formula'>(Output / Input) * 100</span>" },
+            { id: 31, q: "A steam turbine is designed to run at 1200 RPM and a 3600 RPM generator is to be coupled to the turbine. What is the gear ratio?", type: "single", options: ["0.33", "3.0", "0.50", "1.5"], correct: [0], id: 31, hint: "Gear Ratio = <span class='formula'>Speed_Input / Speed_Output</span>" },
+            { id: 32, q: "Given a 9MW, three phase generator with an efficiency of 89%, what is the input power at the shaft of the generator?", type: "single", options: ["8.01 MW", "10.1 MW", "11.2 MW", "9.8 MW"], correct: [1], id: 32, hint: "Recall Input = <span class='formula'>Output / Efficiency (as a decimal)</span>" },
+            { id: 33, q: "Given a steam turbine producing 55000-lb-ft of torque. A gearbox with a gear ratio of 0.45 couples the turbine to a generator. How much torque is applied at the generator shaft?", type: "single", options: ["24750 LB-FT", "122222 LB-FT", "55000 LB-FT", "27500 LB-FT"], correct: [0], id: 33, hint: "Torque_Output = <span class='formula'>Torque_Input * Gear_Ratio</span>" },
+            { id: 34, q: "Which of the following are crucial matches... prior to connecting to the utility bus?", type: "multi", options: ["Phase Angle", "Frequency", "Phase Sequence", "Thevenin Impedance", "Voltage Magnitude"], correct: [0, 1, 2, 4], id: 34, hint: "Synchronization requires matching speed, height, and direction of the wave." },
+            { id: 35, q: "Given a generator operating in isolation... what parameter can be adjusted to modify output voltage?", type: "single", options: ["Prime Mover Torque", "Generator Impedance", "Speed of the Generator", "Excitation", "Length of the shaft"], correct: [3], id: 35, hint: "Changing the DC current in the rotor field controls the output voltage." },
+            { id: 36, q: "The process of matching voltages in magnitude, phase, frequency, and phase sequence is known as _____________.", type: "single", options: ["conversion", "synchronization", "rectification", "electrification"], correct: [1], id: 36, hint: "This ensures the generator is 'in step' with the grid." },
+            { id: 37, q: "What action would you take to synchronize the two waveforms?", type: "single", img: "q37.png", options: ["Decrease generator speed", "Decrease excitation current", "Increase generator speed", "Increase excitation current"], correct: [3], id: 37, hint: "If the wave is too short, you need to boost the field strength." },
+            { id: 38, q: "What action would you take to synchronize the two waveforms?", type: "multi", img: "q38.png", options: ["Change generator speed", "Increase excitation current", "Nothing", "Decrease excitation current"], correct: [0, 1], id: 38, hint: "Both the height (voltage) and the peaks (frequency) need to be aligned." },
+            { id: 39, q: "The generator output impedance is modeled as a _______________ .", type: "single", options: ["inductive reactance", "conductance", "resistance", "capacitive reactance"], correct: [0], id: 39, hint: "Consider the physical coils of wire inside the generator." },
+            { id: 40, q: "Once paralleled... real power is controlled by varying the ___________ of the generator.", type: "single", options: ["torque", "frequency", "output current", "excitation"], correct: [0], id: 40, hint: "Pushing more 'Real' power requires more mechanical force from the prime mover." },
+            { id: 41, q: "Once paralleled... reactive power is adjusted by changing the _________________.", type: "single", options: ["frequency", "torque", "excitation", "speed"], correct: [2], id: 41, hint: "Adjusting the field strength controls the flow of VARs." },
+            { id: 42, q: "When supplying reactive power to the load, the generator field is ________________.", type: "single", options: ["under-excited", "over-excited", "not excited", "in regulation"], correct: [1], id: 42, hint: "A field stronger than the grid's requirement causes power to flow out." },
+            { id: 43, q: "When reactive power is flowing into the generator, the generator field is ________________.", type: "single", options: ["under-excited", "not excited", "over-excited", "in regulation"], correct: [0], id: 43, hint: "A field weaker than the grid's requirement causes power to flow in." },
+            { id: 44, q: "When a single generator cannot alter system voltage... it is known as a(n) _______.", type: "single", options: ["infinite bus", "finite bus", "power bus", "closed bus"], correct: [0], id: 44, hint: "This represents a grid so powerful it ignores local changes." },
+            { id: 45, q: "Given a 250.0 MVA generator... What is the output current?", type: "single", options: ["6.68 kA", "11.58 kA", "12.00 kA", "20.00 kA"], correct: [1], id: 45, hint: "Calculate: <span class='formula'>I = S / (V_line * 1.732)</span>" },
+            { id: 46, q: "A wye connected generator with 12.00 kV has a phase voltage of ______________.", type: "single", options: ["6.93 kV", "12.00 kV", "7.20 kV", "20.78 kV"], correct: [0], id: 46, hint: "Calculate: <span class='formula'>V_phase = V_line / 1.732</span>" }
+        ]
+    };
+
+    let testSet = [];
+    let score = 0;
+    let answered = 0;
+
+    window.initializeQuiz = function() {
+        const selected = Array.from(document.querySelectorAll('#setup-screen input:checked')).map(i => i.value);
+        if (selected.length === 0) return alert("Select at least one quiz!");
+
+        testSet = [];
+        selected.forEach(pid => {
+            const pool = allPools[pid];
+            const shuffled = [...pool].sort(() => 0.5 - Math.random());
+            // Pick up to 10 questions per selected quiz
+            const picked = shuffled.slice(0, 10).map(q => ({...q, originPool: pid}));
+            testSet = testSet.concat(picked);
+        });
+
+        // Shuffle the combined set
+        testSet.sort(() => 0.5 - Math.random());
+        
+        document.getElementById('setup-screen').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        document.getElementById('total-q-count').innerText = testSet.length;
+        renderQuestions();
+    }
+
+    function renderQuestions() {
+        const root = document.getElementById('quiz-root');
+        root.innerHTML = '';
+        testSet.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            
+            card.innerHTML = `
+                <h3>Question ${idx + 1} <span class="debug-info">| Quiz ${item.originPool}, Question ${item.id}</span></h3>
+                <p>${item.q}</p>
+                ${item.img ? `<div class="img-placeholder"><img src="${item.img}" class="q-img" onerror="this.parentElement.innerHTML='[Image Missing: ${item.img}]'"></div>` : ''}
+                <div id="opts-${idx}"></div>
+                <button class="check-btn" id="btn-${idx}" onclick="check(${idx})">Check Answer</button>
+                <div id="fb-${idx}" class="feedback"></div>
+                ${item.hint ? `<details><summary>Hint</summary><p>${item.hint}</p></details>` : ''}
+            `;
+            
+            const optCont = card.querySelector(`#opts-${idx}`);
+            item.options.forEach((opt, oIdx) => {
+                optCont.innerHTML += `
+                    <label class="option-label">
+                        <input type="${item.type === 'multi' ? 'checkbox' : 'radio'}" name="q${idx}" value="${oIdx}"> ${opt}
+                    </label>
+                `;
+            });
+            root.appendChild(card);
+        });
+    }
+
+    window.check = function(idx) {
+        const item = testSet[idx];
+        const selected = Array.from(document.querySelectorAll(`input[name="q${idx}"]:checked`)).map(e => parseInt(e.value));
+        if (!selected.length) return;
+
+        const isCorrect = selected.length === item.correct.length && selected.every(v => item.correct.includes(v));
+        const fb = document.getElementById(`fb-${idx}`);
+        fb.style.display = 'block';
+        
+        if (isCorrect) {
+            fb.innerHTML = "✅ Correct!";
+            fb.className = "feedback correct";
+            score++;
+        } else {
+            fb.innerHTML = "❌ Incorrect. Correct Answer(s): " + item.correct.map(c => item.options[c]).join(", ");
+            fb.className = "feedback wrong";
+        }
+
+        document.getElementById(`btn-${idx}`).disabled = true;
+        answered++;
+        document.getElementById('current-score').innerText = score;
+        document.getElementById('progress-fill').style.width = (answered / testSet.length * 100) + "%";
+
+        if (answered === testSet.length) {
+            document.getElementById('results-card').style.display = 'block';
+            document.getElementById('result-text').innerText = `Final Result: ${score} / ${testSet.length} (${Math.round(score/testSet.length*100)}%)`;
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,855 @@
+
+<!doctype html>
+<html data-userprofile-context="{&quot;hasProfileCardAccess&quot;:true}" data-mathjax-context="{&quot;renderLatex&quot;:false,&quot;outputScale&quot;:1.5}" data-logging-endpoint="/d2l/lp/logger/provision?sessionToken=NjY5MCw1NDA4ODAw" lang="en-us" data-lang-default="en-us" data-intl-overrides="{&quot;number&quot;:{&quot;patterns&quot;:{&quot;decimal&quot;:{&quot;negativePattern&quot;:&quot;-{number}&quot;},&quot;percent&quot;:{&quot;positivePattern&quot;:&quot;{number} %&quot;,&quot;negativePattern&quot;:&quot;-{number} %&quot;}},&quot;symbols&quot;:{&quot;decimal&quot;:&quot;.&quot;,&quot;group&quot;:&quot;,&quot;,&quot;negative&quot;:&quot;-&quot;,&quot;percent&quot;:&quot;%&quot;},&quot;groupSize&quot;:[0]},&quot;date&quot;:{&quot;hour24&quot;:false,&quot;calendar&quot;:{&quot;firstDayOfWeek&quot;:0,&quot;dayPeriods&quot;:{&quot;am&quot;:&quot;AM&quot;,&quot;pm&quot;:&quot;PM&quot;},&quot;months&quot;:{&quot;short&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;,&quot;Sep&quot;,&quot;Oct&quot;,&quot;Nov&quot;,&quot;Dec&quot;,&quot;&quot;],&quot;long&quot;:[&quot;January&quot;,&quot;February&quot;,&quot;March&quot;,&quot;April&quot;,&quot;May&quot;,&quot;June&quot;,&quot;July&quot;,&quot;August&quot;,&quot;September&quot;,&quot;October&quot;,&quot;November&quot;,&quot;December&quot;,&quot;&quot;]},&quot;days&quot;:{&quot;short&quot;:[&quot;Sun&quot;,&quot;Mon&quot;,&quot;Tue&quot;,&quot;Wed&quot;,&quot;Thu&quot;,&quot;Fri&quot;,&quot;Sat&quot;]}},&quot;formats&quot;:{&quot;dateFormats&quot;:{&quot;short&quot;:&quot;M/d/yyyy&quot;},&quot;timeFormats&quot;:{&quot;short&quot;:&quot;h:mm tt&quot;,&quot;medium&quot;:&quot;h:mm tt&quot;,&quot;full&quot;:&quot;h:mm tt ZZZ&quot;}}}}" data-oslo="{&quot;batch&quot;:&quot;/d2l/api/oslo/1/batch&quot;,&quot;collection&quot;:&quot;/d2l/api/oslo/1/collection&quot;,&quot;version&quot;:&quot;W/\&quot;20.26.1.24929.639041296216112272\&quot;&quot;}" data-timezone="{&quot;name&quot;:&quot;United States - New York&quot;,&quot;identifier&quot;:&quot;America/New_York&quot;}" data-terminology="{&quot;outcomes&quot;:&quot;standards&quot;,&quot;educator&quot;:&quot;teacher&quot;,&quot;moduleHierarchy&quot;:&quot;unit&quot;}" data-app-version="20.26.1" dir="ltr" data-telemetry-endpoint="https://prd.us-east-1.telemetryservice.brightspace.com/api/events/" data-cdn="https://s.brightspace.com/apps/brightspace/20.26.1.24929/" data-global-context="{&quot;orgUnitId&quot;:&quot;10472875&quot;,&quot;orgId&quot;:&quot;6690&quot;,&quot;userId&quot;:&quot;5408800&quot;}" data-he-context="{&quot;activeOrgEnrollment&quot;:true,&quot;activityFrameworkEnabled&quot;:true,&quot;applySandboxing&quot;:false,&quot;bcsansFontAllowed&quot;:false,&quot;contentStyler&quot;:true,&quot;contentStylerCssOverride&quot;:&quot;/d2l/le/contentstyler/6690/files/View&quot;,&quot;enableLmsPathChecking&quot;:true,&quot;generativeAIEndpoint&quot;:&quot;&quot;,&quot;h5pContext&quot;:&quot;{\&quot;DefaultLtiLaunchUrl\&quot;:\&quot;/d2l/le/lti/10472875/H5PDeepLinkingLaunch/15176295\&quot;}&quot;,&quot;h5pLtiDeploymentLinkId&quot;:null,&quot;insertElement&quot;:true,&quot;insertPractice&quot;:true,&quot;layouts&quot;:true,&quot;mathRenderScale&quot;:1.5,&quot;maxFileSize&quot;:2147483648,&quot;mentions&quot;:false,&quot;orgUnitId&quot;:&quot;10472875&quot;,&quot;orgUnitPath&quot;:&quot;/content/enforced/10472875-11953.202610/&quot;,&quot;pasteFormatting&quot;:&quot;clean&quot;,&quot;sourceEditable&quot;:true,&quot;uploadFiles&quot;:false,&quot;useNewTinyMCEVersion&quot;:false,&quot;viewFiles&quot;:false,&quot;wmodeOpaque&quot;:true}" data-css-vars="{&quot;--d2l-branding-primary-color&quot;:&quot;#004b8e&quot;}">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Matt Way - EETC-2311-PC7 - Power Technology - must enroll in EETC 2311 PR - Combo online/on-campus instruction - Pellissippi State Community College</title>
+		<link rel="preconnect" href="https://s.brightspace.com/lib/bsi/2026.1.213/" crossorigin>
+		<link rel="dns-prefetch" href="https://s.brightspace.com/lib/bsi/2026.1.213/">
+		<link rel="modulepreload" href="https://s.brightspace.com/lib/bsi/2026.1.213/unbundled/bsi-unbundled.js" as="script" crossorigin="anonymous">
+		<link rel="modulepreload" href="https://s.brightspace.com/lib/bsi/2026.1.213/unbundled/button-icon.js" as="script" crossorigin="anonymous">
+		<link rel="modulepreload" href="https://s.brightspace.com/lib/bsi/2026.1.213/unbundled/html-block.js" as="script" crossorigin="anonymous">
+		<link rel="modulepreload" href="https://s.brightspace.com/lib/bsi/2026.1.213/unbundled/icon.js" as="script" crossorigin="anonymous">
+		<link rel="modulepreload" href="https://s.brightspace.com/lib/bsi/2026.1.213/unbundled/navigation-band.js" as="script" crossorigin="anonymous">
+		<script>
+		(function(){if('PerformanceLongTaskTiming' in window) {var g = window.__tti = {e:[]};g.o = new PerformanceObserver( function( l ){ g.e = g.e.concat( l.getEntries() ) });g.o.observe({ entryTypes:['longtask']})}})();
+		(function(){var client;var errors = [];window.addEventListener('d2l-logging-loaded', function(e) {client = e.detail.createClient('uncaught-errors', { shouldThrottle: true });if (errors.length > 0) {client.legacyErrorBatch(errors);}});var handleError = function(data) {if (!data.message) return;if (data.error && data.error.stack && (data.error.stack.includes('/content/') || data.error.stack.includes('/shared/'))) return;if (client) {client.legacyError(data.message, data.source, data.lineno, data.colno, data.error);} else {errors.push(data);}};window.addEventListener('error', function(e) {handleError({ message: e.message, source: e.source, lineno: e.lineno, colno: e.colno, error: e.error });});window.addEventListener('unhandledrejection', function(e) {handleError({message: e.reason ? (e.reason.message ? e.reason.message : e.reason) : '',error: e.reason});});})();
+		(function(){try { localStorage.setItem('XSRF.Token','e6ZEpEVfL7leq5YL6Gc4TRkV3CahWWeP');localStorage.setItem('Session.UserId','5408800');} catch(e) {}})();
+		(function(){if(window['FontFace'] === undefined) { window.d2lFontsLoaded = true; return; }window.d2lFontsLoaded = false;Promise.all(['400','700'].map(function(w) {return new FontFace('Lato','url(https://s.brightspace.com/lib/fonts/0.6.1/assets/Lato-' + w + '.woff2) format("woff2")', {style:'normal',weight: w}).load();})).then(function() {window.d2lFontsLoaded = true;if(window['D2L'] && window.D2L['FontsLoaded']) { window.D2L.FontsLoaded(); }});})();
+		(function(){
+				D2L = window.D2L || {}; D2L.LP = D2L.LP || {}; D2L.LP.Web = D2L.LP.Web || {}; D2L.LP.Web.UI = D2L.LP.Web.UI || {};
+				D2L.LP.Web.UI.Flags = {
+					ListedFlags: {"ACC-5-dashboard":false,"kaiju-349-source-course-deploy":true,"award-enable-copy-workflow":false,"awards-increase-string-fields-length":true,"LURV-6105-update-public-awards-fields":true,"awards-summary-date-localization-fix":true,"MAV-5203-createspace-h5p-library":false,"ipsis-sourcesystem-migration":true,"ipsis-provider-oldstandardcsv":false,"ipsis-oneroster-csv-powerschool":false,"ipsis-oneroster-full-sync-implicit-unenrollments":false,"ipsis-esb-lis":false,"hyrl-4-ipsis-queued-batches":true,"f17778-oneroster-psur":false,"f19471-gg4l-oneroster-grades-passback":true,"hyrl-1999-oneroster-rest-1p2":false,"hyrl-2209-oneroster-preserve-data-outside-semester":true,"hyrl-2561-ipsis-lms-invoke-aws-lambdas":true,"hyrl-2962-cancel-batch":false,"hyrl-3638-user-default-inactive-option":true,"hyrl-3587-hylia-data-pond":false,"AUT-2521-IPSIS-Form-Element-Decoupling":true,"F16988-add-to-calendar":true,"advanced-assessments-groups":false,"PHNX-2361-lti-activity-usage":false,"BORG-5035-Use-Full-Html-Editor":true,"nim-3228-ce-multi-eval-tab-skeleton-fix":true,"nim-5386-modify-activity-display-return-to":true,"nim-5487-fix-assigned-actor-counts":true,"course-completion-manual-override":true,"PHNX-3264-unavailable-content-visibility-setting":true,"F18735-lti-special-access-ui-feature-flag":false,"F19162-enable-content-face-releaseconditions":true,"F21912-enable-content-face-competencies":true,"F19163-enable-content-face-standards":true,"IDCS-15-edit-content-file-descriptions":true,"IDCS-17-edit-weblink-descriptions":true,"PHNX-1554-enable-refactored-completion-summary":true,"PHNX-2629-access-unlimited-depth":true,"IDCS-283-edit-lti-descriptions":true,"EP-1169-use-content-search":true,"EP-1097-edit-scorm-descriptions":true,"EP-1432-enable-description-scrolling-hovering":true,"EP-1339-show-next-and-previous-buttons":true,"EP-1580-enable-url-updating-in-lessons-next-prev":true,"PHNX-2357-user-guided-grade-associations":true,"PHNX-2649-lessons-course-overview":true,"PHNX-3198-respect-availability-window":true,"PHNX-3065-lessons-quicklink-current-window-navigation":true,"PHNX-2766-lazy-load-content":true,"PHNX-2988-lessons-full-date-tooltip-and-aria":true,"PHNX-3063-support-availability-types":true,"EP-1454-enable-module-level-outcome-alignment":false,"usa-1243-discussions-due-date":true,"FED-3067-Annual-Consumption":true,"cpd-add-record-from-award":true,"cpd-utc-dates":true,"cpd-default-attachments":true,"cpd-save-targets-dialog":true,"LURV-6016-CPD-Submission-Alert":true,"F21956-toggle-forum":true,"nim-4300-assignment-types-dropdown":true,"annotation-tooltip-helper":true,"fed-54-in-progress":false,"FED-2423-study-support":true,"FED-4668-lift-outcomes":true,"FED-4649-content-gen-import-expand":true,"FED-4285-content-templates":true,"HAI-1593-content-picker-quiz":true,"HAI-1591-content-picker-ideas":true,"HAI-1592-content-picker-summary":true,"HAI-1821-content-picker-lss":true,"HAI-596-Interventions":true,"FED-6732-quiz-custom-instructions":false,"FED-6876-idea-custom-instructions":false,"rpc-recalculate-all-users-fix":true,"oad-include-asn":true,"EP-1443-enable-lightcast-skills":false,"rename-programs-to-outcome-sets":true,"outcome-sets-organization":true,"outcomes-set-course-dataset":true,"outcomes-set-org-dataset":true,"EP-1420-enable-createspace-picker":false,"outcome-sets-scales":false,"de44716-lti-iframe-resize-limit":false,"lti-apps":false,"uce-eula-dialog":true,"shield-11437-email-notification-for-new-announcement":true,"BORG-4318-hide-quiz-question-points":true,"BORG-5230-zero-point-questions":true,"BORG-5429-Hotspot-Question-Type":false,"BORG-3975-quizzing-h5p-improvements":false,"f21399-reopen-quiz-attempt":true,"BORG-3800-attempt-log-tab-id-additional-work":true,"BORG-5624-question-pools-validate-numquestions":true,"EP-1126-edit-lor-descriptions":true,"shield-13260-earlier-lms-context-init":true,"FED-2493-Docs-PDF":true,"input-checkbox-form-element":true,"form-element-mixin-nested-forms":true,"remove-s-html":true,"migrate-sort-consistent-eval":true,"GAUD-8969-hierarchical-view-resize":true,"GAUD-7472-dropdown-popover":true,"GAUD-7355-tooltip-popover":false,"GAUD-8062-dialog-focus-opener":false,"GAUD-8229-list-up-button-fix":true,"GAUD-8295-menu-item-link-new-window-icon":true,"GAUD-8396-mvc-progress-backport":true,"GAUD-8402-legacy-progress-backport":true,"GAUD-8076-tabmenu-use-tab-control":true,"GAUD-7146-tabs-new-structure":false,"GAUD-8605-tab-no-initial-selected-event":true,"GAUD-8263-scroll-wrapper-media-print":true,"GAUD-8351-dialog-resize-telemetry":true,"GAUD-8658-mvc-dialog-focus-custom-elems":true,"PHNX-3234-dialog-alignment-fix":true,"GAUD-8228-8186-improved-table-col-sync":true,"GAUD-8465-immersive-nav-text-spacing":true,"GAUD-8824-fix-chart-in-table-loading":true,"lurv-6209-user-merge":false,"rubrics-clear-selections-option-and-menu-improvements":true,"KAIJU-189-source-course-deploy":true,"AUT-2319-New-Courses-Experience-Enhancement-Org-Flag":true,"AUT-2455-Course-And-Template-Role":true,"AUT-2301-Permissions-For-Create-Department-Button":true,"AUT-2473-Course-Updater":true,"AUT-2915-courses-remove-selection-limit":true,"AUT-2859-Courses-Add-Locale-Fields":true,"AUT-3141-Courses-Role-Filter-Perf-Fix":true,"MAV-5177-source-courses-in-createspace":false,"MAV-3788-slim-announcements-no-context-override":true,"MAV-4341-single-profile-social-media-update":true,"MAV-4588-learner-awards-no-context-override":true,"MAV-4591-welcome-window-no-context-override":false,"MAV-5067-hwep-empty-widget":true,"MAV-5258-mpw-profile-dropdown":false,"GAUD-8456-lms-nav-text-spacing":true,"shield-4811-enter-grades-scrolling-fix":false,"GAUD-7660-legacy-tabs-backport":true,"workforce-learning-groups":false,"scheduled-learning":false},
+					Flag: function(feature, defaultValue) {
+						const featureValue = D2L.LP.Web.UI.Flags.ListedFlags[feature];
+						return featureValue !== undefined ? featureValue : defaultValue;
+					}
+				};
+			})();
+		</script>
+		<meta name="robots" content="noindex" />
+		<link rel="icon" href="https://s.brightspace.com/lib/branding/1.0.0/brightspace/favicon.ico" sizes="any" />
+		<link rel="icon" href="https://s.brightspace.com/lib/branding/1.0.0/brightspace/favicon.svg" type="image/svg+xml" />
+		<link rel="stylesheet" type="text/css" href="https://s.brightspace.com/lib/bsi/2026.1.213/bsi.css" />
+		<link rel="stylesheet" type="text/css" href="https://s.brightspace.com/apps/brightspace/20.26.1.24929/web-packages/D2L.LP.Web.Core.css" />
+		<style>
+			html { font-size:20px; }
+			html { --d2l-branding-primary-color: #004b8e; }
+		</style>
+		<link rel="stylesheet" type="text/css" href="/d2l/lms/grades/static/css/score_display_control.css?v=20.26.1.24929" />
+		<link rel="stylesheet" type="text/css" href="/d2l/lms/qc/static/css/question_collection.css?v=20.26.1.24929" />
+		<link rel="stylesheet" type="text/css" href="/d2l/lms/quizzing/static/quiz_submissions_attempt.css?v=20.26.1.24929" />
+		<link rel="stylesheet" type="text/css" href="../static/lockdownbrowser.css?v=20.26.1.24929" />
+		<style>
+			.cDark { background-color:#004B8D;}
+			.cDark a, .cDark a:link, .cDark a:visited, .cDark a:hover {color:#ffffff;font-weight:normal;}
+			.cLight { background-color:#FFCC66;}
+			.cLight a, .cLight a:link, .cLight a:visited, .cLight a:hover {color:#ffffff;font-weight:normal;}
+			.cSoft { background-color:#BCE0F2;}
+			.cSoft a, .cSoft a:link, .cSoft a:visited, .cSoft a:hover {color:#666666;font-weight:normal;}
+			.d2l_1_1_796 {width:500px;}
+			.d2l_1_2_636 {background-position:left top;}
+			.d2l_1_3_124 {padding:1em;}
+			.d2l_1_4_785 {background-image:url('https://s.brightspace.com/lib/bsi/2026.1.213/images/tier1/alert.svg');}
+			.d2l_1_5_889 {background-position:right top;}
+			.d2l_1_6_110 {padding-right:31px;}
+			.d2l_1_7_126 {min-height:18px;}
+			.d2l_1_8_233 {background-image:url('https://s.brightspace.com/lib/bsi/2026.1.213/images/tier1/check.svg');}
+			.d2l_1_9_443 {padding:3.4em;}
+		</style>
+		<script>
+			var Global = {OrgUnitId:10472875,OrgId:6690,OrgName:'Pellissippi State Community College',OrgUnitName:'EETC-2311-PC7 - Power Technology - must enroll in EETC 2311 PR - Combo online\/on-campus instruction',OrgUnitCode:'11953.202610',OrgUnitTypeId:3,OrgDefinedId:'P20210785',OrgUnitPath:'\/content\/enforced\/10472875-11953.202610\/',FirstName:'Matt',LastName:'Way',UserName:'maway',UserId:5408800,RoleId:1312,RoleCode:'01',ImageSetId:0,ImageVersion:'20.26.1.24929',AssemblyVersion:'20.26.1.24929',Language:{LanguageId:1,LanguageVersion:'20.26.1.24929'},Culture:{IsRightToLeft:0},};
+			var BrowserInfo = {browserType:'Chrome',Type:10,MajorVersion:145,MinorVersion:0};
+		</script>
+		<script src="https://s.brightspace.com/lib/jquery/3.7.1/jquery.min.js"></script>
+		<script src="https://s.brightspace.com/lib/jqueryui/1.13.2/jquery-ui.min.js"></script>
+		<script src="https://s.brightspace.com/lib/bsi/2026.1.213/bsi.js"></script>
+		<script>
+		window.__elasticRumOnload = function() {if (!window['elasticApm']) return;var apm = elasticApm.init({serviceName: 'LMS',serverUrl: 'https://d2l-elasticrum.apm.us-east-1.aws.cloud.es.io/',transactionSampleRate: 0.1,disableInstrumentations: ['xmlhttprequest','fetch','eventtarget','history']});apm.addLabels({ "orgName": "pstcc"});apm.addLabels({ "instanceName": "tbr"});};
+		</script>
+		<script async="async" onload="window.__elasticRumOnload()" src="https://s.brightspace.com/lib/elastic-apm-rum/5.14.0/elastic-apm-rum.umd.min.js"></script>
+		<script>
+		window.__ttiOnload = function() {ttiPolyfill.getFirstConsistentlyInteractive().then(function(tti) {if (tti) {document.dispatchEvent(new CustomEvent('d2l-performance-measure', {bubbles: true,detail: { name: 'd2l.page.tti', value: {name: 'd2l.page.tti', entryType: 'tti-polyfill', duration: tti, startTime: 0} }}));}});};
+		</script>
+		<script async="async" onload="window.__ttiOnload()" src="https://s.brightspace.com/lib/tti-polyfill/0.2.2/tti-polyfill-global.js"></script>
+		<script src="https://s.brightspace.com/apps/brightspace/20.26.1.24929/web-packages/D2L.LP.Web.Core.js"></script>
+		<script>
+		window.BSE = [{ "url":"https://extensions.api.brightspace.com/1f44cdd0-340e-446f-a8d9-49d310399f20%2Fv2%2FVerity+Visualizer", "configs":{"VerityServerURL": "https://zone1.verity.yuja.com","VerityID": "204"}}];
+		</script>
+		<script src="/d2l/custom/JavaScriptManagement/Files/10472875/7.js?v=20.26.1.24929"></script>
+		<script src="/d2l/lms/grades/static/include/score_display_control.js?v=20.26.1.24929"></script>
+		<script>
+			D2L.Serialization.JsonDeserializerMin.Deserialize(["77f064c5ff294984a798b300d3a77f01",45,0,[{"866a2cff94774a8e933c77b9226cd185":[["dg_score"],[[2,"z_q"],[1,"z_r"],[2,"z_s"]]],"d0d2230ff3664d6b83f0195d6300a2f4":[["dg_separator"],[[2,"z_t"]]],"6722225b40b34860a32b737850bbc569":[["dg_symbol"],[[2,"z_u"]]],"8f408e893d9e43dcb43a13314afd8159":[["dg_colour"],[[2,"z_p"]]],"96bdead25e1b4cba8d3d8ff9b56845c5":[["dg_score","ctl_3"],[[2,"z_bc"],[1,"z_bd"],[2,"z_be"]]],"577222488ea64c808f90d09d4e57b83a":[["dg_separator","ctl_4"],[[2,"z_bf"]]],"ffe2eb11d244439290b880d63ecc2d38":[["dg_symbol","ctl_5"],[[2,"z_bg"]]],"84b18b67e0fe45fa8c78ac8f78e73ee2":[["dg_colour","ctl_6"],[[2,"z_bb"]]]}],[[]],[[]],[[],0],["^([\\(-]*(([01234567890123456789]+))(\\.[01234567890123456789]+)?[\\)-]*)$|^([\\(-]*[01234567890123456789]*\\.?[01234567890123456789]+[\\)-]*)$","^([\\(-]*(([01234567890123456789]+))[\\)-]*)$|^([\\(-]*[01234567890123456789]+[\\)-]*)$",0,".",1,"-",",",["0","1","2","3","4","5","6","7","8","9"],"%",0,0,0,[0]],[],0,{"ClassName":"D2L.Util.DateTime","Year":2026,"Month":2,"Day":16,"Hour":5,"Minute":26,"Second":20,"Millisecond":455}],D2L.UI);
+			D2L.Language.InitLang({'standard.buttons':{'btnadd':'Add','btnreset':'Reset','btnreplace':'Replace','btnrename':'Rename','btnremoveselected':'Remove Selected','btnremove':'Remove','btnrefresh':'Refresh','btnrecord':'Record','btnpublishprocessing':'Publishing...','btnpublish1':'Publish','btnpublish':'Publish to LOR','btnproceed':'Proceed','btnprint':'Print','btnprevious':'Previous ','btnpreview':'Preview','btnoverwrite':'Overwrite','btnokay':'OK','btnok':'OK','btnresetprocessing':'Resetting...','btnretract':'Retract','btnreturn':'Return','btnrevert':'Undo Unsaved Changes','btnupload':'Upload','btnupdateprocessing':'Updating...','btnupdate':'Update','btnsubmit':'Submit','btnstart':'Start','btnskip':'Skip','btnshowall':'Show All','btnset':'Set','btnno':'No','btnsend':'Send','btnsearch':'Search','btnsaveprocessing':'Saving...','btnsavedraft':'Save Draft','btnsaveandnew':'Save and New','btnsaveandcopy':'Save and Copy','btnsaveandclose':'Save and Close','btnsave':'Save','btnrun':'Run','btnselectcurrentfolder':'Select Current Folder','btnnext':'Next','btnnew':'New','btnlistall':'List All','btnclearlist':'Clear List','btnclearchanges':'Clear Changes','btnclearall':'Clear All','btnclear':'Clear','btnchangepassword':'Change Password','btnchangelanguage':'Change Language','btnchange':'Change','btncancelprocessing':'Canceling...','btnclose':'Close','btncancel':'Cancel','btnback':'Back','btnapplyprocessing':'Applying...','btnapply':'Apply','btnadmin':'Admin','btnaddselected':'Add Selected','btnaddprocessing':'Adding...','btnaddanother':'Add Another','btnaddandnew':'Add and New','btnbrowse':'Browse','btnview':'View','btnconfirm':'Confirm','btncopy':'Copy','btninsert':'Insert','btnimport':'Import','btnhome':'Home','btnhistory':'History','btngoback':'Go Back','btngo':'Go','btnfinish':'Finish','btnexport':'Export','btncontinue':'Continue','btnedit':'Edit','btndontsave':'Don\u0027t Save','btndone':'Done','btndeleteselected':'Delete Selected','btndeleteprocessing':'Deleting...','btndelete':'Delete','btncustomize':'Customize','btncreateprocessing':'Creating...','btncreate':'Create','btndownload':'Download','btnyes':'Yes'},'framework.dialog':{'altclosedialog':'Close this Dialog','altjumpbottom':'Jump to bottom of [0] dialog','altjumptop':'Jump to top of [0] dialog','altresizedialog':'Resize this Dialog','lblsaveconfirmationprimary':'This page has been edited.','lblsaveconfirmationsecondary':'Do you want to save the changes?','titconfirmation':'Confirmation','titerror':'Error','titinformation':'Information','titinputrequested':'Choose a Value','titprocessing':'Processing...','titsavechanges':'Save Changes','titwarning':'Warning'},'framework.messagearea':{'hdrerrors':'Errors','lblstatus7':'Exported successfully','lblstatus6':'Imported successfully','lblstatus5':'Copied successfully','lblstatus4':'Reordered successfully','lblstatus3':'Created successfully','lblstatus2':'Deleted successfully','lblstatus17':'Restored successfully','lblstatus8':'Moved successfully','lblstatus16':'Rubric saved - Grade not published since the course end date is in the past','lblstatus14':'Rubric saved - Grade not published since the course is in an in-active state','lblstatus13':'Sent successfully','lblstatus12':'Unenrolled successfully','lblstatus11':'Enrolled successfully','lblstatus10':'Removed successfully','lblstatus1':'Saved successfully','lblerrors':'There were [0] error(s) found in the information you submitted:','lblstatus15':'Rubric saved - Grade not published since the course start date is in the future','lblstatus9':'Added successfully'}},{'standard.misc.txtloading':'Loading...','standard.misc.txtcopyright':'Powered by D2L Incorporated'});
+			D2L.Language.InitImg({'framework.messagearea':{'actstatus11':["0\/Framework.MessageArea.actStatus11.gif"],'actstatus12':["0\/Framework.MessageArea.actStatus12.gif"],'actstatus13':["0\/Framework.MessageArea.actStatus13.gif"],'actstatus3':["https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier1\/file-document.svg",18],'actstatus6':["0\/Framework.MessageArea.actStatus6.gif"],'actstatus7':["0\/Framework.MessageArea.actStatus7.gif"]}},{});
+			function d2l_Onload() {
+				D2L.WebComponentsReady.then(function() {
+					UI.OnPageLoad().Trigger();
+					D2L.C('tAtom83285215_85781377_296708285','ctl_21');
+					D2L.C('tAtom83285215_85781377_296708288','ctl_26');
+					D2L.C('tAtom83285215_85781377_296708287','ctl_31');
+					D2L.C('tAtom83285215_85781377_296708286','ctl_36');
+					D2L.C('tAtom83285218_85781382_296708300','ctl_48');
+					D2L.C('tAtom83285218_85781382_296708301','ctl_53');
+					D2L.C('tAtom83285218_85781382_296708303','ctl_58');
+					D2L.C('tAtom83285218_85781382_296708304','ctl_63');
+					D2L.C('tAtom83285218_85781382_296708302','ctl_68');
+					D2L.C('tAtom83285433_85781615_296709227','ctl_84');
+					D2L.C('tAtom83285433_85781615_296709230','ctl_89');
+					D2L.C('tAtom83285433_85781615_296709229','ctl_94');
+					D2L.C('tAtom83285433_85781615_296709228','ctl_99');
+					D2L.C('tAtom83285436_85781618_296709240','ctl_106');
+					D2L.C('tAtom83285436_85781618_296709239','ctl_111');
+					D2L.C('tAtom83285436_85781618_296709242','ctl_116');
+					D2L.C('tAtom83285436_85781618_296709241','ctl_121');
+					D2L.C('tAtom83285474_85781659_296709378','ctl_139');
+					D2L.C('tAtom83285474_85781659_296709379','ctl_145');
+					D2L.C('tAtom83285491_85781683_296709433','ctl_179');
+					D2L.C('tAtom83285491_85781683_296709434','ctl_184');
+					D2L.C('tAtom83285491_85781683_296709435','ctl_189');
+					D2L.C('tAtom83285491_85781683_296709436','ctl_194');
+					D2L.C('tAtom83285540_85781749_296709661','ctl_201');
+					D2L.C('tAtom83285540_85781749_296709659','ctl_206');
+					D2L.C('tAtom83285540_85781749_296709660','ctl_211');
+					D2L.C('tAtom83285540_85781749_296709658','ctl_216');
+					D2L.C('tAtom83285542_85781751_296709667','ctl_224');
+					D2L.C('tAtom83285542_85781751_296709666','ctl_229');
+					D2L.C('tAtom83285542_85781751_296709669','ctl_234');
+					D2L.C('tAtom83285542_85781751_296709668','ctl_239');
+					D2L.C('tAtom83285543_85781752_296709671','ctl_246');
+					D2L.C('tAtom83285543_85781752_296709673','ctl_251');
+					D2L.C('tAtom83285543_85781752_296709672','ctl_256');
+					D2L.C('tAtom83285543_85781752_296709670','ctl_261');
+					D2L.C('tAtom83285544_85781753_296709677','ctl_269');
+					D2L.C('tAtom83285544_85781753_296709674','ctl_274');
+					D2L.C('tAtom83285544_85781753_296709676','ctl_279');
+					D2L.C('tAtom83285544_85781753_296709675','ctl_284');
+					D2L.C('tAtom83285546_85781755_296709683','ctl_291');
+					D2L.C('tAtom83285546_85781755_296709682','ctl_296');
+					D2L.C('tAtom83285546_85781755_296709684','ctl_301');
+					D2L.C('tAtom83285546_85781755_296709685','ctl_306');
+					D2L.C('tAtom83285550_85781760_296709713','ctl_313');
+					D2L.C('tAtom83285550_85781760_296709711','ctl_318');
+					D2L.C('tAtom83285550_85781760_296709710','ctl_323');
+					D2L.C('tAtom83285550_85781760_296709709','ctl_328');
+					D2L.C('tAtom83285550_85781760_296709712','ctl_333');
+					D2L.C('tAtom83285550_85781760_296709706','ctl_338');
+					D2L.C('tAtom83285550_85781760_296709707','ctl_343');
+					D2L.C('tAtom83285550_85781760_296709708','ctl_348');
+					D2L.C('tAtom83285552_85781762_296709718','ctl_356');
+					D2L.C('tAtom83285552_85781762_296709719','ctl_362');
+					
+				});
+			}
+			function d2l_Onunload() {
+				UI.OnPageUnload().Trigger();
+				D2L.GarbageCollection.Dispose();
+			}
+		</script>
+		<script>
+		
+function GoToQuiz( quizId, isUserAuthorized ) {
+	if( isUserAuthorized ) {
+		DoGoToQuiz( quizId );
+	} else  {
+		var authResult = AuthorizeUser( quizId );
+		
+		authResult.Register( function( authOk ) {
+				if( authOk ) {
+					DoGoToQuiz( quizId );
+				}
+			}
+		);	
+	}
+}
+
+function DoGoToQuiz( quizId ) {
+	var ni = new D2L.NavInfo();
+	ni.navigation = '/d2l/lms/quizzing/user/quiz_summary.d2l';
+	ni.SetParam( 'qi', quizId );				
+	Nav.Go( ni );
+}
+
+function PreviewQuiz( quizId, isUserAuthorized ) {
+
+	if( isUserAuthorized ) {
+		DoPreviewQuiz( quizId );
+	} else  {
+		var authResult = AuthorizeUser( quizId );
+		
+		authResult.Register( function( authOk ) {
+				if( authOk ) {
+					DoPreviewQuiz( quizId );
+				}
+			}
+		);	
+	}	
+}
+
+function DoPreviewQuiz( quizId ) {
+	var ni = new D2L.NavInfo();
+	ni.navigation = '/d2l/lms/quizzing/user/quiz_summary.d2l';
+	ni.SetParam( 'bp', 1 );	
+	ni.SetParam( 'isprv', 1 );		
+	ni.SetParam( 'qi', quizId );
+	Nav.Go( ni );	
+}
+
+function AuthorizeUser( quizId ) {
+
+	var dr = new D2L.Util.DelayedReturn();
+
+	var hdl = function( response ) {
+		dr.Trigger( response.GetType() == D2L.Dialog.ResponseType.Positive ) ;
+		response.GetDialog().Close();
+	};
+	
+	ShowAuthorizationDialog(quizId, hdl);
+	
+	return dr;
+}
+
+function ShowAuthorizationDialog(quizId, hdl) {
+	
+	var dialog = new D2L.Dialog( 'dialog', hdl );
+	dialog.AddButton( D2L.Dialog.ButtonType.Cancel, '', 'cancelButton' );
+	var btnSubmit = dialog.AddCustomButton( 'Submit', D2L.Dialog.ButtonPosition.Right, D2L.Dialog.ResponseType.Positive, '', 'btnSubmit' );
+	btnSubmit.SetIsEnabled( false );
+
+	dialog.SetSrc( '/d2l/lms/authorizationschemes/commoncartridge/pin_entry.d2l', 'SrcCallback' );
+	
+	dialog.SetSrcParam( 'authCallback', '' );
+	dialog.SetSrcParam( 'resourceId',   quizId );
+	dialog.SetSrcParam( 'resourceType', '0' ); // 0 - quiz
+	dialog.SetSrcParam( 'cartridgeId',   '' );
+	
+	dialog.SetSize( 600, 600 );
+
+	dialog.SetTitle( 'Protected Resource' );
+	dialog.SetIsResizable(false);	
+
+	dialog.Open();		
+}
+			
+		</script>
+		<script>
+		function IsEmbeddedInASV() {
+	var win = window;
+	while(true) {
+		try {
+			
+			if (win.location.href.toLowerCase().indexOf("sequenceviewer") > -1) {
+				return true;
+			}
+		} catch (error) {
+			
+			return false;
+		}
+		if(win === win.parent) {
+			break;
+		}
+		win = win.parent;
+	}
+	return false;
+}
+		</script>
+		<script>
+		function FullyHideLockDownBrowserIFrameBySkippingTabIndex() {
+	var iframeLockDownBrowser = document.getElementById('LockDownBrowserLaunchFrame');
+	if( iframeLockDownBrowser ) {
+		iframeLockDownBrowser.tabIndex = -1;
+	}
+}
+
+		</script>
+		<script>
+		function GetReturnPoint(returnPointKey, defaultReturnPoint) {
+    return D2L.LP.Web.UI.Html.ReturnPoints.Get(
+        returnPointKey,
+        new D2L.LP.Web.Http.UrlLocation(defaultReturnPoint)
+    );
+}
+
+		</script>
+		<script>
+		function StyleFirstSection(targetId) {
+	var control = UI.GetControl(targetId);
+	if (control) {
+		var controlParent = control.IDomNode.parentNode;
+		controlParent.style.margin = '0 0 10px 0';
+	}
+}
+		</script>
+		<script>
+		function HandleItemClick( item ) {
+				var structure = item.GetStructure();
+				var placeholder = structure.GetOpener();
+				var quizId = structure.GetKey();
+				if( item.GetKey() == 'reports' ) {
+					var navInfo = new D2L.NavInfo();
+					navInfo.SetNavigation('/d2l/lms/quizzing/reports/quiz_reports.d2l?np=1isprv=&qi='+quizId+'&dnb=');
+					navInfo.target = "_top";
+					Nav.Go( navInfo );
+				}else if( item.GetKey() == 'summary' ) {
+					var navInfo = new D2L.NavInfo();
+					navInfo.SetNavigation('/d2l/lms/quizzing/user/quiz_summary.d2l?bp=1isprv=&qi='+quizId+'&dnb=');
+					navInfo.target = "_top";
+					Nav.Go( navInfo );
+				}
+			}
+			
+			function ForceRedirectTheOpenerToSubmissionsPage(){
+				try {
+					window.opener.location = '/d2l/lms/quizzing/user/quiz_submissions.d2l?bp=1&isprv=&qi=12225316&ou=10472875';
+				} catch (error) {
+					window.location = '/d2l/lms/quizzing/user/quiz_submissions.d2l?bp=1&isprv=&qi=12225316&ou=10472875';
+				}
+			}
+			
+			function ExitQuiz() {
+				var n = new D2L.NavInfo();
+				n.navigation = '/d2l/lms/quizzing/admin/quizzes_manage.d2l';
+				n.SetTarget( '_top' );
+				Nav.Go( n );
+			}
+			
+			function ContentQuizImmersive() {
+				
+				
+				
+				var quizIframe;
+				var parentFrame = window.parent.parent;
+			    if (parentFrame.document.querySelector('iframe') && ((parentFrame.document.querySelector('iframe').getAttribute('src')?.indexOf('quiz_summary.d2l') > -1) ||
+				(parentFrame.document.querySelector('iframe').getAttribute('src')?.indexOf('quiz_submissions.d2l') > -1))) {
+			        quizIframe = parentFrame.document.querySelector('iframe');
+			    }
+
+			    if (quizIframe && parentFrame.D2L.LP.Web.UI.Desktop.MasterPages.Immersive) {
+			        parentFrame.D2L.LP.Web.UI.Desktop.MasterPages.Immersive.MakeImmersive(quizIframe);
+					if (!quizIframe.classList.contains ('immersive-quiz')) {
+						quizIframe.classList.add('immersive-submission-attempt');
+					}
+					if (is_iOS9 && is_iOS9 === "True") {
+						quizIframe.style.position = "static";
+					}
+			    }
+				
+			}
+			
+			function ContentQuizRemoveImmersive() {
+				var quizIframe;
+				var parentFrame = window.parent.parent;
+			    if (parentFrame.document.querySelector('iframe') && ((parentFrame.document.querySelector('iframe').getAttribute('src')?.indexOf('quiz_summary.d2l') > -1) ||
+				(parentFrame.document.querySelector('iframe').getAttribute('src')?.indexOf('quiz_submissions.d2l') > -1))){
+			        quizIframe = parentFrame.document.querySelector('iframe');
+			    }
+
+			    if (quizIframe && parentFrame.D2L.LP.Web.UI.Desktop.MasterPages.Immersive) {
+			        parentFrame.D2L.LP.Web.UI.Desktop.MasterPages.Immersive.RemoveImmersive(quizIframe);
+			        quizIframe.classList.remove('immersive-quiz');
+					quizIframe.classList.remove('immersive-submission-attempt');
+
+					if (parentFrame.document.getElementById('ContentView')) {
+						parentFrame.document.getElementById('ContentView').setAttribute('aria-live', true);
+					}
+					if (parentFrame.document.getElementById('QuizContentViewPlaceHolder')) {
+						parentFrame.document.getElementById('QuizContentViewPlaceHolder').setAttribute('aria-live', true);
+					}
+					
+					parentFrame.dispatchEvent(new Event('resize'));
+			    }
+			}
+			
+			function GoToSubmissions() {
+				var isFromContent = false;
+				var parentWindow = window.parent.parent.parent;
+
+				var isFromOldContent = parentWindow.location.href.indexOf("content") !== -1;
+				var isFromNewContent = parentWindow.location.href.indexOf("enhancedSequenceViewer") !== -1;
+				if(isFromOldContent || isFromNewContent) {
+					isFromContent = true;
+				}
+	
+				var n = new D2L.NavInfo();
+				var cfql = 0;
+				n.SetNavigation('/d2l/lms/quizzing/user/quiz_submissions.d2l?isprv=&fromQB=0&qi=12225316&cfql=' + cfql);
+				
+				if (isFromContent) {
+					ContentQuizRemoveImmersive();
+					if (parent === parentWindow) {
+						n.SetTarget( '_self' );
+					} else {
+						n.SetTarget( '_parent' );
+					}
+				} else if (IsEmbeddedInASV()) {
+					n.SetTarget( '_self' );
+				} else {
+					n.SetTarget( '_top' );
+				}
+				Nav.Go( n );
+			}
+			
+			function ExitSubmissionAttempt() {
+				var cameFromTab = UI.GetControl('HDN_cft')?.GetValue();
+				var quizId = 12225316;
+				var orgUnitId = 10472875;
+				if (cameFromTab === 'ad') {
+					var activityDisplayReturnPointUrl = GetReturnPoint(`Content.ActivityDisplay.QuizAttempt.${quizId}`, '/d2l/lms/quizzing/user/quiz_summary.d2l?qi=' + quizId + '&ou=' + orgUnitId);
+					var n = new D2L.NavInfo();
+					n.navigation = activityDisplayReturnPointUrl.GetUrl();
+					n.SetParam('shouldFocus', true);
+					n.SetTarget( '_top' );
+					Nav.Go( n );
+				} else {
+					GoToSubmissions();
+				}
+			}
+		</script>
+		<script>
+		var LockDownBrowser = ( function() {
+    var LAUNCH_BUTTON = "BTN_LockDownBrowserLaunch",
+        LAUNCH_MESSAGE_CONTAINER = "CTN_lockDownBrowserMessage",
+        INSTALLATION_STATUS_LABEL = "LBL_installationStatus",
+        RESPONDUS_DETECTION_TIMEOUT = 3000, 
+        DELAY_RESET_OF_LAUNCHING_TEXT_AFTER_SUCCESS = 2000, 
+        timeout = null,
+        showRefreshDialog = false;
+
+    function init() {
+        var launchMessageContainer = UI.GetControl( LAUNCH_MESSAGE_CONTAINER );
+        var installationStatusLabel = UI.GetControl( INSTALLATION_STATUS_LABEL );
+        if( launchMessageContainer ) {
+            $( launchMessageContainer.IDomNode ).addClass( 'lockDownBrowserMessage' );
+        }
+        if( installationStatusLabel ) {
+            $( installationStatusLabel.IDomNode ).addClass( 'header' );
+        }
+    }
+
+    function launch( quizId, deepLinkId, showDialog) {
+        hideInstallationStatusError();
+
+        var launchButton = UI.GetControl( LAUNCH_BUTTON );
+        launchButton.SetIsEnabled( false );
+        $( launchButton.IDomNode ).attr( 'role', 'alert' ); // for screen readers
+        launchButton.SetText( new D2L.LP.Text.LangTerm( 'Quizzes.UserQuizSummary.txtCheckingLDB' ) );
+        showRefreshDialog = showDialog;
+        
+        D2L.Rpc.Create( 'GetRespondusLink', getRespondusLinkCallBack, '/d2l/lms/quizzing/rpc/rpc_functions.d2l' ).Call( quizId, deepLinkId );
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function getRespondusLinkCallBack( rpcResponse ) {
+        if( rpcResponse.GetResponseType() != D2L.Rpc.ResponseType.Success ) {
+            onRpcError();
+            return;
+        }
+
+        setupTimeoutAndEventHandlers();
+
+        try {
+            var launchLink = rpcResponse.GetResult();
+
+            
+            var cbLDBex = getCookie('cbLDBex');
+
+            if (cbLDBex) {
+                launchLink = 'data:text/plain,' + launchLink;
+            } 
+
+	        if( isiOSDetected() ) {
+		        window.top.location.href = launchLink;
+	        } else {
+		        $( '#LockDownBrowserLaunchFrame' )[0].contentWindow.location.href = launchLink;
+	        }
+        } catch( e ) {
+            
+            onNotDetected();
+        }
+    }
+
+	function isiOSDetected() {
+		/*first condition will detect iOS 13 (iPad < 13) ... second will detect iPad 13 due to a setting that now treats
+		iPad Safari as if it is a Mac desktop (Mac desktops currently (as of 2019) don't support multi touch) ...
+		stackoverflow.com/questions/58019463/how-to-detect-device-name-in-safari-on-ios-13-while-it-doesnt-show-the-correct*/
+        return (navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/)) 
+		|| (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); 
+	}
+
+    function onNotDetected() {
+        removeTimeoutAndEventHandlers();
+        showInstallationStatusErrorWithLangTerm( 'Quizzes.UserQuizSummary.lblLDBNotFound' );
+        setLaunchButtonToLangTerm( 'Quizzes.UserQuizSummary.txtLDBNotFound' );
+
+        setTimeout( function() {
+            setLaunchButtonToLangTerm( 'Quizzes.UserQuizSummary.btnReLaunchLDB' ).SetIsEnabled( true );
+        }, RESPONDUS_DETECTION_TIMEOUT );
+    }
+
+    function onDetected() {
+        removeTimeoutAndEventHandlers();
+        setTimeout( function() {
+            setLaunchButtonToLangTerm( 'Quizzes.UserQuizSummary.btnLaunchLDB' ).SetIsEnabled( true );
+        }, DELAY_RESET_OF_LAUNCHING_TEXT_AFTER_SUCCESS );
+
+        if ( showRefreshDialog ) setupRefreshDialog();
+    }
+
+    function setupRefreshDialog() {
+        var refreshDialog = new D2L.Dialog.Prompt( "refreshPage" );
+
+        refreshDialog.SetCallback( function( response ) {
+            if( response.GetType() == D2L.Dialog.ResponseType.Positive ) {
+                refreshDialog.Close();
+                window.location.reload();
+            }
+        } );
+        refreshDialog.SetTitle( 'LockDown Browser Status' );
+        refreshDialog.SetPrimaryMessage( 'If you\u2019ve completed the quiz with LockDown Browser, click Done.' );
+        refreshDialog.SetSecondaryMessage( 'If LockDown Browser didn\u2019t open, make sure you have the latest version installed, and then try launching again.' );
+        refreshDialog.SetPositiveButtonText( 'Done' );
+
+        refreshDialog.Open();
+    }
+
+    function onRpcError() {
+        showInstallationStatusErrorWithLangTerm( 'Quizzes.UserQuizSummary.lblLaunchError' );
+        setLaunchButtonToLangTerm( 'Quizzes.UserQuizSummary.btnReLaunchLDB' ).SetIsEnabled( true );
+    }
+
+    function setupTimeoutAndEventHandlers() {
+        timeout = setTimeout( onNotDetected, UI.GetByName( 'LockDownBrowserLaunchTimeout' ).value );
+        window.addEventListener( 'pagehide', onDetected );
+        window.addEventListener( 'blur', onDetected );
+    }
+
+    function removeTimeoutAndEventHandlers() {
+        if( timeout ) {
+            clearTimeout( timeout );
+            timeout = null;
+        }
+        window.removeEventListener( 'pagehide', onDetected );
+        window.removeEventListener( 'blur', onDetected );
+    }
+
+    function setLaunchButtonToLangTerm( langTerm ) {
+        var launchButton = UI.GetControl( LAUNCH_BUTTON );
+        launchButton.SetText( new D2L.LP.Text.LangTerm( langTerm ) );
+        return launchButton;
+    }
+
+    function hideInstallationStatusError() {
+        var $container = $( UI.GetControl( LAUNCH_MESSAGE_CONTAINER ).IDomNode );
+        var $statusLabel = $( UI.GetControl( INSTALLATION_STATUS_LABEL ).IDomNode );
+        $container.find( '#warning_icon' ).hide();
+        $statusLabel.hide();
+        $container.removeClass( 'error icon' );
+    }
+
+    function showInstallationStatusErrorWithLangTerm( langTerm ) {
+        var $container = $( UI.GetControl( LAUNCH_MESSAGE_CONTAINER ).IDomNode );
+        var $warningIcon = $container.find( '#warning_icon' );
+        if( $warningIcon.length == 0 ) {
+            $container.prepend( '<div id="warning_icon" class="warning icon" style="display:none;">&#x21;</div>' );
+            $warningIcon = $container.find( '#warning_icon' );
+        }
+        $container.addClass( 'error icon' );
+        var statusLabel = UI.GetControl( INSTALLATION_STATUS_LABEL );
+        statusLabel.SetText( new D2L.LP.Text.LangTerm( langTerm ) );
+        $( UI.GetControl( 'LNK_download' ).IDomNode ).attr( 'role', 'alert' );
+
+        $warningIcon.show( 'fade' );
+        $( statusLabel.IDomNode ).show( 'fade' );
+
+        window.scrollTo( 0, document.body.scrollHeight );
+    }
+
+    return {
+        init: init,
+        launch: launch
+    };
+} )();
+
+$( LockDownBrowser.init );
+		</script>
+</head>
+	<body id="d2l_body" onunload="d2l_Onunload();" onload="d2l_Onload();" class="vui-typography d2l-typography daylight d2l-body-unresolved">
+		<header><nav class="d2l-navigation-s d2l-branding-navigation-dark-foreground-color d2l-navigation-s-linkarea-no-color"><d2l-labs-navigation-band></d2l-labs-navigation-band></nav></header><div class="d2l-page-message-container"><div class="d2l-page-message d2l-hidden d2l_1_1_796" id="d2l_sessionExpiryWarning"><div style="display:none;" id="d2l_sessionExpiryAlert" role="alert"><div class="d2l-container-icon d2l_1_2_636 d2l_1_3_124">
+			<div class="d2l-container-icon-inner d2l_1_4_785 d2l_1_5_889 d2l_1_6_110 d2l_1_7_126">
+				<h2 class="d2l-heading vui-heading-2">Are You Still There?</h2>
+				<div class="d2l-textblock">Your session expires after 180 minutes of inactivity, which protects your information in case you&#39;ve left your device without logging out.<br/>
+<br/>
+<strong>Hit a key or click anywhere to stay logged in.</strong></div>
+			</div>
+		</div>
+		</div><div style="display:none;" id="d2l_sessionExpiryCheck" role="alert"><div class="d2l-container-icon d2l_1_2_636 d2l_1_3_124">
+			<div class="d2l-container-icon-inner d2l_1_8_233 d2l_1_5_889 d2l_1_6_110 d2l_1_7_126">
+				<div class="d2l_1_9_443">
+					<h2 class="d2l-heading vui-heading-2 d2l-heading-none">Oh, There You Are!</h2>
+				</div>
+			</div>
+		</div>
+		</div></div>
+		</div>
+		<div id="d_content" class="d2l-page-main d2l-max-width d2l-min-width">
+		<div id="d_content_inner" class="d2l-page-main-padding">
+		<div id="d_page_header" class="d2l-page-header"><div class="d2l-tool-actions d2l-left"><div class="d2l-heading dsr"><h1 id="d_page_title" class="d2l-heading-title"><span class="vui-heading-1">Matt Way</span></h1>
+		</div></div><span class="d2l-clear"></span></div><div id="d_content_r_c1">
+				<div id="d_content_r_c2">
+					<div id="d_content_r">
+						<div id="d_content_r_p">
+							<form method="post" action="quiz_submissions_attempt.d2l?isprv=&amp;qi=12225316&amp;ai=111904858&amp;isInPopup=0&amp;cfql=0&amp;fromQB=0&amp;fromSubmissionsList=1&amp;ou=10472875" id="d2l_form" enctype="multipart/form-data" onreset="return false;" onsubmit="return false;" >
+								<div>
+									<input type="hidden" name="d2l_action" value="" />
+									<input type="hidden" name="d2l_actionparam" value="" />
+									<input type="hidden" name="d2l_hitCode" value="" />
+									<input type="hidden" name="d2l_rf" value="" />
+									<input type="hidden" name="d2l_controlMapPrev" value="" />
+<input type="hidden" name="z_a" id="z_a" /><div class="dco revamped small-gap pt-11" id="z_c"><div class="dco_c"><div class="dco margin-auto  revamped-header"><div class="dco_c"><div class="dco title"><div class="dco_c"><h2 class="dhdg_1 vui-heading-2" id="z_d">Homework #1 Electrical Safety - Results</h2></div></div><div class="dco close"><div class="dco_c"><d2l-button-icon icon="tier1:close-large-thick" id="z_e" onclick="D2L.O(&quot;__gctl_2&quot;,0)();" text="Close this Quiz"></d2l-button-icon>
+							</div></div></div></div><div class="dco revamped-inner margin-auto small-gap"><div class="dco_c"><div class="dco revamped-inner margin-auto small-gap" id="z_f"><div class="dco_c"><div class="dco info text-center"><div class="dco_c"><div class="dco"><div class="dco_c"><h2 class="dhdg_2 vui-heading-3" id="z_g">Attempt 5 of Unlimited</h2><div class="dco d2l-body-standard"><div class="dco_c"><label id="z_h">Written Jan 27, 2026 3:59 PM - Jan 27, 2026 4:02 PM</label></div></div></div></div></div></div></div></div><div class="dco revamped-inner margin-auto small-gap" id="z_i"><div class="dco_c"><div class="dco score d2l-body-standard"><div class="dco_c"><table summary="" class="d_t" style="width:100%;"><tr><td class="d_tr d_tm d_tn" style="width:100%;"><label style="margin-right:6px;">Attempt Score</label></td><td class="d_tl d_tm d_tn" style="width:100%;"><div class="dco d2l-grades-score" id="z_k"><div class="dco_c"><div class="dco" id="z_p" style="float:left;margin-top:0.2em;margin-right:0.5em;width:18px;height:18px;"><div class="dco_c" style="border-radius:6px;background-color:#EAFFEA;"><div class="dco" style="width:18px;height:18px;"><div class="dco_c"></div></div></div></div><label id="z_q">22</label><label id="z_r"> / </label><label id="z_s">23</label><label id="z_t"> - </label><label id="z_u">A</label></div></div></td></tr><tr><td class="d_tr d_tm d_tn"><label style="margin-right:6px;">Overall Grade (Highest Attempt)</label></td><td class="d_tl d_tm d_tn"><div class="dco d2l-grades-score" id="z_w"><div class="dco_c"><div class="dco" id="z_bb" style="float:left;margin-top:0.2em;margin-right:0.5em;width:18px;height:18px;"><div class="dco_c" style="border-radius:6px;background-color:#EAFFEA;"><div class="dco" style="width:18px;height:18px;"><div class="dco_c"></div></div></div></div><label id="z_bc">23</label><label id="z_bd"> / </label><label id="z_be">23</label><label id="z_bf"> - </label><label id="z_bg">A</label></div></div></td></tr></table></div></div><div class="dco" id="z_bh"><div class="dco_c"><div class="dco footer small-gap"><div class="dco_c"><div class="dco" id="z_bi"><div class="dco_c"><div style="text-align:left;width:100%;margin-top:3.8em;margin-bottom:0.9em;"><h2 class="dhdg_1 vui-heading-2" id="z_bj">Safety #1</h2><div style="text-align:left;margin:0.5em 0em 0.9em 0em;"><div id="z_bk" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="RTXT_659331237"><d2l-html-block html="" inline></d2l-html-block></div></div></div></div><div style="text-align:left;"></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q1" name="Q1"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 1</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_10"><d2l-html-block html="&lt;p>Before any job is performed, a ________&amp;#160;&amp;#160;&amp;#160; _______ should take place to cover potential hazards, required PPE, and safety procedures that must be followed during the job.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer for blank # 1: </label></td><td class="d_tl d_tm d_tw"><label>job</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><label><span style="color:#664600;">(50 %)</span></label></td></tr><tr><td class="d_tl d_tm d_tn"><label>Answer for blank # 2: </label></td><td class="d_tl d_tm d_tw"><label>briefing</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><label><span style="color:#664600;">(50 %)</span></label></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q2" name="Q2"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 2</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_18"><d2l-html-block html="&lt;p>Which&amp;#160; of the selections shown is true of a qualified person? (select all that apply)&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_bl"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_23"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>a)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Can perform electrical work safely&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box-unchecked.svg" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_bm"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_28"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>b)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Listens to easy listening music while on the job&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box-unchecked.svg" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_bn"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_33"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>c)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>None of the above&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_bo"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_38"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>d)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Can work within limited approach boundaries&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q3" name="Q3"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 3</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_40"><d2l-html-block html="&lt;p>Identify the NFPA code that identifies &lt;span style=&quot;text-decoration: underline;&quot;>Electrical Safe Work Practices&lt;/span>, shock and arc flash protection boundaries, and PPE that must be used when encountering arc flash boundaries.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer:</label></td><td class="d_tl d_tm d_tw"><label>70E</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q4" name="Q4"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 4</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_45"><d2l-html-block html="&lt;p>Which of the following are PPE?&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_bp"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_50"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>a)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Hardhat&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_bq"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_55"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>b)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Eye Protection&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_br"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_60"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>c)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>EH Footwear&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_bs"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_65"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>d)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Rubber Gloves with appropriate voltage rating&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_bt"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_70"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>e)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>FR Apparel&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q5" name="Q5"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 5</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_72"><d2l-html-block html="&lt;p>The term LOTO refers to __________ ____________.&amp;#160; This procedure must be followed to ensure electrical sources are de-energized.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer for blank # 1: </label></td><td class="d_tl d_tm d_tw"><label>lockout</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><label><span style="color:#664600;">(50 %)</span></label></td></tr><tr><td class="d_tl d_tm d_tn"><label>Answer for blank # 2: </label></td><td class="d_tl d_tm d_tw"><label>tagout</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><label><span style="color:#664600;">(50 %)</span></label></td></tr></table></div><div style="text-align:left;width:100%;margin-top:3.8em;margin-bottom:0.9em;"><h2 class="dhdg_1 vui-heading-2" id="z_bu">Safety #2</h2><div style="text-align:left;margin:0.5em 0em 0.9em 0em;"><div id="z_bv" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="RTXT_659331238"><d2l-html-block html="" inline></d2l-html-block></div></div></div></div><div style="text-align:left;"></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q6" name="Q6"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 6</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_81"><d2l-html-block html="&lt;p>What multimeter Over-Voltage Installation Category is an electronic circuit.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_bw"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_86"><d2l-html-block html="&lt;p>CAT I&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_bx"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_91"><d2l-html-block html="&lt;p>CAT IV&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_by"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_96"><d2l-html-block html="&lt;p>CAT III&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_bz"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_101"><d2l-html-block html="&lt;p>CAT II&lt;/p>" inline></d2l-html-block></div></div></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q7" name="Q7"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 7</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_103"><d2l-html-block html="&lt;p>What Over-Voltage Installation Category is a single phase receptacle load?&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_ca"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_108"><d2l-html-block html="&lt;p>CAT II&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cb"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_113"><d2l-html-block html="&lt;p>CAT I&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cc"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_118"><d2l-html-block html="&lt;p>CAT IV&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cd"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_123"><d2l-html-block html="&lt;p>CAT III&lt;/p>" inline></d2l-html-block></div></div></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q8" name="Q8"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 8</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_125"><d2l-html-block html="&lt;p>____________ tools can reduce the risk of electrical shock hazards:&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer:</label></td><td class="d_tl d_tm d_tw"><label>insulated</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q9" name="Q9"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 9</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_130"><d2l-html-block html="&lt;p>Power tools supply must be protected by a ___________.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer:</label></td><td class="d_tl d_tm d_tw"><label>gfci</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q10" name="Q10"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 10</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_135"><d2l-html-block html="&lt;p>The best safety practice for ladders is to use conductive rails and rungs.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tm d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label></div></div></td><td class="d_tl d_tm d_tn"><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_ce"/></span></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_141"><d2l-html-block html="True" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tm d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span></div></div></td><td class="d_tl d_tm d_tn"><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_cf"/></span></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_147"><d2l-html-block html="False" inline></d2l-html-block></div></div></td></tr></table></div><div style="text-align:left;width:100%;margin-top:3.8em;margin-bottom:0.9em;"><h2 class="dhdg_1 vui-heading-2" id="z_cg">Safety #3</h2><div style="text-align:left;margin:0.5em 0em 0.9em 0em;"><div id="z_ch" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="RTXT_659331239"><d2l-html-block html="" inline></d2l-html-block></div></div></div></div><div style="text-align:left;"></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q11" name="Q11"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 11</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_150"><d2l-html-block html="&lt;p>An over-current protective device that melts to open a short circuit or overload condition is known as a ____________.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer:</label></td><td class="d_tl d_tm d_tw"><label>fuse</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q12" name="Q12"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 12</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_155"><d2l-html-block html="&lt;p>An over-current protection device that can be reset after an event is known as a ____________.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer:</label></td><td class="d_tl d_tm d_tw"><label>breaker</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q13" name="Q13"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 13</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_160"><d2l-html-block html="&lt;p>A device that is commonly used to protect equipment and personnel from a ground fault condition is known as a _______________. (abbreviation)&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer:</label></td><td class="d_tl d_tm d_tw"><label>gfci</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q14" name="Q14"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 14</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_165"><d2l-html-block html="&lt;p>A device that is used to protect a circuit from an Arc Fault is known as a ____________.&amp;#160; (Abbreviation.)&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer:</label></td><td class="d_tl d_tm d_tw"><label>afci</label></td><td class="d_tl d_tm d_tw"><span class="di_s di_s_icon" style="margin-left:0.5em;" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q15" name="Q15"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 15</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>0 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_170"><d2l-html-block html="&lt;p>An arc fault is not considered a bolted fault due to the _____________&amp;#160; ________________.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tm d_tn"><label>Answer:</label></td><td class="d_tl d_tm d_tw"><label>high impedence</label></td><td class="d_tl d_tm d_tw"><span class="di_s" style="margin-left:0.5em;" ><img src="/d2l/img/0/Shared.Main.infIncorrect.gif?v=20.26.1.24929" class="di_i" alt="Incorrect Response" title="Incorrect Response" style="width:16px;height:16px;"/></span><label style="margin-left:0.5em;"><span class="ds_c"><strong>(high impedance)</strong></span></label></td></tr></table></div><div style="text-align:left;width:100%;margin-top:3.8em;margin-bottom:0.9em;"><h2 class="dhdg_1 vui-heading-2" id="z_ci">Safety #4</h2><div style="text-align:left;margin:0.5em 0em 0.9em 0em;"><div id="z_cj" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="RTXT_659331240"><d2l-html-block html="" inline></d2l-html-block></div></div></div></div><div style="text-align:left;"></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q16" name="Q16"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 16</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_176"><d2l-html-block html="&lt;p>What is the conductor called that connects the ground bus to a metal fram of teh equipment?&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_ck"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_181"><d2l-html-block html="&lt;p>Grounding Electrode Conductor&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_cl"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_186"><d2l-html-block html="&lt;p>Equipment Grounding Conductor&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cm"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_191"><d2l-html-block html="&lt;p>Isolated Ground Conductor&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cn"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_196"><d2l-html-block html="&lt;p>Parallel Grounding Conductor&lt;/p>" inline></d2l-html-block></div></div></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q17" name="Q17"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 17</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_198"><d2l-html-block html="&lt;p>To provide protection from electrical shock, there must be a ____________ path from a ground fault within the equipment back tot eh source.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_co"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_203"><d2l-html-block html="&lt;p>infinite impedance&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cp"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_208"><d2l-html-block html="&lt;p>high impedance&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cq"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_213"><d2l-html-block html="&lt;p>low conductance&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_cr"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_218"><d2l-html-block html="&lt;p>low impedance&lt;/p>" inline></d2l-html-block></div></div></td></tr></table></div><div style="text-align:left;width:100%;margin-top:3.8em;margin-bottom:0.9em;"><h2 class="dhdg_1 vui-heading-2" id="z_cs">Safety #5</h2><div style="text-align:left;margin:0.5em 0em 0.9em 0em;"><div id="z_ct" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="RTXT_659331241"><d2l-html-block html="" inline></d2l-html-block></div></div></div></div><div style="text-align:left;"></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q18" name="Q18"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 18</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_221"><d2l-html-block html="&lt;p>What makes water conductive?&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cu"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_226"><d2l-html-block html="&lt;p>opacity&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cv"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_231"><d2l-html-block html="&lt;p>distillation&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_cw"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_236"><d2l-html-block html="&lt;p>minerals&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cx"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_241"><d2l-html-block html="&lt;p>none of the answers listed&lt;/p>" inline></d2l-html-block></div></div></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q19" name="Q19"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 19</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_243"><d2l-html-block html="&lt;p>Which of the following is more conductive?&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cy"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_248"><d2l-html-block html="&lt;p>Fresh Water&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_cz"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_253"><d2l-html-block html="&lt;p>Distilled Water&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_da"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_258"><d2l-html-block html="&lt;p>Salt Water&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_db"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_263"><d2l-html-block html="&lt;p>Tap Water&lt;/p>" inline></d2l-html-block></div></div></td></tr></table></div><div style="text-align:left;width:100%;margin-top:3.8em;margin-bottom:0.9em;"><h2 class="dhdg_1 vui-heading-2" id="z_dc">General #1</h2><div style="text-align:left;margin:0.5em 0em 0.9em 0em;"><div id="z_dd" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="RTXT_659331242"><d2l-html-block html="" inline></d2l-html-block></div></div></div></div><div style="text-align:left;"></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q20" name="Q20"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 20</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_266"><d2l-html-block html="&lt;p>What is the minimum let go current for a child?&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_de"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_271"><d2l-html-block html="&lt;p>20mA&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_df"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_276"><d2l-html-block html="&lt;p>15mA&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_dg"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_281"><d2l-html-block html="&lt;p>100mA&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_dh"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_286"><d2l-html-block html="&lt;p>5mA&lt;/p>" inline></d2l-html-block></div></div></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q21" name="Q21"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 21</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_288"><d2l-html-block html="&lt;p>How much current can put a person in cardiac arrest?&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_di"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_293"><d2l-html-block html="&lt;p>20-100mA&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_dj"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_298"><d2l-html-block html="&lt;p>5mA&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_dk"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_303"><d2l-html-block html="&lt;p>10-15mA&lt;/p>" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_dl"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_308"><d2l-html-block html="&lt;p>20V&lt;/p>" inline></d2l-html-block></div></div></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q22" name="Q22"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 22</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_310"><d2l-html-block html="&lt;p>Which of the following factors enhance electric shock?&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_dm"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_315"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>a)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Failure to pay attention&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_dn"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_320"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>b)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Lack of training&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_do"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_325"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>c)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>&lt;/p>
+&lt;p>Poor workplace illumination&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_dp"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_330"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>d)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Metal objects such as watchesn necklaces, rings, etc...&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box-unchecked.svg" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_dq"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_335"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>e)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Insulated rubber gloves rated properly rated for circuit voltage&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_dr"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_340"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>f)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Wet Locations&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box.svg" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_ds"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_345"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>g)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Ungrounded metal objects&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr><tr><td class="d_tl d_tt d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span><span class="di_s" ><img src="https://s.brightspace.com/lib/bsi/2026.1.213/images/tier2/check-box-unchecked.svg" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_dt"/></span></div></div></td><td class="d_tl d_tm d_tw" style="width:100%;"><div class="dco d2l-quiz-answer-container"><div class="dco_c"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_350"><d2l-html-block html="&lt;table style=&quot;width: 100%;&quot;>&lt;tr>&lt;td style=&quot;vertical-align:top;&quot;>&lt;p>h)&amp;#160;&lt;/p>&lt;/td>&lt;td style=&quot;width: 100%;&quot;>&lt;p>Insulated E/H rated boots&lt;/p>&lt;/td>&lt;/tr>&lt;/table>" inline></d2l-html-block></div></div></div></div></td></tr></table></div><div class="dco updated-submission-question-header"><div class="dco_c"><a id="Q23" name="Q23"></a><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"><label><strong>Question 23</strong></label></td>
+									<td class="dlay_m"></td>
+									<td class="dlay_r"><label>1 / 1 point</label></td>
+								</tr>
+							</table>
+							</div></div><div style="text-align:left;margin:0em 0em 0.9em 0.9em;"><div style="text-align:left;width:100%;margin-top:0.5em;margin-bottom:0.5em;"><div id=""><div class="" id="ctl_352"><d2l-html-block html="&lt;p>A closed path must be formed between the source voltage and the materials capable of conducting electricity to generate an electrical current.&lt;/p>"></d2l-html-block></div></div><div style="text-align:left;margin-bottom:0.5em;"></div></div><table summary="" class="d_t"><tr><td class="d_tr d_tm d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><span class="di_s di_s_icon" ><d2l-icon icon="tier1:check" role="img" class="di_i" alt="Correct Response" title="Correct Response" style="width:18px;height:18px;"></d2l-icon></span></div></div></td><td class="d_tl d_tm d_tn"><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioChecked.svg?v=20.26.1.24929" class="di_i" alt="Selected" title="Selected" style="width:24px;height:24px;" id="z_du"/></span></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_358"><d2l-html-block html="True" inline></d2l-html-block></div></div></td></tr><tr><td class="d_tr d_tm d_tn"><div class="dco d2l-qc-controls-container"><div class="dco_c"><label> </label></div></div></td><td class="d_tl d_tm d_tn"><span class="di_s" ><img src="/d2l/img/0/QuestionCollection.Main.radioUnchecked.svg?v=20.26.1.24929" class="di_i" alt="Unselected" title="Unselected" style="width:24px;height:24px;" id="z_dv"/></span></td><td class="d_tl d_tm d_tw" style="width:100%;"><div id="" style="display: inline;"><div class="d2l-htmlblock-untrusted d2l-htmlblock-inline" id="ctl_364"><d2l-html-block html="False" inline></d2l-html-block></div></div></td></tr></table></div></div></div><div class="dco" id="z_dw"><div class="dco_c"><button type="button" primary class="d2l-button" id="z_dx" data-onclick="D2L.O(&quot;__gctl_367&quot;,0)();">Done</button></div></div></div></div></div></div></div></div></div></div></div></div><table cellspacing="0" cellpadding="0" style="width:100%" summary="" >
+								<tr>
+									<td class="dlay_l"></td>
+								</tr>
+							</table>
+							<iframe id="LockDownBrowserLaunchFrame" class="dif" title="Respondus LockDown Browser" name="ctl_368" src="" data-contenttype="" align="center" allow="microphone *; camera *" style="resize: none;" height="0" width="0" frameborder="0" scrolling="auto" onload="D2L.TransferFrameClicks( this );"></iframe>
+							<input type="hidden" name="LockDownBrowserUrl" value="0" id="z_dy" /><input type="hidden" name="LockDownBrowserLaunchTimeout" value="5000" id="z_dz" />
+							<input type="hidden" name="d2l_controlMap" value="[{&quot;hdn_cft&quot;:[&quot;z_a&quot;,&quot;Hidden&quot;,[],{},0,1],&quot;cms&quot;:[&quot;z_b&quot;,&quot;ContextMenuStructure&quot;,[[[[],&quot;summary&quot;,1,1,0,[0,0,0,&quot;Summary&quot;,&quot;&quot;,[]],&quot;return false;&quot;],[[],&quot;reports&quot;,1,1,0,[0,0,0,&quot;Reports&quot;,&quot;&quot;,[]],&quot;return false;&quot;]],&quot;&quot;,&quot;12225316&quot;,&quot;HandleItemClick&quot;,0,&quot;start&quot;],{},0,1],&quot;cnt_quizattemptinfo&quot;:[&quot;z_c&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],0,0,0,0,&quot;&quot;],{},0,1],&quot;head_revampedheading&quot;:[&quot;z_d&quot;,&quot;Heading&quot;,[0,0,1],{},0,1],&quot;btn_revampedclose&quot;:[&quot;z_e&quot;,&quot;ButtonIcon&quot;,[],{},0,1],&quot;cnt_uppersubmissionarea&quot;:[&quot;z_f&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],0,0,0,0,&quot;&quot;],{},0,1],&quot;head_revampedattemptnumber&quot;:[&quot;z_g&quot;,&quot;Heading&quot;,[0,0,1],{},0,1],&quot;lbl_revampedattemptstatus&quot;:[&quot;z_h&quot;,&quot;Label&quot;,[],{},0,1],&quot;cnt_lowersubmissionarea&quot;:[&quot;z_i&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],0,0,0,0,&quot;&quot;],{},0,1],&quot;cms_scoredisplayoptions&quot;:[&quot;z_j&quot;,&quot;ContextMenuStructure&quot;,[[[[],&quot;&quot;,1,1,0,[0,0,0,&quot;Edit Display Settings&quot;,&quot;&quot;,[]],&quot;return false;&quot;]],&quot;&quot;,&quot;&quot;,&quot;&quot;,0,&quot;start&quot;],{},0,1],&quot;cnt_scoredisplay&quot;:[&quot;z_k&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],0,0,0,0,&quot;&quot;],{},0,1],&quot;dg_score&quot;:[&quot;z_l&quot;,&quot;DisplayGroup&quot;,[1],{},0,1],&quot;dg_separator&quot;:[&quot;z_m&quot;,&quot;DisplayGroup&quot;,[1],{},0,1],&quot;dg_symbol&quot;:[&quot;z_n&quot;,&quot;DisplayGroup&quot;,[1],{},0,1],&quot;dg_colour&quot;:[&quot;z_o&quot;,&quot;DisplayGroup&quot;,[1],{},0,1],&quot;cnt_dot&quot;:[&quot;z_p&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],6,1,0,0,&quot;&quot;],{},0,1],&quot;lblscore&quot;:[&quot;z_q&quot;,&quot;Label&quot;,[],{},0,1],&quot;ctl_5&quot;:[&quot;z_r&quot;,&quot;&quot;,[],null,0,1],&quot;lbloutof&quot;:[&quot;z_s&quot;,&quot;Label&quot;,[],{},0,1],&quot;lblseparator&quot;:[&quot;z_t&quot;,&quot;Label&quot;,[],{},0,1],&quot;lblsymbol&quot;:[&quot;z_u&quot;,&quot;Label&quot;,[],{},0,1],&quot;ctl_8&quot;:[&quot;z_bd&quot;,&quot;&quot;,[],null,0,1],&quot;cnt_revampedattempt&quot;:[&quot;z_bh&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],0,0,0,0,&quot;&quot;],{},0,1],&quot;hdr_659331237&quot;:[&quot;z_bj&quot;,&quot;Heading&quot;,[0,0,1],{},0,1],&quot;rtxt_659331237&quot;:[&quot;z_bk&quot;,&quot;RichText&quot;,[1,1,&quot;RTXT_659331237&quot;],{},0,1],&quot;ctl_21&quot;:[&quot;z_bl&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_26&quot;:[&quot;z_bm&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box-unchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_31&quot;:[&quot;z_bn&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box-unchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_36&quot;:[&quot;z_bo&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_48&quot;:[&quot;z_bp&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_53&quot;:[&quot;z_bq&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_58&quot;:[&quot;z_br&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_63&quot;:[&quot;z_bs&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_68&quot;:[&quot;z_bt&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;hdr_659331238&quot;:[&quot;z_bu&quot;,&quot;Heading&quot;,[0,0,1],{},0,1],&quot;rtxt_659331238&quot;:[&quot;z_bv&quot;,&quot;RichText&quot;,[1,1,&quot;RTXT_659331238&quot;],{},0,1],&quot;ctl_84&quot;:[&quot;z_bw&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_89&quot;:[&quot;z_bx&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_94&quot;:[&quot;z_by&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_99&quot;:[&quot;z_bz&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_106&quot;:[&quot;z_ca&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_111&quot;:[&quot;z_cb&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_116&quot;:[&quot;z_cc&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_121&quot;:[&quot;z_cd&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_139&quot;:[&quot;z_ce&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_145&quot;:[&quot;z_cf&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;hdr_659331239&quot;:[&quot;z_cg&quot;,&quot;Heading&quot;,[0,0,1],{},0,1],&quot;rtxt_659331239&quot;:[&quot;z_ch&quot;,&quot;RichText&quot;,[1,1,&quot;RTXT_659331239&quot;],{},0,1],&quot;hdr_659331240&quot;:[&quot;z_ci&quot;,&quot;Heading&quot;,[0,0,1],{},0,1],&quot;rtxt_659331240&quot;:[&quot;z_cj&quot;,&quot;RichText&quot;,[1,1,&quot;RTXT_659331240&quot;],{},0,1],&quot;ctl_179&quot;:[&quot;z_ck&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_184&quot;:[&quot;z_cl&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_189&quot;:[&quot;z_cm&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_194&quot;:[&quot;z_cn&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_201&quot;:[&quot;z_co&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_206&quot;:[&quot;z_cp&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_211&quot;:[&quot;z_cq&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_216&quot;:[&quot;z_cr&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;hdr_659331241&quot;:[&quot;z_cs&quot;,&quot;Heading&quot;,[0,0,1],{},0,1],&quot;rtxt_659331241&quot;:[&quot;z_ct&quot;,&quot;RichText&quot;,[1,1,&quot;RTXT_659331241&quot;],{},0,1],&quot;ctl_224&quot;:[&quot;z_cu&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_229&quot;:[&quot;z_cv&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_234&quot;:[&quot;z_cw&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_239&quot;:[&quot;z_cx&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_246&quot;:[&quot;z_cy&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_251&quot;:[&quot;z_cz&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_256&quot;:[&quot;z_da&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_261&quot;:[&quot;z_db&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;hdr_659331242&quot;:[&quot;z_dc&quot;,&quot;Heading&quot;,[0,0,1],{},0,1],&quot;rtxt_659331242&quot;:[&quot;z_dd&quot;,&quot;RichText&quot;,[1,1,&quot;RTXT_659331242&quot;],{},0,1],&quot;ctl_269&quot;:[&quot;z_de&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_274&quot;:[&quot;z_df&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_279&quot;:[&quot;z_dg&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_284&quot;:[&quot;z_dh&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_291&quot;:[&quot;z_di&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_296&quot;:[&quot;z_dj&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_301&quot;:[&quot;z_dk&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_306&quot;:[&quot;z_dl&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_313&quot;:[&quot;z_dm&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_318&quot;:[&quot;z_dn&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_323&quot;:[&quot;z_do&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_328&quot;:[&quot;z_dp&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_333&quot;:[&quot;z_dq&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box-unchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_338&quot;:[&quot;z_dr&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_343&quot;:[&quot;z_ds&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_348&quot;:[&quot;z_dt&quot;,&quot;Image&quot;,[[&quot;https:\/\/s.brightspace.com\/lib\/bsi\/2026.1.213\/images\/tier2\/check-box-unchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_356&quot;:[&quot;z_du&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioChecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;ctl_362&quot;:[&quot;z_dv&quot;,&quot;Image&quot;,[[&quot;0\/QuestionCollection.Main.radioUnchecked.svg&quot;,24],null,1,0,0,1,&quot;&quot;],{},1,1],&quot;cnt_revampedback&quot;:[&quot;z_dw&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],0,0,0,0,&quot;&quot;],{},0,1],&quot;ctl_366&quot;:[&quot;z_dx&quot;,&quot;Button&quot;,[&quot;ExitSubmissionAttempt();return false;&quot;],{},0,0],&quot;hid_lockdownbrowserurl&quot;:[&quot;z_dy&quot;,&quot;Hidden&quot;,[1],{},0,1],&quot;hid_lockdownbrowserlaunchtimeout&quot;:[&quot;z_dz&quot;,&quot;Hidden&quot;,[1],{},0,1],&quot;ctl_messagearea&quot;:[&quot;z_ea&quot;,&quot;MessageArea&quot;,[&quot;d_content_inner&quot;,null,0,[],null],{},0,0]},{&quot;cms_scoredisplayoptions&quot;:{&quot;ctl_1&quot;:[&quot;z_v&quot;,&quot;ContextMenuStructure&quot;,[[[[],&quot;&quot;,1,1,0,[0,0,0,&quot;Edit Display Settings&quot;,&quot;&quot;,[]],&quot;return false;&quot;]],&quot;&quot;,&quot;&quot;,&quot;&quot;,0,&quot;start&quot;],{},0,1]},&quot;cnt_scoredisplay&quot;:{&quot;ctl_2&quot;:[&quot;z_w&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],0,0,0,0,&quot;&quot;],{},0,1]},&quot;dg_score&quot;:{&quot;ctl_3&quot;:[&quot;z_x&quot;,&quot;DisplayGroup&quot;,[1],{},0,1]},&quot;dg_separator&quot;:{&quot;ctl_4&quot;:[&quot;z_y&quot;,&quot;DisplayGroup&quot;,[1],{},0,1]},&quot;dg_symbol&quot;:{&quot;ctl_5&quot;:[&quot;z_z&quot;,&quot;DisplayGroup&quot;,[1],{},0,1]},&quot;dg_colour&quot;:{&quot;ctl_6&quot;:[&quot;z_ba&quot;,&quot;DisplayGroup&quot;,[1],{},0,1]},&quot;cnt_dot&quot;:{&quot;ctl_7&quot;:[&quot;z_bb&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],6,1,0,0,&quot;&quot;],{},0,1]},&quot;lblscore&quot;:{&quot;ctl_8&quot;:[&quot;z_bc&quot;,&quot;Label&quot;,[],{},0,1]},&quot;lbloutof&quot;:{&quot;ctl_9&quot;:[&quot;z_be&quot;,&quot;Label&quot;,[],{},0,1]},&quot;lblseparator&quot;:{&quot;ctl_10&quot;:[&quot;z_bf&quot;,&quot;Label&quot;,[],{},0,1]},&quot;lblsymbol&quot;:{&quot;ctl_11&quot;:[&quot;z_bg&quot;,&quot;Label&quot;,[],{},0,1]},&quot;cnt_revampedattempt&quot;:{&quot;ctl_12&quot;:[&quot;z_bi&quot;,&quot;Container&quot;,[0,1,1,[1,&quot;#999999&quot;,1],0,0,0,0,&quot;&quot;],{},0,1]}}]" />
+							<input type="hidden" name="d2l_state" value="[{&quot;3&quot;:[&quot;grid&quot;,&quot;pagesize&quot;,&quot;htmleditor&quot;,&quot;hpg&quot;],&quot;1&quot;:[&quot;gridpagenum&quot;,&quot;search&quot;,&quot;pagenum&quot;],&quot;2&quot;:[&quot;lcs&quot;,&quot;gsf&quot;,&quot;riosubmissionviewstate&quot;]},[]]" />
+							<input type="hidden" name="d2l_referrer" value="e6ZEpEVfL7leq5YL6Gc4TRkV3CahWWeP" />
+						</div>
+					</form>
+				</div></div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="clear"></div>
+<script>
+	UI.Init();
+	D2L.OR["__gctl_1"] = {};
+	D2L.OR["__gctl_1"]["0"]="{\"_type\":\"func\",\"N\":\"D2L.PT.Auth.SessionTimeout.Init\",\"P\":[\"5408800\",180,5,{\"_type\":\"id\",\"Value\":\"d2l_sessionExpiryWarning\"},\"d2l_sessionExpiryAlert\",\"d2l_sessionExpiryCheck\",{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Rpc.ConnectObject\",\"P\":[\"POST\",{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/auth\/session\/extend\"}],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.OpenHelper\",\"P\":[{\"_type\":\"call\",\"N\":\"D2L.LP.Web.UI.Html.Dom.GetActiveElement\"},{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/auth\/session\/Expired?isLogout=0&isUsernamePasswordLogin=0&userId=5408800\"}],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.OpenHelper\",\"P\":[{\"_type\":\"call\",\"N\":\"D2L.LP.Web.UI.Html.Dom.GetActiveElement\"},{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/auth\/session\/Expired?isLogout=1&isUsernamePasswordLogin=0&userId=5408800\"}],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.ConfirmDialog\",\"P\":[null,{\"_type\":\"id\",\"Value\":\"d2l_1_0_302\"},\"New User Session\",\"\",\"The current user session has changed, so the links and content on this page may not behave as expected.\",\"OK\",\"\",true,false,false,true,false],\"D\":true},{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.MasterPages.Dialog.Confirm.Abort\",\"P\":[{\"_type\":\"id\",\"Value\":\"d2l_1_0_302\"}]}]}";
+	D2L.O("__gctl_1",0)()
+	D2L.OR["__gctl_1"]["1"]="{\"_type\":\"func\",\"N\":\"D2L.LP.Web.Authentication.Xsrf.Init\",\"P\":[\"d2l_referrer\",\"e6ZEpEVfL7leq5YL6Gc4TRkV3CahWWeP\",-2097735075]}";
+	D2L.O("__gctl_1",1)()
+	D2L.OR["__gctl_1"]["2"]="{\"_type\":\"func\",\"N\":\"D2L.LP.ActivityBar.Init\",\"P\":[{\"_type\":\"url\",\"Url\":\"\/d2l\/activityFeed\/checkForNewAlerts\"},300]}";
+	D2L.O("__gctl_1",2)()
+	D2L.OR["__gctl_1"]["3"]="{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.Controls.MessageArea.Init\",\"P\":[\"d2l_messagearea\",{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/validation\/errors\"}]}";
+	D2L.O("__gctl_1",3)()
+	D2L.OR["__gctl_1"]["4"]="{\"_type\":\"func\",\"N\":\"D2L.LP.Globalization.Locale.Init\",\"P\":[{\"_type\":\"anon\",\"DecimalSeparator\":\".\",\"GroupSeparator\":\",\",\"NumberNegativePattern\":1,\"PercentPositivePattern\":0,\"PercentNegativePattern\":0,\"PercentSymbol\":\"%\",\"NegativeSign\":\"-\",\"NativeDigits\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\"],\"UseNativeDigits\":false,\"GroupSizes\":[0],\"IntegerRegex\":\"^([\\\\(-]*(([01234567890123456789]+))[\\\\)-]*)$|^([\\\\(-]*[01234567890123456789]+[\\\\)-]*)$\",\"DecimalRegex\":\"^([\\\\(-]*(([01234567890123456789]+))(\\\\.[01234567890123456789]+)?[\\\\)-]*)$|^([\\\\(-]*[01234567890123456789]*\\\\.?[01234567890123456789]+[\\\\)-]*)$\"},{\"_type\":\"anon\",\"InputDateFormat\":\"M\/d\/yyyy\",\"Is24HourClock\":false,\"NativeDigits\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\"],\"UseNativeDigits\":false,\"TimeFormat\":\"h:mm tt\",\"AmDesignator\":\"AM\",\"PmDesignator\":\"PM\",\"FirstDayOfWeek\":0,\"ShortMonthNames\":[\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\",\"\"],\"LongMonthNames\":[\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\",\"\"],\"ShortDayOfWeekNames\":[\"Sun\",\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\"]},{\"_type\":\"anon\",\"TextDirection\":1},{\"_type\":\"anon\",\"Culture\":\"en-us\"},{\"_type\":\"anon\",\"JustNow\":\"just now\",\"OneMinuteAgo\":\"1 minute ago\",\"TwoMinutesAgo\":\"2 minutes ago\",\"MinutesAgoMany\":\"[0] minutes ago\",\"OneHourAgo\":\"1 hour ago\",\"TwoHoursAgo\":\"2 hours ago\",\"ManyHoursAgo\":\"[0] hours ago\",\"YesterdayTime\":\"yesterday at [0]\",\"DayOfWeekTime\":\"[0] at [1]\",\"MonthDayTime\":\"[0] at [1]\",\"Now\":{\"_type\":\"D2L.LocalDateTime\",\"Year\":2026,\"Month\":2,\"Day\":16,\"Hour\":5,\"Minute\":26,\"Second\":20,\"Millisecond\":253}}]}";
+	D2L.O("__gctl_1",4)()
+	D2L.OR["__gctl_1"]["5"]="{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Rpc.Initialize\",\"P\":[{\"_type\":\"url\",\"Url\":\"\/d2l\/login?target=%2fd2l%2flms%2fquizzing%2fuser%2fquiz_submissions_attempt.d2l%3fisprv%3d%26qi%3d12225316%26ai%3d111904858%26isInPopup%3d0%26cfql%3d0%26fromQB%3d0%26fromSubmissionsList%3d1%26ou%3d10472875&sessionExpired=1\"},\"Error: unable to complete your request.\",{\"_type\":\"D2L.LP.Util.Dictionary\"},{\"_type\":\"D2L.LP.Util.Dictionary\",\"flash\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.FlashMessages.RpcReceivePayloadProvider\"},\"session\":{\"_type\":\"func\",\"N\":\"D2L.PT.Auth.SessionTimeout.RpcReceivePayloadProvider\"},\"messageArea\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.Controls.MessageArea.RpcReceivePayloadProvider\"},\"OR\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.ObjectRepository.RpcReceivePayloadProvider\"},\"JS\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Html.JavaScript.RpcReceiveJsPayloadProvider\"},\"CSS\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Html.JavaScript.RpcReceiveCssPayloadProvider\"},\"BSI\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Html.Bsi.RpcReceiveJsPayloadProvider\"},\"ariaMessages\":{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Html.Aria.RpcReceivePayloadProvider\"}}]}";
+	D2L.O("__gctl_1",5)()
+	D2L.OR["__gctl_1"]["6"]="{\"_type\":\"func\",\"N\":\"D2L.LP.Web.UI.Desktop.Controls.InlineHelp.Init\",\"P\":[{\"_type\":\"url\",\"Url\":\"\/d2l\/lp\/inlineHelp\/10472875\/help\"}]}";
+	D2L.O("__gctl_1",6)()
+	D2L.OR["__gctl_2"] = {};
+	D2L.OR["__gctl_2"]["0"]="{\"_type\":\"func\",\"N\":\"D2L.JavaScriptFunctionOnClickAdapter\",\"P\":[\"ExitSubmissionAttempt();return false;\"]}";
+	D2L.OR["__gctl_367"] = {};
+	D2L.OR["__gctl_367"]["0"]="{\"_type\":\"func\",\"N\":\"D2L.JavaScriptFunctionOnClickAdapter\",\"P\":[\"\"]}";
+	var is_iOS9 = 'False';
+	ContentQuizImmersive()
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+	StyleFirstSection('HDR_659331237');
+
+</script>
+<script>D2L.LP.Web.UI.Html.Bsi.Init('prod', 'https://s.brightspace.com/lib/bsi/2026.1.213/', ['unbundled/button-icon.js','unbundled/html-block.js','unbundled/icon.js','unbundled/navigation-band.js']);</script>
+</body>
+</html>
