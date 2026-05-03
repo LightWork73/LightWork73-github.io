@@ -1,4 +1,4 @@
-const CACHE_NAME = 'powertech-v2';
+const CACHE_NAME = 'powertech-v3';
 const ASSETS = [
   'index.html',
   'manifest.json',
