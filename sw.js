@@ -1,14 +1,21 @@
-const CACHE_NAME = 'powertech-v3';
+const CACHE_NAME = 'powertech-v1';
 const ASSETS = [
+  './',
   'index.html',
-  'manifest.json',
-  'PTHW8.html',
-  'q6.png',
-  'q7.png',
-  'q8.png',
-  'q37.png',
-  'q38.png',
-  'sw.js'
+  'MacroEconQuiz1R1.html',
+  'Powertechquiz3R1.html',
+  'Powertechquiz3R2.html',
+  'Powertechquiz3R3.html',
+  'Powertechquiz3R4.html',
+  'Powertechquiz3R5.html',
+  'Powertechquiz3R6.html',
+  'PowertechTest1R1.html',
+  'PowertechTest1R2.html',
+  'PowertechTest1R3.html',
+  'PowertechTest1R4.html',
+  'PowertechTest1R5.html',
+  'PowertechTest1R6.html',
+  'manifest.json'
 ];
 
 self.addEventListener('install', (e) => {
@@ -16,20 +23,5 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    caches.match(e.request).then(res => {
-      if (res) return res;
-      return fetch(e.request).then(response => {
-        // Cache images dynamically on first fetch
-        if (e.request.url.match(/\.(png|jpg|jpeg|gif|svg)$/i)) {
-          const clonedRes = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(e.request, clonedRes));
-        }
-        return response;
-      }).catch(() => {
-        // Fallback for offline - optional
-        return new Response('Offline - Resource not available');
-      });
-    })
-  );
+  e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
 });

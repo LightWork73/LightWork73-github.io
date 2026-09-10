@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macro Economics Quiz 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7fb;
+            color: #1d2433;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        #score-bar {
+            position: sticky;
+            top: 0;
+            background: #1f4e79;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+        #progress-container {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        #progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #7fe394;
+            transition: width 0.3s ease;
+        }
+        .question-card {
+            background: white;
+            border-left: 10px solid #1f4e79;
+            padding: 28px;
+            margin: 25px 0;
+            border-radius: 14px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        .option-label {
+            display: block;
+            padding: 12px 14px;
+            margin: 10px 0;
+            background: #f7f9fc;
+            border: 2px solid #e5ebf5;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .option-label:hover {
+            background: #edf5ff;
+            border-color: #5097d6;
+        }
+        .check-btn {
+            background: #1f4e79;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+        .feedback {
+            display: none;
+            margin-top: 14px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .correct {
+            background: #eaf7ee;
+            color: #1f6f42;
+            border: 1px solid #bfe7c9;
+        }
+        .wrong {
+            background: #fdeceb;
+            color: #9f2733;
+            border: 1px solid #f4c8c2;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #6c757d;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div id="score-bar">
+        <strong>Macro Economics Score: <span id="current-score">0</span> / <span id="total-q-count">0</span></strong>
+        <div id="progress-container"><div id="progress-fill"></div></div>
+    </div>
+
+    <div id="quiz-root"></div>
+
+    <div class="actions">
+        <a class="back-btn" href="index.html">Back to Courses</a>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                q: "Which type of goods promotes economic growth?",
+                type: "single",
+                options: ["Consumer goods", "Capital goods", "Imported goods", "Luxury goods"],
+                correct: [1],
+                hint: "These are used to produce more goods and services."
+            },
+            {
+                q: "Utility is best defined as:",
+                type: "single",
+                options: ["The cost of labor", "Pleasure, happiness, and satisfaction", "The amount of supply in a market", "The value of capital goods"],
+                correct: [1],
+                hint: "Think of the benefit or enjoyment a person gets from consuming something."
+            },
+            {
+                q: "Scarcity means:",
+                type: "single",
+                options: ["Unlimited wants and limited resources", "High prices in the market", "Too many workers in the economy", "Government controls the economy"],
+                correct: [0],
+                hint: "Scarcity is the basic economic problem."
+            },
+            {
+                q: "Opportunity cost is:",
+                type: "single",
+                options: ["The total cost of production", "The next best alternative forgone", "The price of a good", "The cost of capital equipment"],
+                correct: [1],
+                hint: "It is what you give up when choosing one option over another."
+            },
+            {
+                q: "The Production Possibilities Curve (PPC) shows:",
+                type: "single",
+                options: ["The price of goods over time", "The maximum output of two goods using full resources", "How taxes affect the economy", "The demand for labor and capital"],
+                correct: [1],
+                hint: "It represents the frontier of efficient production."
+            },
+            {
+                q: "The graph titled 'Production Possibilities' compares:",
+                type: "single",
+                options: ["Consumer goods and capital goods", "Taxes and subsidies", "Imports and exports", "Supply and demand curves"],
+                correct: [0],
+                hint: "The axes show the tradeoff between two different categories of goods."
+            },
+            {
+                q: "A point on the PPC is best described as:",
+                type: "single",
+                options: ["Unattainable with current resources", "Inefficient use of resources", "Efficient use of resources and full employment", "A point where consumer demand is zero"],
+                correct: [2],
+                hint: "Points on the frontier represent maximum efficient production."
+            },
+            {
+                q: "Scarcity exists because:",
+                type: "single",
+                options: ["Resources are unlimited and wants are limited", "Wants exceed available resources", "Government controls all production", "Prices never change"],
+                correct: [1],
+                hint: "Scarcity is the condition that wants exceed what can be produced with limited resources."
+            },
+            {
+                q: "Because of scarcity, every society must choose:",
+                type: "single",
+                options: ["Only what the government wants", "What to produce, how to produce, and who gets it", "Only what is imported", "Nothing because resources are unlimited"],
+                correct: [1],
+                hint: "These are the three basic economic questions."
+            },
+            {
+                q: "An efficient point on the PPC represents:",
+                type: "single",
+                options: ["A point inside the curve", "A point outside the curve", "A point on the curve using resources efficiently", "A point with zero economic output"],
+                correct: [2],
+                hint: "An efficient point uses the economy’s resources fully and effectively."
+            },
+            {
+                q: "An inefficient point on the PPC represents:",
+                type: "single",
+                options: ["A point inside the curve", "A point on the curve", "A point beyond the curve", "A point with no tradeoff"],
+                correct: [0],
+                hint: "It indicates resources are not being used to their fullest potential."
+            },
+            {
+                q: "An unattainable point on the PPC represents:",
+                type: "single",
+                options: ["A point inside the curve", "A point on the curve", "A point outside the curve with current resources", "A point where supply equals demand"],
+                correct: [2],
+                hint: "With current resources and technology, that output combination cannot be produced."
+            },
+            {
+                q: "Why does producing more capital goods today tend to raise a nation's future growth rate?",
+                type: "single",
+                options: ["Capital goods reduce the need for labor", "Capital goods increase future production capacity", "Capital goods always lower prices", "Capital goods eliminate scarcity"],
+                correct: [1],
+                hint: "More capital can increase productivity and output later."
+            },
+            {
+                q: "If a nation invests in capital goods over time, what happens to the PPC?",
+                type: "single",
+                options: ["It shifts inward", "It stays the same", "It shifts to the right", "It becomes a vertical line"],
+                correct: [2],
+                hint: "Economic growth expands the economy’s productive possibilities."
+            },
+            {
+                q: "Which of the following is a typical characteristic of a market system?",
+                type: "single",
+                options: ["All resources are owned by the government", "Private property rights are protected", "Consumers have no role in choosing goods", "Prices are fixed by the state"],
+                correct: [1],
+                hint: "Private ownership is a key feature of a market economy."
+            },
+            {
+                q: "A market system uses prices mainly to:",
+                type: "single",
+                options: ["Eliminate all competition", "Coordinate exchange and signal scarcity", "Stop government regulation", "Set wages for every worker"],
+                correct: [1],
+                hint: "Markets help determine prices through buying and selling."
+            },
+            {
+                q: "Self-interest in a market economy can lead to social benefits because:",
+                type: "single",
+                options: ["People always do what is best for everyone", "Individuals' decisions can create useful competition and coordination", "The government must control all choices", "Prices and wages do not matter"],
+                correct: [1],
+                hint: "Competition and voluntary exchange can produce benefits beyond one person's own gain."
+            },
+            {
+                q: "Which statement best describes active but limited government in a market system?",
+                type: "single",
+                options: ["Government should control every market", "Government helps support the economy without preventing growth", "Government has no role in the economy", "Government does not protect property rights"],
+                correct: [1],
+                hint: "Government often provides rules, public goods, and some regulation while allowing markets to function."
+            },
+            {
+                q: "A change in demand is best described as:",
+                type: "single",
+                options: ["A movement along the demand curve caused by price", "A shift of the entire demand curve caused by determinants", "A change in supply caused by technology", "A decrease in the quantity supplied"],
+                correct: [1],
+                hint: "Non-price determinants shift the whole curve."
+            },
+            {
+                q: "A change in quantity demanded is best described as:",
+                type: "single",
+                options: ["A shift of the demand curve", "A movement along the demand curve caused by price", "A change in supply", "A change in the number of sellers"],
+                correct: [1],
+                hint: "Only a change in the good's own price causes a movement along the curve."
+            },
+            {
+                q: "Which of the following is a determinant of demand?",
+                type: "single",
+                options: ["Number of buyers", "Technology", "Number of sellers", "Input prices"],
+                correct: [0],
+                hint: "The number of consumers in the market affects demand."
+            },
+            {
+                q: "Which of the following is a determinant of supply?",
+                type: "single",
+                options: ["Consumer expectations", "Number of sellers", "Income", "Consumer tastes"],
+                correct: [1],
+                hint: "More sellers in a market can increase the supply curve."
+            },
+            {
+                q: "Suppose consumer tastes change in favor of electric bikes. This causes:",
+                type: "single",
+                options: ["A decrease in demand", "An increase in demand", "A decrease in supply", "A decrease in quantity demanded"],
+                correct: [1],
+                hint: "More consumers want the product at each price."
+            },
+            {
+                q: "If consumer tastes shift in favor of electric bikes, the equilibrium price and quantity will most likely:",
+                type: "single",
+                options: ["Price falls and quantity falls", "Price rises and quantity rises", "Price falls and quantity rises", "Price rises and quantity falls"],
+                correct: [1],
+                hint: "Higher demand raises both equilibrium price and equilibrium quantity."
+            },
+            {
+                q: "Suppose a new technology lowers the cost of producing electric bikes. This causes:",
+                type: "single",
+                options: ["An increase in demand", "A decrease in demand", "An increase in supply", "A decrease in quantity supplied"],
+                correct: [2],
+                hint: "Lower production costs make it easier to supply more at every price."
+            },
+            {
+                q: "If a new technology lowers the cost of producing electric bikes, the equilibrium price and quantity will most likely:",
+                type: "single",
+                options: ["Price rises and quantity falls", "Price falls and quantity rises", "Price rises and quantity rises", "Price falls and quantity falls"],
+                correct: [1],
+                hint: "More supply pushes price down and increases quantity sold."
+            },
+            {
+                q: "Under a market system, who typically owns the factors of production?",
+                type: "single",
+                options: ["The government", "Private individuals and businesses", "Only labor unions", "Only foreign investors"],
+                correct: [1],
+                hint: "Private ownership is central to a market economy."
+            },
+            {
+                q: "Under a command system, how is economic activity mainly coordinated?",
+                type: "single",
+                options: ["By prices set in markets", "By government planning and central direction", "By free competition only", "By consumer choice alone"],
+                correct: [1],
+                hint: "A command economy relies on central decision-making."
+            },
+            {
+                q: "The coordination problem in communist central planning is that:",
+                type: "single",
+                options: ["The government has too much information to process efficiently", "Consumers choose too many goods", "Prices are always flexible", "There is no scarcity"],
+                correct: [0],
+                hint: "Central planners must gather and process enormous amounts of information."
+            },
+            {
+                q: "The incentive problem in communist central planning is that:",
+                type: "single",
+                options: ["Workers and managers have strong incentives to innovate and improve", "There is little incentive to work harder or improve efficiency", "Prices always guide behavior perfectly", "Competition is encouraged by the state"],
+                correct: [1],
+                hint: "Without strong profit or personal reward, there may be little motivation to innovate."
+            },
+            {
+                q: "Optimal allocation of resources occurs when:",
+                type: "single",
+                options: ["Supply is greater than demand", "Marginal benefit equals marginal cost", "All goods are equally priced", "Taxes are minimized"],
+                correct: [1],
+                hint: "This is the point where the extra benefit equals the extra cost."
+            },
+            {
+                q: "Macroeconomics is the study of:",
+                type: "single",
+                options: ["A single business", "The entire economy", "One household", "A single market"],
+                correct: [1],
+                hint: "It looks at aggregate economic behavior."
+            },
+            {
+                q: "A positive statement is:",
+                type: "single",
+                options: ["Based on value judgment", "Based on facts and what is", "A recommendation for policy", "A moral opinion"],
+                correct: [1],
+                hint: "Positive statements do not involve opinions about what ought to happen."
+            },
+            {
+                q: "A normative statement is:",
+                type: "single",
+                options: ["Fact-based", "Based on what ought to be", "About resource scarcity", "Only about supply"],
+                correct: [1],
+                hint: "This type of statement includes opinion or judgment."
+            },
+            {
+                q: "Ceteris paribus means:",
+                type: "single",
+                options: ["All other things equal", "Everything is changing", "The economy is at equilibrium", "Government controls the market"],
+                correct: [0],
+                hint: "It is used to isolate one variable while holding others constant."
+            },
+            {
+                q: "A nation can consume beyond its PPC through:",
+                type: "single",
+                options: ["Higher taxes", "Specialization and international trade", "Lower wages", "Reducing production"],
+                correct: [1],
+                hint: "Trade allows countries to obtain goods they cannot efficiently produce themselves."
+            },
+            {
+                q: "Which is a characteristic of a market system?",
+                type: "single",
+                options: ["Government ownership of all resources", "Private property and competition", "No use of money", "Command planning of output"],
+                correct: [1],
+                hint: "A market system relies on private ownership and voluntary exchange."
+            },
+            {
+                q: "A command system is characterized by:",
+                type: "single",
+                options: ["Private property rights", "Government ownership of resources and means of production", "Free competition", "Consumer sovereignty"],
+                correct: [1],
+                hint: "The government controls production decisions."
+            },
+            {
+                q: "Examples of a command system include:",
+                type: "single",
+                options: ["North Korea and Cuba", "The United States and Canada", "Germany and Japan", "Brazil and Mexico"],
+                correct: [0],
+                hint: "These countries are often cited as command-economy examples."
+            },
+            {
+                q: "In a free market system, who typically owns the factors of production?",
+                type: "single",
+                options: ["Government", "Private individuals and businesses", "Foreign investors only", "Labor unions"],
+                correct: [1],
+                hint: "Private ownership is a central feature of market economies."
+            },
+            {
+                q: "In a command economy, how are economic activities primarily coordinated?",
+                type: "single",
+                options: ["By prices and competition", "By government planning", "By consumer preferences only", "By private property rights"],
+                correct: [1],
+                hint: "The state directs production and allocation."
+            },
+            {
+                q: "The 'invisible hand' theory suggests that:",
+                type: "single",
+                options: ["Government should control all markets", "Competition and self-interest can produce social benefits", "Prices are fixed by the government", "Consumers do not affect production"],
+                correct: [1],
+                hint: "This idea was associated with Adam Smith."
+            },
+            {
+                q: "In the circular flow model, the two main groups are:",
+                type: "single",
+                options: ["Government and banks", "Households and firms", "Producers and consumers only", "Imports and exports"],
+                correct: [1],
+                hint: "These are the basic decision-makers in the model."
+            },
+            {
+                q: "In the circular flow model, the two main markets are:",
+                type: "single",
+                options: ["Labor and money", "Resource and product markets", "Trade and tax markets", "Capital and stock markets"],
+                correct: [1],
+                hint: "One market deals with inputs, the other with finished goods."
+            },
+            {
+                q: "In the resource market, firms:",
+                type: "single",
+                options: ["Sell finished goods to households", "Buy resources such as labor from households", "Set prices for products", "Eliminate competition"],
+                correct: [1],
+                hint: "Firms demand productive inputs from households."
+            },
+            {
+                q: "In the product market, households:",
+                type: "single",
+                options: ["Sell resources to firms", "Buy goods and services from firms", "Regulate business output", "Control labor prices"],
+                correct: [1],
+                hint: "Consumers spend income on finished goods."
+            },
+            {
+                q: "Creative destruction is best described as:",
+                type: "single",
+                options: ["Government replacing businesses", "New innovations destroying older industries", "Consumers refusing to buy products", "A recession caused by rising wages"],
+                correct: [1],
+                hint: "It describes how new products disrupt old ones."
+            },
+            {
+                q: "Creative destruction is primarily brought about by:",
+                type: "single",
+                options: ["Politicians", "Entrepreneurs", "Consumers only", "Banks"],
+                correct: [1],
+                hint: "Innovators drive change in the market."
+            },
+            {
+                q: "Which of the following is a determinant of demand?",
+                type: "single",
+                options: ["Resource prices", "Number of buyers", "Taxes and subsidies", "Technology"],
+                correct: [1],
+                hint: "Demand changes when the number of consumers changes."
+            },
+            {
+                q: "Which factor would most directly shift the demand curve?",
+                type: "single",
+                options: ["A change in consumer tastes", "A change in the price of the good itself", "A change in resource prices", "A change in producer expectations"],
+                correct: [0],
+                hint: "Tastes and preferences are a non-price determinant of demand."
+            },
+            {
+                q: "Which of the following is a determinant of supply?",
+                type: "single",
+                options: ["Consumer income", "Producer expectations", "Number of buyers", "Consumer tastes"],
+                correct: [1],
+                hint: "Producers' expectations about the future can affect current supply."
+            },
+            {
+                q: "The demand curve represents:",
+                type: "single",
+                options: ["The quantity supplied at different prices", "The quantity demanded at different prices", "The total cost of production", "The level of government output"],
+                correct: [1],
+                hint: "It shows how much consumers want at each price."
+            },
+            {
+                q: "The supply curve represents:",
+                type: "single",
+                options: ["The quantity demanded at different prices", "The quantity supplied at different prices", "The amount of labor in the economy", "Consumer utility"],
+                correct: [1],
+                hint: "It shows how much producers are willing to sell at each price."
+            },
+            {
+                q: "Equilibrium is where:",
+                type: "single",
+                options: ["Demand is greater than supply", "Supply is greater than demand", "Quantity supplied equals quantity demanded", "Prices are always fixed"],
+                correct: [2],
+                hint: "This is the point where the market clears."
+            },
+            {
+                q: "If supply increases only, what is the likely effect on price and quantity?",
+                type: "single",
+                options: ["Price rises and quantity falls", "Price falls and quantity rises", "Both rise", "Both fall"],
+                correct: [1],
+                hint: "More supply pushes price down while increasing quantity sold."
+            },
+            {
+                q: "If supply decreases only, what is the likely effect on price and quantity?",
+                type: "single",
+                options: ["Price rises and quantity falls", "Price falls and quantity rises", "Both rise", "Both fall"],
+                correct: [0],
+                hint: "A shortage develops when supply shrinks."
+            },
+            {
+                q: "If demand increases only, what is the likely effect on price and quantity?",
+                type: "single",
+                options: ["Price rises and quantity rises", "Price falls and quantity rises", "Price falls and quantity falls", "Price rises and quantity falls"],
+                correct: [0],
+                hint: "Higher demand generally means both a higher price and a higher quantity sold."
+            },
+            {
+                q: "If demand decreases only, what is the likely effect on price and quantity?",
+                type: "single",
+                options: ["Price rises and quantity rises", "Price falls and quantity falls", "Price rises and quantity falls", "Price falls and quantity rises"],
+                correct: [1],
+                hint: "Lower demand puts downward pressure on both price and quantity."
+            },
+            {
+                q: "If both supply and demand increase, then:",
+                type: "single",
+                options: ["Price rises and quantity falls", "Price falls and quantity rises", "Price is undetermined and quantity rises", "Price rises and quantity is undetermined"],
+                correct: [2],
+                hint: "Both curves shift right, so quantity definitely rises, price becomes uncertain."
+            },
+            {
+                q: "If both supply and demand decrease, then:",
+                type: "single",
+                options: ["Price is undetermined and quantity falls", "Price rises and quantity rises", "Price falls and quantity rises", "Price is undetermined and quantity rises"],
+                correct: [0],
+                hint: "Both curves shift left, so quantity definitely falls, price becomes uncertain."
+            },
+            {
+                q: "If supply increases and demand decreases, what is the likely effect on equilibrium price and quantity?",
+                type: "single",
+                options: ["Price increases and quantity rises", "Price decreases and quantity is undetermined", "Price increases and quantity is undetermined", "Price decreases and quantity falls"],
+                correct: [1],
+                hint: "Supply shifts right and demand shifts left, which lowers price while quantity becomes uncertain."
+            },
+            {
+                q: "If supply decreases and demand increases, what is the likely effect on equilibrium price and quantity?",
+                type: "single",
+                options: ["Price decreases and quantity is undetermined", "Price increases and quantity is undetermined", "Price decreases and quantity falls", "Price increases and quantity rises"],
+                correct: [1],
+                hint: "Demand rises while supply falls, which raises price while quantity becomes uncertain."
+            },
+            {
+                q: "The law of demand states that:",
+                type: "single",
+                options: ["As price increases, quantity demanded increases", "As price decreases, quantity demanded decreases", "As price increases, quantity demanded decreases", "Price and quantity demanded are unrelated"],
+                correct: [2],
+                hint: "There is an inverse relationship between price and quantity demanded."
+            },
+            {
+                q: "The law of supply states that:",
+                type: "single",
+                options: ["As price increases, quantity supplied decreases", "As price decreases, quantity supplied increases", "As price increases, quantity supplied increases", "Price does not affect quantity supplied"],
+                correct: [2],
+                hint: "There is a direct relationship between price and quantity supplied."
+            },
+            {
+                q: "A normal good is one where:",
+                type: "single",
+                options: ["Demand increases as income increases", "Demand decreases as income increases", "Demand is unaffected by income", "Demand falls when its substitute falls in price"],
+                correct: [0],
+                hint: "Normal goods are bought more when income rises."
+            },
+            {
+                q: "An inferior good is one where:",
+                type: "single",
+                options: ["Demand rises as income rises", "Demand falls as income rises", "Demand is unrelated to income", "Demand rises as price falls"],
+                correct: [1],
+                hint: "Consumers switch away from inferior goods when they can afford better alternatives."
+            },
+            {
+                q: "Substitutes are goods that:",
+                type: "single",
+                options: ["Are used together", "Can replace one another", "Have no relationship in demand", "Are only sold by the government"],
+                correct: [1],
+                hint: "Think of alternatives."
+            },
+            {
+                q: "Complements are goods that:",
+                type: "single",
+                options: ["Are alternatives to each other", "Are used together", "Are always inferior goods", "Are not affected by consumer income"],
+                correct: [1],
+                hint: "These goods tend to be consumed together."
+            },
+            {
+                q: "A tax is best described as:",
+                type: "single",
+                options: ["A payment from the government to producers", "An extra cost imposed by the government", "A price ceiling", "A decrease in consumer income"],
+                correct: [1],
+                hint: "Taxes raise production costs and generally reduce supply."
+            },
+            {
+                q: "A subsidy is best described as:",
+                type: "single",
+                options: ["A payment from the government to producers or consumers", "A tax on imports", "A minimum legal price", "A maximum legal price"],
+                correct: [0],
+                hint: "Subsidies reduce producers' costs and often increase supply."
+            },
+            {
+                q: "A price floor is:",
+                type: "single",
+                options: ["A maximum legal price", "A minimum legal price", "A tax on a good", "A subsidy paid to producers"],
+                correct: [1],
+                hint: "A floor prevents prices from falling below a set minimum."
+            },
+            {
+                q: "A price ceiling is:",
+                type: "single",
+                options: ["A minimum legal price", "A maximum legal price", "An increase in supply", "A tax on a good"],
+                correct: [1],
+                hint: "A ceiling prevents prices from rising above a set maximum."
+            },
+            {
+                q: "A price floor is generally set:",
+                type: "single",
+                options: ["Below equilibrium", "Above equilibrium", "At equilibrium", "Only during a recession"],
+                correct: [1],
+                hint: "A floor must be above equilibrium to have an effect."
+            },
+            {
+                q: "A price ceiling is generally set:",
+                type: "single",
+                options: ["Above equilibrium", "Below equilibrium", "At equilibrium", "Only by private firms"],
+                correct: [1],
+                hint: "A ceiling must be below equilibrium to create a binding limit."
+            }
+        ];
+
+        document.getElementById('total-q-count').textContent = quizData.length;
+
+        const root = document.getElementById('quiz-root');
+        let score = 0;
+        let answered = 0;
+
+        document.getElementById('total-q-count').textContent = quizData.length;
+
+        quizData.forEach((item, idx) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            let html = `<h3>Question ${idx + 1}</h3><p>${item.q}</p>`;
+
+            item.options.forEach((opt, optIndex) => {
+                html += `
+                    <label class="option-label">
+                        <input type="${item.type === 'multi' ? 'checkbox' : 'radio'}" name="q${idx}" value="${optIndex}">
+                        ${opt}
+                    </label>
+                `;
+            });
+
+            html += `<button class="check-btn" onclick="checkAnswer(${idx})">Check Answer</button>`;
+            html += `<div id="fb-${idx}" class="feedback"></div>`;
+            if (item.hint) {
+                html += `<details><summary>Hint</summary><p>${item.hint}</p></details>`;
+            }
+
+            card.innerHTML = html;
+            root.appendChild(card);
+        });
+
+        window.checkAnswer = function(idx) {
+            const item = quizData[idx];
+            const selected = Array.from(document.querySelectorAll(`input[name="q${idx}"]:checked`)).map(el => Number(el.value));
+            if (!selected.length) {
+                alert('Please choose an answer before checking.');
+                return;
+            }
+
+            const isCorrect = selected.length === item.correct.length && selected.every(value => item.correct.includes(value));
+            const fb = document.getElementById(`fb-${idx}`);
+            fb.style.display = 'block';
+
+            if (isCorrect) {
+                fb.className = 'feedback correct';
+                fb.textContent = '✅ Correct!';
+                score++;
+            } else {
+                fb.className = 'feedback wrong';
+                fb.textContent = `❌ Incorrect. Correct answer: ${item.correct.map(i => item.options[i]).join(', ')}`;
+            }
+
+            document.querySelectorAll(`input[name="q${idx}"]`).forEach(el => el.disabled = true);
+            document.querySelectorAll(`.check-btn`)[idx].disabled = true;
+            answered++;
+            document.getElementById('current-score').textContent = score;
+            document.getElementById('progress-fill').style.width = `${(answered / quizData.length) * 100}%`;
+        };
+    </script>
+</body>
+</html>
