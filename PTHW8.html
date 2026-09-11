@@ -6,42 +6,105 @@
     <title>Power Technology HW 8 - DC Motors & Types</title>
     <link rel="manifest" href="manifest.json">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #1c1e21; max-width: 900px; margin: 0 auto 50px auto; padding: 20px; line-height: 1.6; }
+        :root {
+            --bg: #f0f2f5;
+            --panel: #ffffff;
+            --panel-alt: #f7f8fa;
+            --panel-border: #ebedf0;
+            --text: #1c1e21;
+            --muted: #606770;
+            --primary: #004b8e;
+            --primary-soft: #e7f3ff;
+            --secondary: #6c757d;
+            --success: #42b72a;
+            --danger: #f02849;
+            --danger-soft: #ffebe8;
+            --shadow: rgba(0,0,0,0.1);
+            --button-text: #ffffff;
+        }
+
+        body.dark-mode {
+            --bg: #121826;
+            --panel: #1a2333;
+            --panel-alt: #212d40;
+            --panel-border: #2d3b52;
+            --text: #e8edf7;
+            --muted: #a9b7cf;
+            --primary: #4b9de7;
+            --primary-soft: rgba(75, 157, 231, 0.14);
+            --secondary: #8a949f;
+            --success: #5dd86e;
+            --danger: #ff6b7d;
+            --danger-soft: rgba(255, 107, 125, 0.12);
+            --shadow: rgba(0,0,0,0.4);
+            --button-text: #08131f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            max-width: 900px;
+            margin: 0 auto 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        #top-bar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 12px;
+        }
+
+        .theme-toggle {
+            border: 1px solid var(--panel-border);
+            background: var(--panel);
+            color: var(--text);
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
         /* Setup Screen */
-        #setup-screen { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; margin-top: 50px; }
-        .start-btn { background: #004b8e; color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; }
+        #setup-screen { background: var(--panel); padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px var(--shadow); text-align: center; margin-top: 20px; }
+        .start-btn { background: var(--primary); color: var(--button-text); border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 30px; }
 
         /* Quiz Layout */
         #quiz-container { display: none; }
-        #score-bar { position: sticky; top: 0; background: #004b8e; color: white; padding: 15px; text-align: center; z-index: 1000; border-radius: 0 0 12px 12px; }
+        #score-bar { position: sticky; top: 0; background: var(--primary); color: var(--button-text); padding: 15px; text-align: center; z-index: 1000; border-radius: 0 0 12px 12px; }
         #progress-container { background: rgba(255,255,255,0.2); border-radius: 10px; height: 12px; margin-top: 10px; overflow: hidden; }
-        #progress-fill { width: 0%; height: 100%; background: #42b72a; transition: width 0.4s ease; }
-        
-        .question-card { background: white; padding: 30px; margin: 25px 0; border-radius: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-left: 10px solid #004b8e; }
-        .debug-info { font-size: 0.85em; color: #606770; margin-left: 15px; font-weight: normal; }
-        
-        .img-placeholder { background: #ffffff; padding: 10px; text-align: center; margin: 20px 0; display: flex; justify-content: center; align-items: center; }
+        #progress-fill { width: 0%; height: 100%; background: var(--success); transition: width 0.4s ease; }
+
+        .question-card { background: var(--panel); padding: 30px; margin: 25px 0; border-radius: 15px; box-shadow: 0 2px 4px var(--shadow); border-left: 10px solid var(--primary); }
+        .debug-info { font-size: 0.85em; color: var(--muted); margin-left: 15px; font-weight: normal; }
+
+        .img-placeholder { background: var(--panel); padding: 10px; text-align: center; margin: 20px 0; display: flex; justify-content: center; align-items: center; }
         .q-img { max-width: 90%; max-height: 400px; height: auto; mix-blend-mode: multiply; }
 
-        .option-label { display: block; padding: 14px; margin: 10px 0; background: #f7f8fa; border: 2px solid #ebedf0; border-radius: 10px; cursor: pointer; }
-        .option-label:hover { background: #e7f3ff; border-color: #1877f2; }
-        
-        .check-btn { background: #004b8e; color: white; border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 15px; }
+        .option-label { display: block; padding: 14px; margin: 10px 0; background: var(--panel-alt); border: 2px solid var(--panel-border); border-radius: 10px; cursor: pointer; }
+        .option-label:hover { background: var(--primary-soft); border-color: var(--primary); }
+
+        .check-btn { background: var(--primary); color: var(--button-text); border: none; padding: 12px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; margin-top: 15px; }
         .check-btn:disabled { background: #ccc; cursor: not-allowed; }
-        
+
         .feedback { margin-top: 15px; padding: 15px; border-radius: 8px; display: none; font-weight: 600; }
-        .correct { background: #e7f3ff; color: #1877f2; border: 1px solid #1877f2; }
-        .wrong { background: #ffebe8; color: #f02849; border: 1px solid #f02849; }
-        
-        details { margin-top: 15px; background: #f9f9f9; padding: 10px; border-radius: 5px; }
-        summary { cursor: pointer; font-weight: bold; color: #004b8e; }
+        .correct { background: var(--primary-soft); color: var(--primary); border: 1px solid var(--primary); }
+        .wrong { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger); }
+
+        details { margin-top: 15px; background: var(--panel-alt); padding: 10px; border-radius: 5px; }
+        summary { cursor: pointer; font-weight: bold; color: var(--primary); }
         .formula { font-family: "Courier New", Courier, monospace; background: #eee; padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 5px 0; font-weight: bold; color: #d63384; }
 
-        #results-card { display: none; background: white; padding: 40px; text-align: center; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin: 40px 0; border: 2px solid #004b8e; }
-        .reset-btn { background: #42b72a; color: white; border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        #results-card { display: none; background: var(--panel); padding: 40px; text-align: center; border-radius: 15px; box-shadow: 0 4px 20px var(--shadow); margin: 40px 0; border: 2px solid var(--primary); }
+        .reset-btn { background: var(--success); color: var(--button-text); border: none; padding: 15px 40px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
+    <div id="top-bar">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙 Dark mode</button>
+    </div>
 
 <div id="setup-screen">
     <h1>EETC-2311 Power Technology HW 8</h1>
@@ -66,6 +129,21 @@
 </div>
 
 <script>
+    function toggleTheme() {
+        const body = document.body;
+        const darkMode = body.classList.toggle('dark-mode');
+        document.querySelector('.theme-toggle').textContent = darkMode ? '☀️ Light mode' : '🌙 Dark mode';
+        localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    }
+
+    window.addEventListener('load', function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.theme-toggle').textContent = '☀️ Light mode';
+        }
+    });
+
     const quizData = [
         /* --- Question 1: The 18 Matching Parts --- */
         { text: "Q1.1. An unloaded series motor can develop excessive _______ and self-destruct.", options: ["CEMF", "Torque", "Speed", "Current"], correct: [2], hint: "Runaway speed is the danger of series motors." },
