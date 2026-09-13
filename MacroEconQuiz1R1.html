@@ -71,26 +71,156 @@
         #score-bar {
             position: sticky;
             top: 0;
-            background: var(--primary);
-            color: var(--button-text);
-            padding: 16px;
-            text-align: center;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #1d4f87 0%, #123a5e 100%);
+            color: #f8fbff;
+            padding: 16px 18px 18px;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 6px 18px rgba(17, 55, 92, 0.25);
             z-index: 10;
         }
-        #progress-container {
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            height: 12px;
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .score-metrics {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: stretch;
+        }
+        .metric-box {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 9px 12px;
+            min-width: 120px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+        .metric-label {
+            display: block;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.9;
+        }
+        .metric-value {
+            display: block;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+        .reset-btn {
+            background: rgba(255,255,255,0.18);
+            color: var(--button-text);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            padding: 9px 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .celebration-banner {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            z-index: 1000;
+            width: min(92vw, 420px);
+            max-width: 420px;
+            padding: 16px 18px 14px;
+            background: linear-gradient(135deg, #f4fff7 0%, #e9f9ee 42%, #dff7e7 100%);
+            border: 1px solid rgba(118, 200, 140, 0.9);
+            color: #1e5a37;
+            border-radius: 18px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-align: center;
+            box-shadow: 0 16px 30px rgba(35, 125, 74, 0.2), 0 0 0 4px rgba(127, 227, 148, 0.15);
+            animation: popIn 0.28s cubic-bezier(.2,.8,.2,1);
+        }
+        .confetti-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
             overflow: hidden;
-            margin-top: 10px;
+        }
+        .confetti-piece {
+            position: absolute;
+            top: -14px;
+            width: 10px;
+            height: 16px;
+            border-radius: 4px;
+            opacity: 0.95;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            animation: confettiFall 1.8s ease-in forwards;
+        }
+        @keyframes popIn {
+            0% { transform: translateX(-50%) scale(0.88); opacity: 0; }
+            60% { transform: translateX(-50%) scale(1.04); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1); opacity: 1; }
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(90vh) rotate(540deg); opacity: 0; }
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+            #score-bar {
+                padding: 12px 12px 14px;
+            }
+            .score-row {
+                align-items: flex-start;
+            }
+            .score-metrics {
+                width: 100%;
+                gap: 8px;
+            }
+            .metric-box {
+                flex: 1 1 42%;
+                min-width: 0;
+            }
+            .reset-btn {
+                width: 100%;
+            }
+            .celebration-banner {
+                top: 82px;
+                width: calc(100vw - 24px);
+                max-width: 360px;
+                padding: 12px 14px;
+                font-size: 0.9rem;
+                border-radius: 16px;
+            }
+            .question-card {
+                padding: 18px 16px;
+            }
+        }
+        #progress-label {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            opacity: 0.98;
+            font-weight: 700;
+        }
+        #progress-container {
+            background: rgba(255,255,255,0.18);
+            border-radius: 999px;
+            height: 14px;
+            overflow: hidden;
+            margin-top: 8px;
+            border: 1px solid rgba(255,255,255,0.18);
         }
         #progress-fill {
             width: 0%;
             height: 100%;
-            background: var(--success);
+            background: linear-gradient(90deg, #7eea9a, #baf7c9);
             transition: width 0.3s ease;
+            border-radius: 999px;
         }
         .question-card {
             background: var(--panel);
@@ -162,10 +292,25 @@
     </div>
 
     <div id="score-bar">
-        <strong>Macro Economics Score: <span id="current-score">0</span> / <span id="total-q-count">0</span></strong>
+        <div class="score-row">
+            <div class="score-metrics">
+                <div class="metric-box">
+                    <span class="metric-label">Score</span>
+                    <span class="metric-value"><span id="current-score">0</span> / <span id="total-q-count">10</span></span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Accuracy</span>
+                    <span class="metric-value"><span id="score-percent">0</span>%</span>
+                </div>
+            </div>
+            <button id="reset-btn" class="reset-btn" type="button">Try Again</button>
+        </div>
+        <div id="progress-label">Progress: <span id="answered-count">0</span> / <span id="answered-total">10</span> answered</div>
         <div id="progress-container"><div id="progress-fill"></div></div>
     </div>
 
+    <div id="celebration-banner" class="celebration-banner">🎉 Nice work! You finished the round.</div>
+    <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
     <div id="quiz-root"></div>
 
     <div class="actions">
@@ -709,41 +854,100 @@
             }
         ];
 
-        document.getElementById('total-q-count').textContent = quizData.length;
+        function shuffleQuestions(items) {
+            const copy = [...items];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
 
         const root = document.getElementById('quiz-root');
+        let selectedQuestions = [];
         let score = 0;
         let answered = 0;
 
-        document.getElementById('total-q-count').textContent = quizData.length;
+        function launchConfetti() {
+            const confettiLayer = document.getElementById('confetti-layer');
+            confettiLayer.innerHTML = '';
+            const colors = ['#f9d870', '#7fe394', '#7eb8f3', '#ff8fb1', '#ffd166', '#7cd1ff'];
 
-        quizData.forEach((item, idx) => {
-            const card = document.createElement('div');
-            card.className = 'question-card';
-
-            let html = `<h3>Question ${idx + 1}</h3><p>${item.q}</p>`;
-
-            item.options.forEach((opt, optIndex) => {
-                html += `
-                    <label class="option-label">
-                        <input type="${item.type === 'multi' ? 'checkbox' : 'radio'}" name="q${idx}" value="${optIndex}">
-                        ${opt}
-                    </label>
-                `;
-            });
-
-            html += `<button class="check-btn" onclick="checkAnswer(${idx})">Check Answer</button>`;
-            html += `<div id="fb-${idx}" class="feedback"></div>`;
-            if (item.hint) {
-                html += `<details><summary>Hint</summary><p>${item.hint}</p></details>`;
+            for (let i = 0; i < 40; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = `${Math.random() * 100}%`;
+                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDelay = `${(Math.random() * 0.2).toFixed(2)}s`;
+                confettiLayer.appendChild(piece);
             }
 
-            card.innerHTML = html;
-            root.appendChild(card);
-        });
+            setTimeout(() => {
+                confettiLayer.innerHTML = '';
+            }, 1800);
+        }
+
+        function updateScoreDisplay() {
+            const totalQuestions = selectedQuestions.length || 10;
+            const precisionPercent = answered ? Math.round((score / answered) * 100) : 0;
+
+            document.getElementById('current-score').textContent = score;
+            document.getElementById('total-q-count').textContent = totalQuestions;
+            document.getElementById('score-percent').textContent = precisionPercent;
+            document.getElementById('answered-count').textContent = answered;
+            document.getElementById('answered-total').textContent = totalQuestions;
+            document.getElementById('progress-fill').style.width = `${(answered / totalQuestions) * 100}%`;
+
+            const celebration = document.getElementById('celebration-banner');
+            if (answered === totalQuestions) {
+                const allDone = score >= Math.ceil(totalQuestions * 0.7);
+                celebration.style.display = allDone ? 'block' : 'none';
+                if (allDone) {
+                    celebration.textContent = `🎉 Nice work! You scored ${score}/${totalQuestions}.`;
+                    launchConfetti();
+                }
+            } else {
+                celebration.style.display = 'none';
+            }
+        }
+
+        function renderQuiz() {
+            root.innerHTML = '';
+            document.getElementById('celebration-banner').style.display = 'none';
+            document.getElementById('confetti-layer').innerHTML = '';
+            selectedQuestions = shuffleQuestions(quizData).slice(0, 10);
+            score = 0;
+            answered = 0;
+            updateScoreDisplay();
+
+            selectedQuestions.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+
+                let html = `<h3>Question ${idx + 1}</h3><p>${item.q}</p>`;
+
+                item.options.forEach((opt, optIndex) => {
+                    html += `
+                        <label class="option-label">
+                            <input type="${item.type === 'multi' ? 'checkbox' : 'radio'}" name="q${idx}" value="${optIndex}">
+                            ${opt}
+                        </label>
+                    `;
+                });
+
+                html += `<button class="check-btn" onclick="checkAnswer(${idx})">Check Answer</button>`;
+                html += `<div id="fb-${idx}" class="feedback"></div>`;
+                if (item.hint) {
+                    html += `<details><summary>Hint</summary><p>${item.hint}</p></details>`;
+                }
+
+                card.innerHTML = html;
+                root.appendChild(card);
+            });
+        }
 
         window.checkAnswer = function(idx) {
-            const item = quizData[idx];
+            const item = selectedQuestions[idx];
             const selected = Array.from(document.querySelectorAll(`input[name="q${idx}"]:checked`)).map(el => Number(el.value));
             if (!selected.length) {
                 alert('Please choose an answer before checking.');
@@ -764,11 +968,14 @@
             }
 
             document.querySelectorAll(`input[name="q${idx}"]`).forEach(el => el.disabled = true);
-            document.querySelectorAll(`.check-btn`)[idx].disabled = true;
+            const answerButton = document.querySelectorAll('.check-btn')[idx];
+            if (answerButton) answerButton.disabled = true;
             answered++;
-            document.getElementById('current-score').textContent = score;
-            document.getElementById('progress-fill').style.width = `${(answered / quizData.length) * 100}%`;
+            updateScoreDisplay();
         };
+
+        document.getElementById('reset-btn').addEventListener('click', renderQuiz);
+        renderQuiz();
     </script>
 </body>
 </html>
