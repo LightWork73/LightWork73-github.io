@@ -284,11 +284,79 @@
             margin-top: 12px;
             font-weight: 600;
         }
+        .dev-toggle {
+            border: 1px solid var(--panel-border);
+            background: var(--panel);
+            color: var(--text);
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-left: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-width: 118px;
+        }
+        #dev-center-panel {
+            display: none;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            padding: 16px 18px;
+            margin: 20px 0 18px;
+            box-shadow: 0 8px 18px var(--shadow);
+        }
+        #dev-center-panel.open {
+            display: block;
+        }
+        .sound-panel h3 {
+            margin: 0 0 14px;
+            font-size: 1.05rem;
+        }
+        .sound-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        .sound-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .sound-field select {
+            width: 100%;
+            border: 1px solid var(--panel-border);
+            background: var(--panel-alt);
+            color: var(--text);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 0.96rem;
+        }
+        .sound-preview-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .sound-preview-btn {
+            background: var(--primary);
+            color: var(--button-text);
+            border: none;
+            border-radius: 8px;
+            padding: 9px 14px;
+            cursor: pointer;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
     <div id="top-bar">
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙 Dark mode</button>
+        <button class="dev-toggle" id="dev-center-toggle" type="button" aria-label="Open developer sound center" aria-expanded="false" title="Developer sound center">⚙️ Dev Center</button>
     </div>
 
     <div id="score-bar">
@@ -311,6 +379,51 @@
 
     <div id="celebration-banner" class="celebration-banner">🎉 Nice work! You finished the round.</div>
     <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+
+    <div id="dev-center-panel" class="sound-panel">
+        <h3>Developer Sound Center</h3>
+        <div class="sound-grid">
+            <label class="sound-field">
+                Correct answer
+                <select id="sound-correct-select">
+                    <option value="retro">Retro Nintendo</option>
+                    <option value="arcade">Arcade Win</option>
+                    <option value="cash">Cash Register</option>
+                    <option value="coin">Coin Drop</option>
+                    <option value="soft">Soft Chime</option>
+                    <option value="bell">Big Bell</option>
+                </select>
+            </label>
+            <label class="sound-field">
+                Wrong answer
+                <select id="sound-wrong-select">
+                    <option value="retro">Retro Buzz</option>
+                    <option value="arcade">Arcade Error</option>
+                    <option value="cash">Low Thud</option>
+                    <option value="coin">Soft Drop</option>
+                    <option value="soft">Short Beep</option>
+                    <option value="bell">Alert Tone</option>
+                </select>
+            </label>
+            <label class="sound-field">
+                Finish sound
+                <select id="sound-finish-select">
+                    <option value="retro">Retro Clear</option>
+                    <option value="arcade">Arcade Victory</option>
+                    <option value="cash">Cash Register Finish</option>
+                    <option value="coin">Coin Rain</option>
+                    <option value="soft">Happy Chime</option>
+                    <option value="bell">Big Celebration</option>
+                </select>
+            </label>
+        </div>
+        <div class="sound-preview-row">
+            <button class="sound-preview-btn" type="button" data-sound="correct">Preview Correct</button>
+            <button class="sound-preview-btn" type="button" data-sound="wrong">Preview Wrong</button>
+            <button class="sound-preview-btn" type="button" data-sound="finish">Preview Finish</button>
+        </div>
+    </div>
+
     <div id="quiz-root"></div>
 
     <div class="actions">
@@ -318,6 +431,160 @@
     </div>
 
     <script>
+        let audioCtx = null;
+        const soundChoices = {
+            correct: 'retro',
+            wrong: 'retro',
+            finish: 'retro'
+        };
+
+        function getAudioContext() {
+            const AudioCtor = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtor) return null;
+            if (!audioCtx) {
+                audioCtx = new AudioCtor();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playTone(frequency, duration, { type = 'sine', volume = 0.06, slideTo = null } = {}) {
+            const ctx = getAudioContext();
+            if (!ctx) return;
+
+            const oscillator = ctx.createOscillator();
+            const gainNode = ctx.createGain();
+            oscillator.type = type;
+            oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
+
+            if (slideTo) {
+                oscillator.frequency.exponentialRampToValueAtTime(slideTo, ctx.currentTime + duration);
+            }
+
+            gainNode.gain.setValueAtTime(0.0001, ctx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(volume, ctx.currentTime + 0.02);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(ctx.destination);
+            oscillator.start();
+            oscillator.stop(ctx.currentTime + duration);
+        }
+
+        const soundPresets = {
+            retro: {
+                correct: () => {
+                    const notes = [659.25, 783.99, 987.77, 1046.5];
+                    notes.forEach((note, index) => {
+                        setTimeout(() => playTone(note, 0.09, { type: 'square', volume: 0.04, slideTo: note * 1.06 }), index * 90);
+                    });
+                },
+                wrong: () => playTone(210, 0.16, { type: 'sawtooth', volume: 0.05, slideTo: 120 }),
+                finish: () => {
+                    const notes = [523.25, 659.25, 783.99, 1046.5, 1046.5, 1174.66, 1318.51];
+                    const durations = [0.26, 0.22, 0.22, 0.22, 0.26, 0.34, 0.42];
+                    notes.forEach((note, index) => {
+                        setTimeout(() => playTone(note, durations[index], { type: 'triangle', volume: 0.06, slideTo: note * 1.08 }), index * 140);
+                    });
+                }
+            },
+            arcade: {
+                correct: () => {
+                    playTone(660, 0.08, { type: 'square', volume: 0.04, slideTo: 820 });
+                    setTimeout(() => playTone(880, 0.09, { type: 'square', volume: 0.04, slideTo: 1040 }), 70);
+                    setTimeout(() => playTone(1100, 0.12, { type: 'triangle', volume: 0.03, slideTo: 1260 }), 140);
+                },
+                wrong: () => playTone(240, 0.18, { type: 'square', volume: 0.04, slideTo: 120 }),
+                finish: () => {
+                    const notes = [392, 523.25, 659.25, 783.99, 783.99];
+                    notes.forEach((note, index) => {
+                        const duration = index === notes.length - 1 ? 0.34 : 0.2;
+                        setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.06, slideTo: note * 1.08 }), index * 150);
+                    });
+                }
+            },
+            cash: {
+                correct: () => {
+                    playTone(1200, 0.04, { type: 'square', volume: 0.04, slideTo: 1500 });
+                    setTimeout(() => playTone(1600, 0.06, { type: 'triangle', volume: 0.03, slideTo: 1800 }), 40);
+                    setTimeout(() => playTone(180, 0.12, { type: 'sine', volume: 0.04, slideTo: 90 }), 70);
+                },
+                wrong: () => playTone(170, 0.2, { type: 'sawtooth', volume: 0.04, slideTo: 80 }),
+                finish: () => {
+                    const notes = [440, 587.33, 659.25, 880, 880];
+                    notes.forEach((note, index) => {
+                        const duration = index === notes.length - 1 ? 0.32 : 0.18;
+                        setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.06, slideTo: note * 1.1 }), index * 160);
+                    });
+                }
+            },
+            coin: {
+                correct: () => {
+                    playTone(880, 0.05, { type: 'triangle', volume: 0.04, slideTo: 1100 });
+                    setTimeout(() => playTone(150, 0.18, { type: 'sine', volume: 0.05, slideTo: 70 }), 45);
+                    setTimeout(() => playTone(220, 0.1, { type: 'triangle', volume: 0.04, slideTo: 190 }), 95);
+                },
+                wrong: () => playTone(200, 0.18, { type: 'triangle', volume: 0.04, slideTo: 110 }),
+                finish: () => {
+                    const notes = [392, 440, 523.25, 659.25, 783.99, 783.99];
+                    notes.forEach((note, index) => {
+                        const duration = index === notes.length - 1 ? 0.28 : 0.16;
+                        setTimeout(() => playTone(note, duration, { type: 'sine', volume: 0.06, slideTo: note * 1.07 }), index * 120);
+                    });
+                }
+            },
+            soft: {
+                correct: () => { 
+                    playTone(740, 0.12, { type: 'triangle', volume: 0.03, slideTo: 900 });
+                    setTimeout(() => playTone(960, 0.1, { type: 'triangle', volume: 0.025, slideTo: 1100 }), 80);
+                },
+                wrong: () => playTone(260, 0.14, { type: 'sine', volume: 0.03, slideTo: 180 }),
+                finish: () => {
+                    const notes = [523.25, 659.25, 783.99, 783.99];
+                    notes.forEach((note, index) => {
+                        const duration = index === notes.length - 1 ? 0.3 : 0.2;
+                        setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.05, slideTo: note * 1.05 }), index * 150);
+                    });
+                }
+            },
+            bell: {
+                correct: () => {
+                    playTone(784, 0.18, { type: 'sine', volume: 0.06, slideTo: 980 });
+                    setTimeout(() => playTone(1174, 0.16, { type: 'sine', volume: 0.05, slideTo: 1340 }), 90);
+                },
+                wrong: () => playTone(300, 0.22, { type: 'square', volume: 0.05, slideTo: 180 }),
+                finish: () => {
+                    const notes = [392, 523.25, 659.25, 783.99, 1046.5, 1046.5];
+                    notes.forEach((note, index) => {
+                        const duration = index === notes.length - 1 ? 0.36 : 0.2;
+                        setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.06, slideTo: note * 1.08 }), index * 140);
+                    });
+                }
+            }
+        };
+
+        function playSelectedSound(kind) {
+            const presetName = soundChoices[kind];
+            const preset = soundPresets[presetName];
+            if (preset && preset[kind]) {
+                preset[kind]();
+            }
+        }
+
+        function playCorrectSound() {
+            playSelectedSound('correct');
+        }
+
+        function playIncorrectSound() {
+            playSelectedSound('wrong');
+        }
+
+        function playFinishSound() {
+            playSelectedSound('finish');
+        }
+
         function toggleTheme() {
             const body = document.body;
             const darkMode = body.classList.toggle('dark-mode');
@@ -905,6 +1172,7 @@
                 if (allDone) {
                     celebration.textContent = `🎉 Nice work! You scored ${score}/${totalQuestions}.`;
                     launchConfetti();
+                    playFinishSound();
                 }
             } else {
                 celebration.style.display = 'none';
@@ -962,9 +1230,11 @@
                 fb.className = 'feedback correct';
                 fb.textContent = '✅ Correct!';
                 score++;
+                playCorrectSound();
             } else {
                 fb.className = 'feedback wrong';
                 fb.textContent = `❌ Incorrect. Correct answer: ${item.correct.map(i => item.options[i]).join(', ')}`;
+                playIncorrectSound();
             }
 
             document.querySelectorAll(`input[name="q${idx}"]`).forEach(el => el.disabled = true);
@@ -973,6 +1243,34 @@
             answered++;
             updateScoreDisplay();
         };
+
+        const soundSelects = {
+            correct: document.getElementById('sound-correct-select'),
+            wrong: document.getElementById('sound-wrong-select'),
+            finish: document.getElementById('sound-finish-select')
+        };
+
+        Object.entries(soundSelects).forEach(([kind, selectEl]) => {
+            selectEl.addEventListener('change', (event) => {
+                soundChoices[kind] = event.target.value;
+            });
+        });
+
+        document.querySelectorAll('.sound-preview-btn').forEach((button) => {
+            button.addEventListener('click', () => {
+                playSelectedSound(button.dataset.sound);
+            });
+        });
+
+        const devCenterToggle = document.getElementById('dev-center-toggle');
+        const devCenterPanel = document.getElementById('dev-center-panel');
+
+        devCenterToggle.addEventListener('click', () => {
+            const isOpen = devCenterPanel.classList.toggle('open');
+            devCenterToggle.setAttribute('aria-expanded', String(isOpen));
+            devCenterToggle.title = isOpen ? 'Close developer sound center' : 'Open developer sound center';
+            devCenterToggle.textContent = isOpen ? '⚙️ Dev Center' : '⚙️ Dev Center';
+        });
 
         document.getElementById('reset-btn').addEventListener('click', renderQuiz);
         renderQuiz();
