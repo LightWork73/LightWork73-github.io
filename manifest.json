@@ -1,10 +1,12 @@
 {
-  "name": "EETC-2311 Power Tech Study Tool",
-  "short_name": "PowerTech",
-  "start_url": "index.html",
+  "name": "Study Buddy",
+  "short_name": "Study Buddy",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#f0f2f5",
-  "theme_color": "#004b8e",
+  "theme_color": "#0f4c81",
+  "description": "Study Buddy practice quiz app",
   "icons": [
     {
       "src": "https://cdn-icons-png.flaticon.com/512/2991/2991160.png",

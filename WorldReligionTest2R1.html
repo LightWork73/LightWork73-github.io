@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Buddy</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6fb;
+            color: #1c2333;
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            padding: 24px;
+            line-height: 1.6;
+        }
+
+        #score-bar {
+            position: sticky;
+            top: 0;
+            background: #0f4c81;
+            color: white;
+            padding: 16px 18px;
+            text-align: center;
+            z-index: 1000;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+        }
+
+        #progress-container {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            height: 12px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        #progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #56c46d;
+            transition: width 0.3s ease;
+        }
+
+        .question-card {
+            background: #ffffff;
+            padding: 28px 24px;
+            margin: 24px 0;
+            border-radius: 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 10px solid #0f4c81;
+        }
+
+        .source-tag {
+            display: inline-block;
+            background: #eaf3ff;
+            color: #0f4c81;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .reference-text {
+            margin: 8px 0 14px;
+            padding: 8px 10px;
+            background: #f7f8fb;
+            border-left: 4px solid #2b6cb0;
+            border-radius: 8px;
+            color: #334d74;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .option-label {
+            display: block;
+            padding: 12px 14px;
+            margin: 10px 0;
+            background: #f7f9fc;
+            border: 2px solid #e5eaf2;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-label:hover {
+            background: #edf5ff;
+            border-color: #8ab7eb;
+        }
+
+        .check-btn {
+            background: #0f4c81;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 14px;
+        }
+
+        .check-btn:disabled {
+            background: #b7c2d1;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            margin-top: 14px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            display: none;
+            font-weight: 600;
+        }
+
+        .correct {
+            background: #edf9ee;
+            color: #1f7a35;
+            border: 1px solid #8cd39d;
+        }
+
+        .wrong {
+            background: #fff0f1;
+            color: #b02439;
+            border: 1px solid #f0a4b2;
+        }
+
+        details {
+            margin-top: 14px;
+            border-top: 1px solid #e7ebf2;
+            padding-top: 10px;
+        }
+
+        summary {
+            cursor: pointer;
+            color: #4a617d;
+            font-weight: 700;
+        }
+
+        .hint-text {
+            color: #53657d;
+            font-style: italic;
+            padding-top: 8px;
+        }
+
+        #results-card {
+            display: none;
+            background: #ffffff;
+            padding: 32px 24px;
+            text-align: center;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 2px solid #0f4c81;
+            margin-top: 30px;
+        }
+
+        .reset-btn {
+            background: #2f9e44;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        .top-note {
+            background: #f5f8ff;
+            border: 1px solid #dfe9ff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            color: #334d74;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-note">
+        Study Buddy practice quiz. This is the first pass and can be expanded as you add more chapter notes or textbook sections.
+    </div>
+
+    <div id="score-bar">
+        <strong>Score: <span id="current-score">0</span> / <span id="total-q-count">0</span></strong>
+        <div id="progress-container"><div id="progress-fill"></div></div>
+    </div>
+
+    <div id="quiz-root"></div>
+
+    <div id="results-card">
+        <h2>Quiz Complete!</h2>
+        <p id="result-text" style="font-size: 24px; font-weight: bold;"></p>
+        <p id="result-comment"></p>
+        <button class="reset-btn" onclick="resetQuiz()">Retake Quiz</button>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                q: "Which Roman power ruled Judea during the time of Jesus?",
+                type: "single",
+                options: ["The Persians", "The Romans", "The Greeks", "The Byzantines"],
+                correct: [1],
+                hint: "Roman rule shaped the social and political pressures described in the chapter on Jesus and His context.",
+                source: "Christianity chapter: historical context"
+            },
+            {
+                q: "Which Jewish groups are specifically mentioned in the textbook as responding to Roman rule and religious pressure?",
+                type: "multi",
+                options: ["Pharisees", "Sadducees", "Zealots", "Brahmins"],
+                correct: [0, 1, 2],
+                hint: "These groups were active in Jewish life during the first century and shaped the setting for Jesus' mission.",
+                source: "Christianity chapter: historical context"
+            },
+            {
+                q: "Which of the following best describes the Jewish expectation of a messiah in the first century?",
+                type: "single",
+                options: ["They expected a political and religious leader who would bring justice and deliverance", "They rejected any expectation of a future deliverer", "They believed the messiah had already come in the form of Caesar", "They expected only a purely spiritual teacher"],
+                correct: [0],
+                hint: "The textbook describes Jewish hopes for someone who would bring justice, peace, and God’s rule.",
+                source: "Christianity chapter: foundations"
+            },
+            {
+                q: "Which statement best explains why Jesus was understood by early Christians as the Messiah?",
+                type: "single",
+                options: ["Because he was only a moral teacher and had no political influence", "Because Christians believed his life, death, and resurrection fulfilled the hope of a promised deliverer", "Because the Roman Empire officially declared him king", "Because he rejected all Jewish tradition"],
+                correct: [1],
+                hint: "The chapter emphasizes Jesus as the fulfillment of messianic hope in Jewish tradition.",
+                source: "Christianity chapter: foundations"
+            },
+            {
+                q: "The four Gospels are best described as:",
+                type: "single",
+                options: ["Political treatises written by Roman officials", "Accounts of Jesus' life and teachings written to proclaim the good news", "Complete biographies written after Jesus' resurrection by one author", "Books about the Old Testament prophets"],
+                correct: [1],
+                hint: "The textbook identifies the Gospels as early Christian proclamations about Jesus.",
+                source: "Christianity chapter: The Life of Jesus"
+            },
+            {
+                q: "According to the textbook, Jesus was born in:",
+                type: "single",
+                options: ["Nazareth", "Bethlehem", "Jerusalem", "Galilee"],
+                correct: [1],
+                hint: "The chapter emphasizes Bethlehem as the birthplace associated with the messianic expectation.",
+                source: "Christianity chapter: The Life of Jesus"
+            },
+            {
+                q: "What was the role of John the Baptist in the story of Jesus in the textbook?",
+                type: "single",
+                options: ["He was a Roman governor", "He baptized Jesus and called people to repentance", "He wrote the Gospel of Luke", "He denied Jesus as the Messiah"],
+                correct: [1],
+                hint: "The chapter connects John the Baptist with Jesus’ baptism and the call to repentance.",
+                source: "Christianity chapter: The Life of Jesus"
+            },
+            {
+                q: "Which of the following is a central Christian belief about salvation?",
+                type: "single",
+                options: ["Salvation is gained by perfect moral behavior alone", "Salvation is offered through grace and faith in Christ", "Salvation is achieved by entering the Roman state religion", "Salvation is only available to priests"],
+                correct: [1],
+                hint: "The chapter presents Christian teaching as rooted in grace, faith, and the life of Christ.",
+                source: "Christianity chapter: teaching and practice"
+            },
+            {
+                q: "Which of the following best describes Christianity as presented in the textbook?",
+                type: "single",
+                options: ["A purely political movement", "A religion centered on faith, worship, and living according to Jesus' teachings", "An ancient philosophy with no social relevance", "A system of laws without spiritual meaning"],
+                correct: [1],
+                hint: "The chapter emphasizes that Christianity is not only belief but also a way of life.",
+                source: "Christianity chapter: Christianity as a way of life"
+            },
+            {
+                q: "Which of the following areas are discussed in the textbook as ways Christians engage the world?",
+                type: "multi",
+                options: ["Social and political activism", "The environment", "Gender and inclusion", "Astronomy alone"],
+                correct: [0, 1, 2],
+                hint: "The book highlights Christian engagement with justice, creation, and human dignity.",
+                source: "Christianity chapter: engaging the world"
+            },
+            {
+                q: "Which statement best matches the textbook’s view of Christian social and political engagement?",
+                type: "single",
+                options: ["Christians are not expected to act on social issues", "Christians often respond to injustice through activism, charity, and public witness", "Christianity is concerned only with private worship", "Social action is irrelevant to Christianity"],
+                correct: [1],
+                hint: "The chapter makes clear that Christianity often includes public concern for justice and human dignity.",
+                source: "Christianity chapter: engaging the world"
+            },
+            {
+                q: "According to the textbook, Christianity has been connected to concern for the environment because:",
+                type: "single",
+                options: ["the natural world is considered God’s creation and deserves care", "the environment is irrelevant to religious life", "Christianity teaches humans should dominate the earth without limits", "the environment is only a matter of scientific study"],
+                correct: [0],
+                hint: "The chapter connects Christian faith with care for creation and stewardship.",
+                source: "Christianity chapter: environment"
+            },
+            {
+                q: "Which of the following best reflects the textbook’s discussion of gender and inclusion in Christianity?",
+                type: "single",
+                options: ["Christianity has always been identical in every culture and society", "Christianity includes a range of views on gender, inclusion, and leadership, and debates continue in many communities", "Christianity rejects all questions of leadership and equality", "Only men have ever been considered religious leaders"],
+                correct: [1],
+                hint: "The chapter presents Christianity as diverse and historically debated on gender roles and inclusion.",
+                source: "Christianity chapter: gender and inclusion"
+            },
+            {
+                q: "Which of the following is a major feature of Islam?",
+                type: "single",
+                options: ["The belief in one God and submission to His will", "The belief in multiple gods and no scripture", "The rejection of prophecy", "The denial of prayer"],
+                correct: [0],
+                hint: "Islam is rooted in monotheism and surrender to God.",
+                source: "Islam chapter"
+            },
+            {
+                q: "Which of the following is one of the Five Pillars of Islam?",
+                type: "multi",
+                options: ["Prayer", "Pilgrimage", "Charity", "Baptism"],
+                correct: [0, 1, 2],
+                hint: "The chapter identifies the Five Pillars as a core framework of Muslim practice.",
+                source: "Islam chapter"
+            },
+            {
+                q: "The Qur'an is best described as:",
+                type: "single",
+                options: ["a collection of Christian teachings", "the central sacred text of Islam", "a philosophical text about Greek thought", "a guide for Buddhist meditation"],
+                correct: [1],
+                hint: "The Qur'an is the primary sacred text in Islamic belief and practice.",
+                source: "Islam chapter"
+            },
+            {
+                q: "Which figure is central to Islam as the final prophet?",
+                type: "single",
+                options: ["Jesus", "Muhammad", "Abraham", "Paul"],
+                correct: [1],
+                hint: "In Islam, Muhammad is regarded as the final prophet in the line of prophets.",
+                source: "Islam chapter"
+            },
+            {
+                q: "Which statement best describes the relationship between Christianity and Islam?",
+                type: "single",
+                options: ["They reject all shared beliefs", "They are both monotheistic traditions but differ in their understanding of Jesus and prophecy", "They have no scriptures", "They are identical in doctrine and practice"],
+                correct: [1],
+                hint: "Both religions affirm one God, but they differ on important theological claims and figures.",
+                source: "Christianity and Islam comparison"
+            },
+            {
+                q: "Coptic Christianity is primarily associated with which region?",
+                type: "single",
+                options: ["Egypt", "India", "Iran", "Spain"],
+                correct: [0],
+                hint: "The Coptic tradition is rooted in early Christian communities in Egypt.",
+                source: "Coptic Christianity (YouTube)"
+            },
+            {
+                q: "Which of the following is a common feature of Coptic Christianity?",
+                type: "single",
+                options: ["A strong monastic and ascetic tradition", "The rejection of all church tradition", "A belief that Christianity began in Rome only", "A lack of liturgical worship"],
+                correct: [0],
+                hint: "Coptic life and worship are deeply shaped by early Christian tradition and monastic practice.",
+                source: "Coptic Christianity (YouTube)"
+            },
+            {
+                q: "Which of the following is a major element of Islamic family life as described in the textbook?",
+                type: "single",
+                options: ["Marriage is treated as a sacred bond and a source of stability", "Marriage is rejected as a social obligation", "Family life is irrelevant to Islamic practice", "Islamic families are discouraged from living in communities"],
+                correct: [0],
+                hint: "The chapter describes marriage and family as central to Muslim life and social order.",
+                source: "Islam chapter: family and community"
+            },
+            {
+                q: "Which statement best reflects the textbook’s discussion of gender and sexuality in Islam?",
+                type: "single",
+                options: ["Islam has no teachings about gender or sexuality", "Islam teaches moral conduct, modesty, and a set of norms that shape gender roles and family life", "Islam fully rejects all social norms", "Gender roles are completely unimportant in all Islamic communities"],
+                correct: [1],
+                hint: "The chapter explains that Islamic teachings address gender, modesty, family roles, and moral behavior.",
+                source: "Islam chapter: family and community"
+            },
+            {
+                q: "Which statement accurately reflects the textbook’s view of Muslim communities in the modern world?",
+                type: "single",
+                options: ["Muslim communities are isolated from the wider world", "Muslims live in diverse societies and often engage in public life, politics, and social participation", "Islamic communities have no relationship to modern society", "Muslims are only defined by rural life and not by urban culture"],
+                correct: [1],
+                hint: "The text stresses Muslim participation in modern social, political, and cultural life.",
+                source: "Islam chapter: engaging the world"
+            },
+            {
+                q: "What is one major point made in the textbook about Muslim engagement in the West?",
+                type: "single",
+                options: ["Muslims in the West have no public role", "Muslims in the West are involved in politics, education, labor, and community life, while facing both opportunities and challenges", "Muslim communities are always fully assimilated and never face discrimination", "Muslim involvement in the West is entirely separate from Islam"],
+                correct: [1],
+                hint: "The chapter emphasizes both Muslim participation and the realities of social adjustment and prejudice.",
+                source: "Islam chapter: engaging the world"
+            },
+            {
+                q: "Which of the following best describes the textbook’s explanation of Islamic social justice?",
+                type: "single",
+                options: ["Islam has no concern with social justice", "Islamic teaching includes concern for fairness, compassion, and the welfare of the community", "Social justice only matters in politics, not religion", "Social justice is only a modern idea unrelated to Islam"],
+                correct: [1],
+                hint: "The chapter connects Islamic values to justice, charity, and concern for others.",
+                source: "Islam chapter: social justice"
+            },
+            {
+                q: "Which of the following is a key point in the textbook’s discussion of Islam and the environment?",
+                type: "single",
+                options: ["The environment is irrelevant to Islamic teaching", "Islam teaches that the natural world is God’s creation and should be cared for responsibly", "Only the Qur’an matters and nature is excluded from faith", "Islam teaches that humans should dominate nature without limits"],
+                correct: [1],
+                hint: "The section describes environmental stewardship as an important part of Islamic responsibility.",
+                source: "Islam chapter: environment"
+            },
+            {
+                q: "Which of the following best describes the Islamic calendar and its religious significance?",
+                type: "single",
+                options: ["It keeps no religious meaning and is only a civil calendar", "It is a lunar calendar that marks the timing of key holy days and pilgrimage seasons", "It is identical to the Gregorian calendar in all ways", "It is based only on Christian feast days"],
+                correct: [1],
+                hint: "The chapter explains that the Islamic calendar guides the timing of important religious observances.",
+                source: "Islam chapter: Islamic calendar and holidays"
+            },
+            {
+                q: "Which of the following is one of the major Islamic holidays discussed in the textbook?",
+                type: "multi",
+                options: ["Eid al-Fitr", "Eid al-Adha", "Ramadan", "Christmas"],
+                correct: [0, 1, 2],
+                hint: "The chapter names the major observances tied to fasting, sacrifice, and the lunar calendar.",
+                source: "Islam chapter: Islamic calendar and holidays"
+            },
+            {
+                q: "Which statement best reflects the textbook’s view of modern Islam?",
+                type: "single",
+                options: ["Modern Islam is completely unchanged from the early period", "Modern Islam is diverse, dynamic, and shaped by both tradition and contemporary global issues", "Modern Islam has no role in politics or education", "Modern Islam is only focused on ancient ritual performance"],
+                correct: [1],
+                hint: "The textbook emphasizes diversity, historical change, and Islam’s engagement with modern life.",
+                source: "Islam chapter: modern Islam"
+            },
+            {
+                q: "The Hijra is best understood as:",
+                type: "single",
+                options: ["The migration of Muhammad and the early Muslim community from Mecca to Medina", "A military conquest of Jerusalem", "The building of the Kaaba", "The final pilgrimage to Mecca"],
+                correct: [0],
+                hint: "The textbook presents the Hijra as a turning point in the early Muslim community.",
+                source: "Islam chapter: origins and early community"
+            },
+            {
+                q: "Which of the following best describes why the city of Medina was important in early Islam?",
+                type: "single",
+                options: ["It was a place of pilgrimage only", "It became the base of the early Muslim community and a center for organizing Muslim life", "It had no religious significance", "It was the capital of the Roman Empire"],
+                correct: [1],
+                hint: "The early Muslim community grew and organized itself in Medina after the Hijra.",
+                source: "Islam chapter: origins and early community"
+            },
+            {
+                q: "Which of the following are major branches of Islam discussed in the textbook?",
+                type: "multi",
+                options: ["Sunni", "Shi’a", "Brahmanic", "Zoroastrian"],
+                correct: [0, 1],
+                hint: "The textbook distinguishes the two main traditions of Islam by historical and doctrinal differences.",
+                source: "Islam chapter: division and development"
+            },
+            {
+                q: "The Sunni-Shi’a split developed primarily over:",
+                type: "single",
+                options: ["The interpretation of the Qur’an alone", "Questions of leadership, succession, and authority after the Prophet Muhammad", "The rejection of prayer", "The difference between Arabic and Persian language"],
+                correct: [1],
+                hint: "The chapter presents the split as a dispute over leadership and authority.",
+                source: "Islam chapter: division and development"
+            },
+            {
+                q: "Which of the following is a major reason Muslims regard Mecca as sacred?",
+                type: "single",
+                options: ["It was the political capital of the Roman Empire", "It is the location of the Kaaba and the birthplace of the Prophet’s community", "It is the site of the first mosque in Europe", "It is where the first Qur’an was revealed in Egypt"],
+                correct: [1],
+                hint: "The chapter stresses the centrality of Mecca and the Kaaba in the Islamic tradition.",
+                source: "Islam chapter: sacred geography"
+            },
+            {
+                q: "Which city is especially important in Islam because it is associated with the Prophet’s Night Journey and Ascension?",
+                type: "single",
+                options: ["Jerusalem", "Baghdad", "Cairo", "Damascus"],
+                correct: [0],
+                hint: "The textbook highlights Jerusalem’s importance in the Prophet’s religious experience and Islamic memory.",
+                source: "Islam chapter: sacred geography"
+            },
+            {
+                q: "Which of the following best describes how the textbook presents Islamic law?",
+                type: "single",
+                options: ["It is irrelevant to Muslim life", "It is a major framework for moral living, social order, and legal obligations", "It only concerns ritual prayer", "It was invented only in the modern period"],
+                correct: [1],
+                hint: "Islamic law is treated as a significant dimension of faith and communal life.",
+                source: "Islam chapter: law and ethics"
+            },
+            {
+                q: "Which of the following are among the major sources of Islamic law discussed in the textbook?",
+                type: "multi",
+                options: ["The Qur’an", "The Hadith", "Reasoned legal interpretation", "The Bible"],
+                correct: [0, 1, 2],
+                hint: "The chapter explains that the Qur’an, prophetic traditions, and reasoned interpretation shape Islamic legal thought.",
+                source: "Islam chapter: law and ethics"
+            },
+            {
+                q: "Which feature is most closely associated with Muslim worship communities in the textbook?",
+                type: "single",
+                options: ["The mosque as a center of prayer, learning, and community life", "The temple as the sole site of worship", "The absence of any communal gathering", "The prohibition of public worship"],
+                correct: [0],
+                hint: "The chapter emphasizes the mosque as central to Muslim religious and social life.",
+                source: "Islam chapter: worship and community"
+            },
+            {
+                q: "Which of the following best matches the textbook’s explanation of Islamic charity?",
+                type: "single",
+                options: ["Charity is optional and unrelated to Islam", "Charity is a core religious duty that supports the poor and strengthens community life", "Charity is only practiced by rulers", "Charity is discouraged because it undermines personal wealth"],
+                correct: [1],
+                hint: "The chapter presents charity as an important moral and religious obligation.",
+                source: "Islam chapter: ethics and social responsibility"
+            },
+            {
+                q: "Which statement best reflects the textbook’s view of Muslim life in North America?",
+                type: "single",
+                options: ["Muslims in North America are completely absent from public life", "Muslim communities in North America are growing and are involved in many aspects of society, though they face prejudice and challenges", "Islam has no presence in North America", "Muslims in North America all live in isolated rural communities"],
+                correct: [1],
+                hint: "The chapter notes Muslim communities in North America and their social participation over time.",
+                source: "Islam chapter: Islam in North America"
+            }
+        ];
+
+        const quizSections = [
+            {
+                title: 'Christianity Foundations',
+                questions: quizData.filter((q) => q.source.includes('Christianity'))
+            },
+            {
+                title: 'Islam Foundations',
+                questions: quizData.filter((q) => q.source.includes('Islam'))
+            },
+            {
+                title: 'Coptic Christianity',
+                questions: quizData.filter((q) => q.source.includes('Coptic'))
+            },
+            {
+                title: 'Comparison and Review',
+                questions: quizData.filter((q) => q.source.includes('comparison') || q.source.includes('Christianity and Islam'))
+            }
+        ];
+
+        let totalScore = 0;
+        let answeredQuestions = new Set();
+
+        function renderQuiz() {
+            const root = document.getElementById('quiz-root');
+            root.innerHTML = '';
+
+            quizSections.forEach((section) => {
+                const sectionBlock = document.createElement('div');
+                sectionBlock.className = 'section-block';
+
+                const heading = document.createElement('h2');
+                heading.className = 'section-title';
+                heading.textContent = section.title;
+                sectionBlock.appendChild(heading);
+
+                section.questions.forEach((item) => {
+                    const qIndex = quizData.findIndex((q) => q.q === item.q && q.source === item.source);
+                    const card = document.createElement('div');
+                    card.className = 'question-card';
+                    card.id = `card-${qIndex}`;
+
+                    let content = `
+                        <div class="source-tag">${item.source}</div>
+                        <div class="reference-text"><strong>Reference:</strong> ${item.source}</div>
+                        <h3>Question ${qIndex + 1}</h3>
+                        <p>${item.q}</p>
+                    `;
+
+                    item.options.forEach((opt, optIdx) => {
+                        const inputType = item.type === 'multi' ? 'checkbox' : 'radio';
+                        content += `
+                            <label class="option-label">
+                                <input type="${inputType}" name="q${qIndex}" value="${optIdx}">
+                                ${opt}
+                            </label>
+                        `;
+                    });
+
+                    content += `<button class="check-btn" id="btn-${qIndex}" onclick="verify(${qIndex})">Check Answer</button>`;
+                    content += `<div id="fb-${qIndex}" class="feedback"></div>`;
+                    content += `
+                        <details>
+                            <summary>Show Hint</summary>
+                            <div class="hint-text">${item.hint}</div>
+                        </details>
+                    `;
+
+                    card.innerHTML = content;
+                    sectionBlock.appendChild(card);
+                });
+
+                root.appendChild(sectionBlock);
+            });
+
+            document.getElementById('total-q-count').textContent = quizData.length;
+        }
+
+        window.verify = function(idx) {
+            const item = quizData[idx];
+            const inputs = Array.from(document.querySelectorAll(`input[name="q${idx}"]:checked`));
+            const selected = inputs.map(el => parseInt(el.value));
+            const feedback = document.getElementById(`fb-${idx}`);
+
+            if (selected.length === 0) return;
+
+            const isCorrect = selected.length === item.correct.length &&
+                selected.every(val => item.correct.includes(val));
+
+            feedback.style.display = 'block';
+            if (isCorrect) {
+                feedback.innerHTML = '✅ Correct!';
+                feedback.className = 'feedback correct';
+                if (!answeredQuestions.has(idx)) {
+                    totalScore++;
+                    answeredQuestions.add(idx);
+                }
+            } else {
+                feedback.innerHTML = `❌ Incorrect. Correct answer: ${item.correct.map(c => item.options[c]).join(' & ')}`;
+                feedback.className = 'feedback wrong';
+                answeredQuestions.add(idx);
+            }
+
+            document.getElementById(`btn-${idx}`).disabled = true;
+            document.querySelectorAll(`input[name="q${idx}"]`).forEach(el => el.disabled = true);
+            updateUI();
+        }
+
+        function updateUI() {
+            const answeredCount = answeredQuestions.size;
+            document.getElementById('current-score').innerText = totalScore;
+            const progress = (answeredCount / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+
+            if (answeredCount === quizData.length) {
+                showFinalResults();
+            }
+        }
+
+        function showFinalResults() {
+            const percentage = Math.round((totalScore / quizData.length) * 100);
+            const resultText = document.getElementById('result-text');
+            const resultComment = document.getElementById('result-comment');
+            const resultsCard = document.getElementById('results-card');
+
+            resultsCard.style.display = 'block';
+            resultText.innerText = `Final Score: ${totalScore} / ${quizData.length} (${percentage}%)`;
+
+            if (percentage >= 85) {
+                resultComment.innerText = 'Strong work. You are covering the main ideas well.';
+            } else if (percentage >= 70) {
+                resultComment.innerText = 'Good progress. Review the missed questions and keep practicing.';
+            } else {
+                resultComment.innerText = 'This is a good first pass. Go back through the hints and try again.';
+            }
+
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        window.resetQuiz = function() {
+            totalScore = 0;
+            answeredQuestions.clear();
+            document.getElementById('results-card').style.display = 'none';
+            document.getElementById('progress-fill').style.width = '0%';
+            document.getElementById('current-score').innerText = '0';
+            renderQuiz();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        renderQuiz();
+    </script>
+</body>
+</html>

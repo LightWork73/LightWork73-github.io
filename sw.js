@@ -1,22 +1,10 @@
-const CACHE_NAME = 'powertech-v3';
+const CACHE_NAME = 'study-buddy-v1';
 const ASSETS = [
   './',
   'index.html',
-  'MacroEconQuiz1R1.html',
-  'Powertechquiz3R1.html',
-  'Powertechquiz3R2.html',
-  'Powertechquiz3R3.html',
-  'Powertechquiz3R4.html',
-  'Powertechquiz3R5.html',
-  'Powertechquiz3R6.html',
-  'PowertechTest1R1.html',
-  'PowertechTest1R2.html',
-  'PowertechTest1R3.html',
-  'PowertechTest1R4.html',
-  'PowertechTest1R5.html',
-  'PowertechTest1R6.html',
-  'PTHW8.html',
-  'manifest.json'
+  'WorldReligionTest2R1.html',
+  'manifest.json',
+  'sw.js'
 ];
 
 self.addEventListener('install', (e) => {
