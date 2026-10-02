@@ -84,7 +84,8 @@
         .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 30px; }
         .course-card { background: linear-gradient(135deg, var(--primary), var(--primary-strong)); color: var(--button-text); border: none; border-radius: 14px; padding: 28px 20px; font-size: 1.25rem; font-weight: 700; cursor: pointer; min-height: 130px; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 8px 20px rgba(0,75,142,0.25); }
         .course-card:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(0,75,142,0.32); }
-        .course-card.secondary { background: linear-gradient(135deg, var(--secondary), var(--secondary-strong)); }
+        .course-card.secondary { background: linear-gradient(135deg, #2d7ae6, #1d4f9f); }
+        .course-card.secondary-alt { background: linear-gradient(135deg, #2f7d70, #245a52); }
         .course-card.placeholder { background: linear-gradient(135deg, #7a5c46, #a37e5d); }
         .course-card span { display: block; font-size: 0.82rem; opacity: 0.9; margin-top: 8px; font-weight: 500; }
 
@@ -139,15 +140,31 @@
             Power Tech
             <span>Study tool and practice tests</span>
         </button>
-        <button class="course-card secondary" onclick="window.location.href='MacroEconQuiz1R1.html'">
+        <button class="course-card secondary" onclick="showMacroCourseOptions()">
             Macro Economics
-            <span>Study guide quiz</span>
+            <span>Choose a quiz</span>
         </button>
         <button class="course-card placeholder" onclick="window.location.href='WorldReligionTest2R1.html'">
             World Religion
             <span>Study guide quiz</span>
         </button>
     </div>
+</div>
+
+<div id="macro-choice-screen" style="display:none;">
+    <h1>Macro Economics</h1>
+    <p>Select which quiz you want to open.</p>
+    <div class="course-grid" style="margin-top: 20px;">
+        <button class="course-card secondary" onclick="window.location.href='MacroEconQuiz1R1.html'">
+            Macro Economics Test 1
+            <span>Study guide quiz</span>
+        </button>
+        <button class="course-card secondary-alt" onclick="window.location.href='MacroEconQuiz2R1.html'">
+            Macro Economics Test 2
+            <span>Additional practice quiz</span>
+        </button>
+    </div>
+    <button class="back-btn" onclick="showCourseScreen()">Back to Courses</button>
 </div>
 
 <div id="placeholder-screen" style="display:none;">
@@ -188,15 +205,25 @@
 <script>
     function showCourseScreen() {
         document.getElementById('course-screen').style.display = 'block';
+        document.getElementById('macro-choice-screen').style.display = 'none';
         document.getElementById('placeholder-screen').style.display = 'none';
         document.getElementById('setup-screen').style.display = 'none';
         document.getElementById('quiz-container').style.display = 'none';
         document.getElementById('results-card').style.display = 'none';
     }
 
+    function showMacroCourseOptions() {
+        document.getElementById('course-screen').style.display = 'none';
+        document.getElementById('macro-choice-screen').style.display = 'block';
+        document.getElementById('placeholder-screen').style.display = 'none';
+        document.getElementById('setup-screen').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'none';
+    }
+
     function selectCourse(course) {
         if (course === 'powertech') {
             document.getElementById('course-screen').style.display = 'none';
+            document.getElementById('macro-choice-screen').style.display = 'none';
             document.getElementById('placeholder-screen').style.display = 'none';
             document.getElementById('setup-screen').style.display = 'block';
             document.getElementById('quiz-container').style.display = 'none';
@@ -204,6 +231,7 @@
         }
 
         document.getElementById('course-screen').style.display = 'none';
+        document.getElementById('macro-choice-screen').style.display = 'none';
         document.getElementById('setup-screen').style.display = 'none';
         document.getElementById('quiz-container').style.display = 'none';
         document.getElementById('placeholder-screen').style.display = 'block';

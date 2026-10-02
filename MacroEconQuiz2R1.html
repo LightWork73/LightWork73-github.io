@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Macro Economics Quiz 2</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --panel-alt: #f7f9fc;
+      --panel-border: #e5ebf5;
+      --text: #1d2433;
+      --muted: #5d677a;
+      --primary: #1f4e79;
+      --primary-strong: #163b61;
+      --primary-soft: #eaf7ee;
+      --secondary: #6c757d;
+      --success: #7fe394;
+      --danger: #9f2733;
+      --danger-soft: #fdeceb;
+      --shadow: rgba(0,0,0,0.08);
+      --button-text: #ffffff;
+    }
+
+    body.dark-mode {
+      --bg: #121a26;
+      --panel: #1a2434;
+      --panel-alt: #212f40;
+      --panel-border: #2b3d52;
+      --text: #e8edf7;
+      --muted: #a9b7cf;
+      --primary: #7eb8f3;
+      --primary-strong: #9fd0ff;
+      --primary-soft: rgba(126, 184, 243, 0.14);
+      --secondary: #9aa6b2;
+      --success: #7ae39d;
+      --danger: #ff7f8e;
+      --danger-soft: rgba(255, 127, 142, 0.12);
+      --shadow: rgba(0,0,0,0.3);
+      --button-text: #0b1320;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 900px;
+      margin: 0 auto 50px;
+      padding: 20px;
+      line-height: 1.6;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    #top-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #score-bar {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, #1d4f87 0%, #123a5e 100%);
+      color: #f8fbff;
+      padding: 16px 18px 18px;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 6px 18px rgba(17, 55, 92, 0.25);
+      z-index: 10;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .score-metrics {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+
+    .metric-box {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 9px 12px;
+      min-width: 120px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .metric-label {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+    }
+
+    .metric-value {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .reset-btn {
+      background: rgba(255,255,255,0.18);
+      color: var(--button-text);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .celebration-banner {
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      z-index: 1000;
+      width: min(92vw, 420px);
+      max-width: 420px;
+      padding: 16px 18px 14px;
+      background: linear-gradient(135deg, #f4fff7 0%, #e9f9ee 42%, #dff7e7 100%);
+      border: 1px solid rgba(118, 200, 140, 0.9);
+      color: #1e5a37;
+      border-radius: 18px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-align: center;
+      box-shadow: 0 16px 30px rgba(35, 125, 74, 0.2), 0 0 0 4px rgba(127, 227, 148, 0.15);
+      animation: popIn 0.28s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      top: -14px;
+      width: 10px;
+      height: 16px;
+      border-radius: 4px;
+      opacity: 0.95;
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      animation: confettiFall 1.8s ease-in forwards;
+    }
+
+    @keyframes popIn {
+      0% { transform: translateX(-50%) scale(0.88); opacity: 0; }
+      60% { transform: translateX(-50%) scale(1.04); opacity: 1; }
+      100% { transform: translateX(-50%) scale(1); opacity: 1; }
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(90vh) rotate(540deg); opacity: 0; }
+    }
+
+    .dev-toggle {
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-left: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-width: 118px;
+    }
+
+    #dev-center-panel {
+      display: none;
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 20px 0 18px;
+      box-shadow: 0 8px 18px var(--shadow);
+    }
+
+    #dev-center-panel.open {
+      display: block;
+    }
+
+    .sound-panel h3 {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+    }
+
+    .sound-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .sound-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .sound-field select {
+      width: 100%;
+      border: 1px solid var(--panel-border);
+      background: var(--panel-alt);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.96rem;
+    }
+
+    .sound-preview-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .sound-preview-btn {
+      background: var(--primary);
+      color: var(--button-text);
+      border: none;
+      border-radius: 8px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    #progress-label {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      opacity: 0.98;
+      font-weight: 700;
+    }
+
+    #progress-container {
+      background: rgba(255,255,255,0.18);
+      border-radius: 999px;
+      height: 14px;
+      overflow: hidden;
+      margin-top: 8px;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    #progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #7eea9a, #baf7c9);
+      transition: width 0.3s ease;
+      border-radius: 999px;
+    }
+
+    .question-card {
+      background: var(--panel);
+      border-left: 10px solid var(--primary);
+      padding: 28px;
+      margin: 25px 0;
+      border-radius: 14px;
+      box-shadow: 0 3px 8px var(--shadow);
+    }
+
+    .option-label {
+      display: block;
+      padding: 12px 14px;
+      margin: 10px 0;
+      background: var(--panel-alt);
+      border: 2px solid var(--panel-border);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .option-label:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+    }
+
+    .check-btn {
+      background: var(--primary);
+      color: var(--button-text);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .check-btn:disabled {
+      background: #bfc9d7;
+      cursor: not-allowed;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .correct {
+      display: block;
+      background: var(--primary-soft);
+      color: var(--primary-strong);
+      border: 1px solid var(--primary);
+    }
+
+    .wrong {
+      display: block;
+      background: var(--danger-soft);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+
+    details {
+      margin-top: 15px;
+      background: var(--panel-alt);
+      color: var(--text);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .formula {
+      font-family: "Courier New", Courier, monospace;
+      background: #eee;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 5px 0;
+      font-weight: bold;
+      color: #d63384;
+    }
+
+    #results-card {
+      display: none;
+      background: var(--panel);
+      padding: 40px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px var(--shadow);
+      margin: 40px 0;
+      border: 2px solid var(--primary);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+      #score-bar {
+        padding: 12px 12px 14px;
+      }
+      .score-row {
+        align-items: flex-start;
+      }
+      .score-metrics {
+        width: 100%;
+        gap: 8px;
+      }
+      .metric-box {
+        flex: 1 1 42%;
+        min-width: 0;
+      }
+      .reset-btn {
+        width: 100%;
+      }
+      .question-card {
+        padding: 18px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="top-bar">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙 Dark mode</button>
+    <button class="dev-toggle" id="dev-center-toggle" type="button" aria-label="Open developer sound center" aria-expanded="false" title="Developer sound center">⚙️ Dev Center</button>
+  </div>
+
+  <div id="score-bar">
+    <div class="score-row">
+      <div class="score-metrics">
+        <div class="metric-box">
+          <span class="metric-label">Score</span>
+          <span class="metric-value"><span id="current-score">0</span> / <span id="total-q-count">10</span></span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-label">Accuracy</span>
+          <span class="metric-value"><span id="score-percent">0</span>%</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-label">Answered</span>
+          <span class="metric-value"><span id="answered-count">0</span> / <span id="answered-total">10</span></span>
+        </div>
+      </div>
+      <button class="reset-btn" type="button" onclick="resetQuiz()">Retake Quiz</button>
+    </div>
+    <div id="progress-label">Progress</div>
+    <div id="progress-container"><div id="progress-fill"></div></div>
+  </div>
+
+  <div id="celebration-banner" class="celebration-banner">🎉 Nice work! You finished the round.</div>
+  <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+
+  <div id="dev-center-panel" class="sound-panel">
+    <h3>Developer Sound Center</h3>
+    <div class="sound-grid">
+      <label class="sound-field">
+        Correct answer
+        <select id="sound-correct-select">
+          <option value="retro">Retro Nintendo</option>
+          <option value="arcade">Arcade Win</option>
+          <option value="cash">Cash Register</option>
+          <option value="coin">Coin Drop</option>
+          <option value="soft">Soft Chime</option>
+          <option value="bell">Big Bell</option>
+        </select>
+      </label>
+      <label class="sound-field">
+        Wrong answer
+        <select id="sound-wrong-select">
+          <option value="retro">Retro Buzz</option>
+          <option value="arcade">Arcade Error</option>
+          <option value="cash">Low Thud</option>
+          <option value="coin">Soft Drop</option>
+          <option value="soft">Short Beep</option>
+          <option value="bell">Alert Tone</option>
+        </select>
+      </label>
+      <label class="sound-field">
+        Finish sound
+        <select id="sound-finish-select">
+          <option value="retro">Retro Clear</option>
+          <option value="arcade">Arcade Victory</option>
+          <option value="cash">Cash Register Finish</option>
+          <option value="coin">Coin Rain</option>
+          <option value="soft">Happy Chime</option>
+          <option value="bell">Big Celebration</option>
+        </select>
+      </label>
+    </div>
+    <div class="sound-preview-row">
+      <button class="sound-preview-btn" type="button" data-sound="correct">Preview Correct</button>
+      <button class="sound-preview-btn" type="button" data-sound="wrong">Preview Wrong</button>
+      <button class="sound-preview-btn" type="button" data-sound="finish">Preview Finish</button>
+    </div>
+  </div>
+
+  <div id="quiz-root"></div>
+
+  <div id="results-card">
+    <h2>Test Complete!</h2>
+    <p id="result-text" style="font-size: 24px; font-weight: bold;"></p>
+    <p id="result-comment"></p>
+    <button class="reset-btn" onclick="resetQuiz()">Try Again</button>
+  </div>
+
+  <script>
+    let audioCtx = null;
+    const soundChoices = {
+      correct: 'retro',
+      wrong: 'retro',
+      finish: 'retro'
+    };
+
+    function getAudioContext() {
+      const AudioCtor = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtor) return null;
+      if (!audioCtx) {
+        audioCtx = new AudioCtor();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(frequency, duration, { type = 'sine', volume = 0.06, slideTo = null } = {}) {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+
+      const oscillator = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+      oscillator.type = type;
+      oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
+
+      if (slideTo) {
+        oscillator.frequency.exponentialRampToValueAtTime(slideTo, ctx.currentTime + duration);
+      }
+
+      gainNode.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(volume, ctx.currentTime + 0.02);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(ctx.destination);
+      oscillator.start();
+      oscillator.stop(ctx.currentTime + duration);
+    }
+
+    const soundPresets = {
+      retro: {
+        correct: () => {
+          const notes = [659.25, 783.99, 987.77, 1046.5];
+          notes.forEach((note, index) => {
+            setTimeout(() => playTone(note, 0.09, { type: 'square', volume: 0.04, slideTo: note * 1.06 }), index * 90);
+          });
+        },
+        wrong: () => playTone(210, 0.16, { type: 'sawtooth', volume: 0.05, slideTo: 120 }),
+        finish: () => {
+          const notes = [523.25, 659.25, 783.99, 1046.5, 1046.5, 1174.66, 1318.51];
+          const durations = [0.26, 0.22, 0.22, 0.22, 0.26, 0.34, 0.42];
+          notes.forEach((note, index) => {
+            setTimeout(() => playTone(note, durations[index], { type: 'triangle', volume: 0.06, slideTo: note * 1.08 }), index * 140);
+          });
+        }
+      },
+      arcade: {
+        correct: () => {
+          playTone(660, 0.08, { type: 'square', volume: 0.04, slideTo: 820 });
+          setTimeout(() => playTone(880, 0.09, { type: 'square', volume: 0.04, slideTo: 1040 }), 70);
+          setTimeout(() => playTone(1100, 0.12, { type: 'triangle', volume: 0.03, slideTo: 1260 }), 140);
+        },
+        wrong: () => playTone(240, 0.18, { type: 'square', volume: 0.04, slideTo: 120 }),
+        finish: () => {
+          const notes = [392, 523.25, 659.25, 783.99, 783.99];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.34 : 0.2;
+            setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.06, slideTo: note * 1.08 }), index * 150);
+          });
+        }
+      },
+      cash: {
+        correct: () => {
+          playTone(1200, 0.04, { type: 'square', volume: 0.04, slideTo: 1500 });
+          setTimeout(() => playTone(1600, 0.06, { type: 'triangle', volume: 0.03, slideTo: 1800 }), 40);
+          setTimeout(() => playTone(180, 0.12, { type: 'sine', volume: 0.04, slideTo: 90 }), 70);
+        },
+        wrong: () => playTone(170, 0.2, { type: 'sawtooth', volume: 0.04, slideTo: 80 }),
+        finish: () => {
+          const notes = [440, 587.33, 659.25, 880, 880];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.32 : 0.18;
+            setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.06, slideTo: note * 1.1 }), index * 160);
+          });
+        }
+      },
+      coin: {
+        correct: () => {
+          playTone(880, 0.05, { type: 'triangle', volume: 0.04, slideTo: 1100 });
+          setTimeout(() => playTone(150, 0.18, { type: 'sine', volume: 0.05, slideTo: 70 }), 45);
+          setTimeout(() => playTone(220, 0.1, { type: 'triangle', volume: 0.04, slideTo: 190 }), 95);
+        },
+        wrong: () => playTone(200, 0.18, { type: 'triangle', volume: 0.04, slideTo: 110 }),
+        finish: () => {
+          const notes = [392, 440, 523.25, 659.25, 783.99, 783.99];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.28 : 0.16;
+            setTimeout(() => playTone(note, duration, { type: 'sine', volume: 0.06, slideTo: note * 1.07 }), index * 120);
+          });
+        }
+      },
+      soft: {
+        correct: () => {
+          playTone(740, 0.12, { type: 'triangle', volume: 0.03, slideTo: 900 });
+          setTimeout(() => playTone(960, 0.1, { type: 'triangle', volume: 0.025, slideTo: 1100 }), 80);
+        },
+        wrong: () => playTone(260, 0.14, { type: 'sine', volume: 0.03, slideTo: 180 }),
+        finish: () => {
+          const notes = [523.25, 659.25, 783.99, 783.99];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.3 : 0.2;
+            setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.05, slideTo: note * 1.05 }), index * 150);
+          });
+        }
+      },
+      bell: {
+        correct: () => {
+          playTone(784, 0.18, { type: 'sine', volume: 0.06, slideTo: 980 });
+          setTimeout(() => playTone(1174, 0.16, { type: 'sine', volume: 0.05, slideTo: 1340 }), 90);
+        },
+        wrong: () => playTone(300, 0.22, { type: 'square', volume: 0.05, slideTo: 180 }),
+        finish: () => {
+          const notes = [392, 523.25, 659.25, 783.99, 1046.5, 1046.5];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.36 : 0.2;
+            setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.06, slideTo: note * 1.08 }), index * 140);
+          });
+        }
+      }
+    };
+
+    function playSelectedSound(kind) {
+      const presetName = soundChoices[kind];
+      const preset = soundPresets[presetName];
+      if (preset && preset[kind]) {
+        preset[kind]();
+      }
+    }
+
+    function playCorrectSound() {
+      playSelectedSound('correct');
+    }
+
+    function playIncorrectSound() {
+      playSelectedSound('wrong');
+    }
+
+    function playFinishSound() {
+      playSelectedSound('finish');
+    }
+
+    const quizData = [
+      {
+        q: "Which of the following best defines Gross Domestic Product (GDP)?",
+        type: "single",
+        options: ["The total amount of money in circulation in an economy", "The monetary value of all final goods and services produced within the borders of a nation in a particular year", "The total value of everything bought by a nation's citizens, no matter where it was produced", "The total revenue collected by the government in one year"],
+        correct: [1],
+        hint: "Three key ideas: final goods, within the borders, and one year."
+      },
+      {
+        q: "Which equation correctly calculates GDP?",
+        type: "single",
+        options: ["C + I + G - Nx", "C + I + G + Nx - Depreciation", "C + I + G + Nx", "C + S + G + Nx"],
+        correct: [2],
+        hint: "Do NOT subtract depreciation in GDP. Subtracting it gives you NDP instead."
+      },
+      {
+        q: "Net exports (Nx) are calculated as:",
+        type: "single",
+        options: ["Exports + Imports", "Imports - Exports", "Exports / Imports", "Exports - Imports"],
+        correct: [3],
+        hint: "Net exports = what we sell abroad minus what we buy from abroad."
+      },
+      {
+        q: "Which equation correctly calculates Net Domestic Product (NDP)?",
+        type: "single",
+        options: ["GDP + Depreciation", "GDP - Depreciation", "GDP - Imports", "GDP x Price Index"],
+        correct: [1],
+        hint: "Depreciation is also called consumption of fixed capital."
+      },
+      {
+        q: "If you know GDP and NDP, how do you find depreciation (consumption of fixed capital)?",
+        type: "single",
+        options: ["GDP - NDP", "NDP - GDP", "GDP + NDP", "GDP / NDP"],
+        correct: [0],
+        hint: "Rearrange NDP = GDP - Depreciation to solve for depreciation."
+      },
+      {
+        q: "Disposable income is best defined as:",
+        type: "single",
+        options: ["Total government revenue after spending", "Income received by businesses after paying wages", "Income received by households that is used for consumption and saving", "Income that can only be saved, never spent"],
+        correct: [2],
+        hint: "Households can do only two things with it: consume it or save it."
+      },
+      {
+        q: "Real GDP is:",
+        type: "single",
+        options: ["GDP measured in the current year's prices without any adjustment", "GDP that excludes government spending", "GDP per person", "GDP data that have been adjusted for changes in the price level"],
+        correct: [3],
+        hint: "Real means the effect of inflation has been removed."
+      },
+      {
+        q: "Economic growth is defined as an increase in:",
+        type: "single",
+        options: ["The price level", "Either real GDP or real GDP per capita", "Nominal GDP only", "The labor force only"],
+        correct: [1],
+        hint: "Look for the answer that uses real, inflation-adjusted measures."
+      },
+      {
+        q: "How is real GDP per capita calculated?",
+        type: "single",
+        options: ["Real GDP x Population", "Nominal GDP / Population", "Population / Real GDP", "Real GDP / Population"],
+        correct: [3],
+        hint: "Per capita means per person, so divide by the number of people."
+      },
+      {
+        q: "On a production possibilities curve (PPC), modern economic growth causes the curve to:",
+        type: "single",
+        options: ["Shift left", "Shift right", "Stay in the same place", "Become a straight line"],
+        correct: [1],
+        hint: "Growth means the economy can produce more of everything."
+      },
+      {
+        q: "Which of the following is a major contributor to the increase in productivity in America?",
+        type: "single",
+        options: ["A shrinking population", "Higher prices", "Technological advancement", "Larger trade deficits"],
+        correct: [2],
+        hint: "Think of what lets workers produce more output per hour."
+      },
+      {
+        q: "National infrastructure refers to:",
+        type: "single",
+        options: ["Private homes and apartments", "Public capital goods such as highways", "Stocks and bonds", "Consumer goods like cars and phones"],
+        correct: [1],
+        hint: "Infrastructure is publicly provided capital, like roads and bridges."
+      },
+      {
+        q: "Which of the following describes economies of scale?",
+        type: "single",
+        options: ["Raising prices as output decreases", "Hiring more workers without changing output", "Reducing the number of products a firm sells", "Reducing per-unit costs while increasing output"],
+        correct: [3],
+        hint: "Producing more lets the firm spread costs over more units."
+      },
+      {
+        q: "How is the Rule of 70 used?",
+        type: "single",
+        options: ["Multiply 70 by the growth rate", "Divide 70 by the interest rate or growth rate", "Subtract the growth rate from 70", "Divide the growth rate by 70"],
+        correct: [1],
+        hint: "It estimates how long it takes something to double: 70 / rate."
+      },
+      {
+        q: "The business cycle is best defined as:",
+        type: "single",
+        options: ["Recurring increases and decreases in an economy's real GDP over periods of years", "A one-time drop in the price level", "The yearly change in the unemployment rate", "The daily rise and fall of the stock market"],
+        correct: [0],
+        hint: "Cycle means it repeats over years."
+      },
+      {
+        q: "Select all of the phases of the business cycle.",
+        type: "multi",
+        options: ["Peak", "Trough", "Recession", "Expansion", "Inflation"],
+        correct: [0, 1, 2, 3],
+        hint: "Two turning points and two directions of movement."
+      },
+      {
+        q: "Which choice lists the business cycle in the correct order?",
+        type: "single",
+        options: ["Expansion → Trough → Recession → Peak", "Trough → Recession → Peak → Expansion", "Recession → Trough → Expansion → Peak", "Peak → Trough → Expansion → Recession"],
+        correct: [2],
+        hint: "Economy goes down, hits bottom, then rises, then reaches a high point."
+      },
+      {
+        q: "How is the labor force calculated?",
+        type: "single",
+        options: ["Employed - Unemployed", "Unemployed / Employed", "Employed + Unemployed", "Total Population - Employed"],
+        correct: [2],
+        hint: "The labor force counts workers and job seekers."
+      },
+      {
+        q: "How is the unemployment rate calculated?",
+        type: "single",
+        options: ["Unemployed / Labor Force", "Unemployed / Employed", "Employed / Labor Force", "Unemployed / Total Population"],
+        correct: [0],
+        hint: "Unemployment rate = unemployed / labor force."
+      },
+      {
+        q: "An economy has 190 million employed workers and 10 million unemployed workers. What is the size of the labor force?",
+        type: "single",
+        options: ["180 million", "190 million", "200 million", "210 million"],
+        correct: [2],
+        hint: "Labor force = employed + unemployed."
+      },
+      {
+        q: "An economy has a labor force of 160 million and 8 million people are unemployed. What is the unemployment rate?",
+        type: "single",
+        options: ["2.0%", "5.0%", "8.0%", "20.0%"],
+        correct: [1],
+        hint: "8 / 160 = 0.05, which is 5%."
+      },
+      {
+        q: "The economy is considered to be at full employment when the (natural) unemployment rate is about:",
+        type: "single",
+        options: ["0%", "1.0% to 1.5%", "4.0% to 4.5%", "9.0% to 10.0%"],
+        correct: [2],
+        hint: "Full employment does not mean zero unemployment."
+      },
+      {
+        q: "A discouraged worker who had stopped looking for a job begins actively searching again. What happens to the labor force and the unemployment rate?",
+        type: "single",
+        options: ["Both rise", "Both fall", "The labor force rises and the unemployment rate falls", "Neither changes"],
+        correct: [0],
+        hint: "Once they search again, they are counted."
+      },
+      {
+        q: "Workers lose their jobs because AI has changed the demand for labor in their industry. This is an example of which type of unemployment?",
+        type: "single",
+        options: ["Frictional", "Cyclical", "Structural", "Voluntary"],
+        correct: [2],
+        hint: "The structure of labor demand changed."
+      },
+      {
+        q: "Unemployment caused by the recession phase of the business cycle is called:",
+        type: "single",
+        options: ["Frictional unemployment", "Cyclical unemployment", "Structural unemployment", "Natural unemployment"],
+        correct: [1],
+        hint: "It is tied to the business cycle."
+      },
+      {
+        q: "Individuals who are searching for a job or waiting to take a job soon are experiencing:",
+        type: "single",
+        options: ["Cyclical unemployment", "Structural unemployment", "Discouraged unemployment", "Frictional unemployment"],
+        correct: [3],
+        hint: "This is temporary job searching between roles."
+      },
+      {
+        q: "Demand-pull inflation is caused by:",
+        type: "single",
+        options: ["A rise in per-unit production cost", "Excessive spending relative to output", "A decrease in the money supply", "A fall in real income"],
+        correct: [1],
+        hint: "Too much money chasing too few goods."
+      },
+      {
+        q: "Cost-push inflation is caused by:",
+        type: "single",
+        options: ["Too much spending chasing too few goods", "The central bank issuing too much money", "Stimulus payments to households", "A rise in per-unit production cost"],
+        correct: [3],
+        hint: "Producers' costs go up, so they push prices up."
+      },
+      {
+        q: "Select all that are causes of demand-pull inflation.",
+        type: "multi",
+        options: ["Stimulus spending", "The central bank issuing too much money", "People have more money to spend, but the amount of goods did not increase", "Supply chain disruption (Covid)", "Raw materials such as oil becoming more expensive"],
+        correct: [0, 1, 2],
+        hint: "Demand-pull inflation starts on the spending side."
+      },
+      {
+        q: "Select all that are causes of cost-push inflation.",
+        type: "multi",
+        options: ["A supply shock", "Supply chain disruption (Covid)", "Raw materials such as oil becoming more expensive", "Stimulus spending", "The central bank issuing too much money"],
+        correct: [0, 1, 2],
+        hint: "Cost-push starts on the supply side."
+      },
+      {
+        q: "The government sends stimulus checks, households spend more, but the amount of goods available has not increased. Prices rise. What type of inflation is this?",
+        type: "single",
+        options: ["Cost-push inflation", "Demand-pull inflation", "Core inflation", "Structural inflation"],
+        correct: [1],
+        hint: "Spending went up while output stayed the same."
+      },
+      {
+        q: "A global supply chain disruption makes shipping and materials more expensive, so firms raise prices. What type of inflation is this?",
+        type: "single",
+        options: ["Demand-pull inflation", "Core inflation", "Cost-push inflation", "Frictional inflation"],
+        correct: [2],
+        hint: "The strain is on the supply chain, which raises per-unit production costs."
+      },
+      {
+        q: "Core inflation is a measure of inflation that:",
+        type: "single",
+        options: ["Includes only food and energy prices", "Includes only housing prices", "Is adjusted for population growth", "Excludes food and energy prices"],
+        correct: [3],
+        hint: "Food and energy prices are volatile, so they are removed."
+      },
+      {
+        q: "Real income is best defined as:",
+        type: "single",
+        options: ["Income before taxes", "Nominal income adjusted for inflation", "Income earned only from wages", "Income that is saved"],
+        correct: [1],
+        hint: "Real means adjusted for prices."
+      },
+      {
+        q: "Your nominal income rises by 5.2% while the price level rises by 2.2%. By about how much did your real income change?",
+        type: "single",
+        options: ["+7.4%", "+2.2%", "+3.0%", "+5.2%"],
+        correct: [2],
+        hint: "Real income change = nominal income change - price level change."
+      },
+      {
+        q: "Your nominal income rises by 4% while the price level rises by 6%. What happens to your real income?",
+        type: "single",
+        options: ["It rises by 2%", "It falls by 2%", "It rises by 10%", "It falls by 10%"],
+        correct: [1],
+        hint: "Subtract the price-level change from the income change."
+      },
+      {
+        q: "What is the purpose of a COLA (Cost-of-Living Adjustment)?",
+        type: "single",
+        options: ["To raise taxes when prices rise", "To increase income automatically as the price level rises, protecting real income", "To lower prices when wages rise", "To measure GDP per capita"],
+        correct: [1],
+        hint: "A COLA helps protect purchasing power."
+      },
+      {
+        q: "Consumption = $600B, Investment = $150B, Government spending = $200B, Exports = $80B, Imports = $100B. What is GDP?",
+        type: "single",
+        options: ["$1,030B", "$950B", "$930B", "$1,130B"],
+        correct: [2],
+        hint: "GDP = C + I + G + (Exports - Imports)."
+      },
+      {
+        q: "GDP is $930B and depreciation (consumption of fixed capital) is $50B. What is NDP?",
+        type: "single",
+        options: ["$980B", "$880B", "$930B", "$830B"],
+        correct: [1],
+        hint: "NDP = GDP - Depreciation."
+      },
+      {
+        q: "GDP is $1,500B and NDP is $1,380B. How much is depreciation?",
+        type: "single",
+        options: ["$1,380B", "$120B", "$2,880B", "$12B"],
+        correct: [1],
+        hint: "Depreciation = GDP - NDP."
+      },
+      {
+        q: "A country exports $250B of goods and imports $310B of goods. What are its net exports?",
+        type: "single",
+        options: ["$560B", "+$60B", "-$560B", "-$60B"],
+        correct: [3],
+        hint: "Nx = Exports - Imports. Imports are larger, so result is negative."
+      },
+      {
+        q: "Real GDP is $500B and the price index is 120. What is nominal GDP?",
+        type: "single",
+        options: ["$416.7B", "$500B", "$580B", "$600B"],
+        correct: [3],
+        hint: "Nominal GDP = Real GDP × Price Index (in hundredths)."
+      },
+      {
+        q: "Nominal GDP is $780B and the price index is 156. What is real GDP?",
+        type: "single",
+        options: ["$1,216.8B", "$500B", "$624B", "$780B"],
+        correct: [1],
+        hint: "Real GDP = Nominal GDP / Price Index (in hundredths)."
+      },
+      {
+        q: "The price index rises from 100 in one year to 130 in the next. By what percent did the price level increase?",
+        type: "single",
+        options: ["10%", "13%", "30%", "130%"],
+        correct: [2],
+        hint: "100 to 130 is a 30-point rise on a base of 100."
+      },
+      {
+        q: "Real GDP is $2,400 billion and the population is 300 million. What is real GDP per capita?",
+        type: "single",
+        options: ["$800", "$8,000", "$80,000", "$720,000"],
+        correct: [1],
+        hint: "Real GDP / Population = $2,400,000,000,000 / 300,000,000."
+      },
+      {
+        q: "Using the Rule of 70, about how many years will it take an economy growing at 3.5% per year to double in size?",
+        type: "single",
+        options: ["10 years", "20 years", "24.5 years", "35 years"],
+        correct: [1],
+        hint: "70 / 3.5 = 20 years."
+      },
+      {
+        q: "Using the Rule of 70, about how many years will it take an economy growing at 5% per year to double in size?",
+        type: "single",
+        options: ["7 years", "10 years", "14 years", "35 years"],
+        correct: [2],
+        hint: "70 / 5 = 14 years."
+      },
+      {
+        q: "Select all of the weaknesses (limitations) of GDP as a measure of well-being.",
+        type: "multi",
+        options: ["It does not count nonmarket activities like unpaid housework", "It does not measure the satisfaction people get from leisure time", "The underground economy may not be recorded accurately", "It does not account for damage to the environment", "It excludes all government spending"],
+        correct: [0, 1, 2, 3],
+        hint: "GDP is limited as a well-being measure."
+      },
+      {
+        q: "A stay-at-home parent's unpaid housework is not counted in GDP. Which weakness of GDP does this illustrate?",
+        type: "single",
+        options: ["Underground economy", "Nonmarket activities", "Improved product quality", "Composition and distribution of output"],
+        correct: [1],
+        hint: "Valuable work happens outside the market."
+      },
+      {
+        q: "Transactions that are deliberately hidden from government authorities, and so may not be recorded in GDP, are part of the:",
+        type: "single",
+        options: ["Nonmarket sector", "Environment", "Underground economy", "Leisure sector"],
+        correct: [2],
+        hint: "The hidden economy is not counted."
+      },
+      {
+        q: "GDP tells us how much an economy produces, but not necessarily what is produced or who receives the benefits. Which weakness is this?",
+        type: "single",
+        options: ["Leisure and psychic income", "Composition and distribution of output", "Nonmarket activities", "Underground economy"],
+        correct: [1],
+        hint: "Think about what is produced and who gets it."
+      },
+      {
+        q: "Phones get faster, more reliable, and more convenient every year, but GDP may not fully reflect these changes. Which weakness is this?",
+        type: "single",
+        options: ["Improved product quality", "Leisure and psychic income", "Underground economy", "Noneconomic sources of well-being"],
+        correct: [0],
+        hint: "Quality improvements can be undercounted in GDP."
+      },
+      {
+        q: "GDP measures monetary production, not the enjoyment or satisfaction people get from their free time or from doing something they love. Which weakness is this?",
+        type: "single",
+        options: ["Composition and distribution of output", "Nonmarket activities", "Leisure and psychic income", "Environment"],
+        correct: [2],
+        hint: "Psychic income means personal satisfaction."
+      }
+    ];
+
+    function shuffleQuestions(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    let selectedQuestions = [];
+    let score = 0;
+    let answered = 0;
+
+    function launchConfetti() {
+      const confettiLayer = document.getElementById('confetti-layer');
+      confettiLayer.innerHTML = '';
+      const colors = ['#f9d870', '#7fe394', '#7eb8f3', '#ff8fb1', '#ffd166', '#7cd1ff'];
+
+      for (let i = 0; i < 40; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = `${(Math.random() * 0.2).toFixed(2)}s`;
+        confettiLayer.appendChild(piece);
+      }
+
+      setTimeout(() => {
+        confettiLayer.innerHTML = '';
+      }, 1800);
+    }
+
+    function updateScoreDisplay() {
+      const totalQuestions = selectedQuestions.length || 10;
+      const accuracy = answered ? Math.round((score / answered) * 100) : 0;
+      document.getElementById('current-score').textContent = score;
+      document.getElementById('total-q-count').textContent = totalQuestions;
+      document.getElementById('answered-count').textContent = answered;
+      document.getElementById('answered-total').textContent = totalQuestions;
+      document.getElementById('score-percent').textContent = accuracy;
+      document.getElementById('progress-fill').style.width = `${(answered / totalQuestions) * 100}%`;
+
+      const celebration = document.getElementById('celebration-banner');
+      if (answered === totalQuestions) {
+        const allDone = score >= Math.ceil(totalQuestions * 0.7);
+        celebration.style.display = allDone ? 'block' : 'none';
+        if (allDone) {
+          celebration.textContent = `🎉 Nice work! You scored ${score}/${totalQuestions}.`;
+          launchConfetti();
+          playFinishSound();
+        }
+      } else {
+        celebration.style.display = 'none';
+      }
+    }
+
+    function renderQuiz() {
+      const root = document.getElementById('quiz-root');
+      root.innerHTML = '';
+      document.getElementById('celebration-banner').style.display = 'none';
+      document.getElementById('confetti-layer').innerHTML = '';
+      selectedQuestions = shuffleQuestions(quizData).slice(0, 10);
+      score = 0;
+      answered = 0;
+      updateScoreDisplay();
+
+      selectedQuestions.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        let html = `<h3>Question ${idx + 1}</h3><p>${item.q}</p>`;
+
+        item.options.forEach((opt, optIndex) => {
+          html += `
+            <label class="option-label">
+              <input type="${item.type === 'multi' ? 'checkbox' : 'radio'}" name="q${idx}" value="${optIndex}">
+              ${opt}
+            </label>
+          `;
+        });
+
+        html += `<button class="check-btn" onclick="checkAnswer(${idx})">Check Answer</button>`;
+        html += `<div id="fb-${idx}" class="feedback"></div>`;
+        if (item.hint) {
+          html += `<details><summary>Hint</summary><p>${item.hint}</p></details>`;
+        }
+
+        card.innerHTML = html;
+        root.appendChild(card);
+      });
+
+      document.getElementById('results-card').style.display = 'none';
+    }
+
+    function checkAnswer(idx) {
+      const item = selectedQuestions[idx];
+      const selected = Array.from(document.querySelectorAll(`input[name="q${idx}"]:checked`)).map((el) => Number(el.value));
+      if (!selected.length) {
+        alert('Please choose an answer before checking.');
+        return;
+      }
+
+      const isCorrect = selected.length === item.correct.length && selected.every((value) => item.correct.includes(value));
+      const fb = document.getElementById(`fb-${idx}`);
+      fb.className = isCorrect ? 'feedback correct' : 'feedback wrong';
+      fb.textContent = isCorrect
+        ? '✅ Correct!'
+        : `❌ Incorrect. Correct answer: ${item.correct.map((i) => item.options[i]).join(' & ')}`;
+
+      document.querySelectorAll(`input[name="q${idx}"]`).forEach((el) => el.disabled = true);
+      const button = document.querySelectorAll('.check-btn')[idx];
+      if (button) button.disabled = true;
+
+      if (isCorrect) {
+        score += 1;
+      }
+      answered += 1;
+      updateScoreDisplay();
+
+      if (isCorrect) {
+        playCorrectSound();
+      } else {
+        playIncorrectSound();
+      }
+
+      if (answered === selectedQuestions.length) {
+        const percentage = Math.round((score / selectedQuestions.length) * 100);
+        const resultText = document.getElementById('result-text');
+        const resultComment = document.getElementById('result-comment');
+        const resultsCard = document.getElementById('results-card');
+        resultsCard.style.display = 'block';
+        resultText.textContent = `Final Score: ${score} / ${selectedQuestions.length} (${percentage}%)`;
+        resultComment.textContent = percentage >= 70
+          ? 'Great work. You are covering the main ideas well.'
+          : 'Good start—review the missed items and try again.';
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const darkMode = body.classList.toggle('dark-mode');
+      document.querySelector('.theme-toggle').textContent = darkMode ? '☀️ Light mode' : '🌙 Dark mode';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    }
+
+    function resetQuiz() {
+      renderQuiz();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const soundSelects = {
+      correct: document.getElementById('sound-correct-select'),
+      wrong: document.getElementById('sound-wrong-select'),
+      finish: document.getElementById('sound-finish-select')
+    };
+
+    Object.entries(soundSelects).forEach(([kind, selectEl]) => {
+      selectEl.addEventListener('change', (event) => {
+        soundChoices[kind] = event.target.value;
+      });
+    });
+
+    document.querySelectorAll('.sound-preview-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        playSelectedSound(button.dataset.sound);
+      });
+    });
+
+    const devCenterToggle = document.getElementById('dev-center-toggle');
+    const devCenterPanel = document.getElementById('dev-center-panel');
+
+    devCenterToggle.addEventListener('click', () => {
+      const isOpen = devCenterPanel.classList.toggle('open');
+      devCenterToggle.setAttribute('aria-expanded', String(isOpen));
+      devCenterToggle.title = isOpen ? 'Close developer sound center' : 'Open developer sound center';
+      devCenterToggle.textContent = isOpen ? '⚙️ Dev Center' : '⚙️ Dev Center';
+    });
+
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.theme-toggle').textContent = '☀️ Light mode';
+      }
+      renderQuiz();
+    });
+  </script>
+</body>
+</html>
