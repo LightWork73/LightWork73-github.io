@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Religion Test 3 | Study Buddy</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --panel: #ffffff;
+      --panel-alt: #f7f9fc;
+      --panel-border: #e5ebf5;
+      --text: #1d2433;
+      --muted: #5d677a;
+      --primary: #1f4e79;
+      --primary-strong: #163b61;
+      --primary-soft: #eaf7ee;
+      --secondary: #6c757d;
+      --success: #7fe394;
+      --danger: #9f2733;
+      --danger-soft: #fdeceb;
+      --shadow: rgba(0,0,0,0.08);
+      --button-text: #ffffff;
+    }
+
+    body.dark-mode {
+      --bg: #121a26;
+      --panel: #1a2434;
+      --panel-alt: #212f40;
+      --panel-border: #2b3d52;
+      --text: #e8edf7;
+      --muted: #a9b7cf;
+      --primary: #7eb8f3;
+      --primary-strong: #9fd0ff;
+      --primary-soft: rgba(126, 184, 243, 0.14);
+      --secondary: #9aa6b2;
+      --success: #7ae39d;
+      --danger: #ff7f8e;
+      --danger-soft: rgba(255, 127, 142, 0.12);
+      --shadow: rgba(0,0,0,0.3);
+      --button-text: #0b1320;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 900px;
+      margin: 0 auto 50px;
+      padding: 20px;
+      line-height: 1.6;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    #top-bar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #score-bar {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(135deg, #1d4f87 0%, #123a5e 100%);
+      color: #f8fbff;
+      padding: 16px 18px 18px;
+      border-radius: 0 0 16px 16px;
+      box-shadow: 0 6px 18px rgba(17, 55, 92, 0.25);
+      z-index: 10;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .score-metrics {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: stretch;
+    }
+
+    .metric-box {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 9px 12px;
+      min-width: 120px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .metric-label {
+      display: block;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+    }
+
+    .metric-value {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .reset-btn {
+      background: rgba(255,255,255,0.18);
+      color: var(--button-text);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .celebration-banner {
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      z-index: 1000;
+      width: min(92vw, 420px);
+      max-width: 420px;
+      padding: 16px 18px 14px;
+      background: linear-gradient(135deg, #f4fff7 0%, #e9f9ee 42%, #dff7e7 100%);
+      border: 1px solid rgba(118, 200, 140, 0.9);
+      color: #1e5a37;
+      border-radius: 18px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-align: center;
+      box-shadow: 0 16px 30px rgba(35, 125, 74, 0.2), 0 0 0 4px rgba(127, 227, 148, 0.15);
+      animation: popIn 0.28s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      top: -14px;
+      width: 10px;
+      height: 16px;
+      border-radius: 4px;
+      opacity: 0.95;
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      animation: confettiFall 1.8s ease-in forwards;
+    }
+
+    @keyframes popIn {
+      0% { transform: translateX(-50%) scale(0.88); opacity: 0; }
+      60% { transform: translateX(-50%) scale(1.04); opacity: 1; }
+      100% { transform: translateX(-50%) scale(1); opacity: 1; }
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(90vh) rotate(540deg); opacity: 0; }
+    }
+
+    .dev-toggle {
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-left: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-width: 118px;
+    }
+
+    #dev-center-panel {
+      display: none;
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 20px 0 18px;
+      box-shadow: 0 8px 18px var(--shadow);
+    }
+
+    #dev-center-panel.open {
+      display: block;
+    }
+
+    .sound-panel h3 {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+    }
+
+    .sound-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .sound-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .sound-field select {
+      width: 100%;
+      border: 1px solid var(--panel-border);
+      background: var(--panel-alt);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.96rem;
+    }
+
+    .sound-preview-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .sound-preview-btn {
+      background: var(--primary);
+      color: var(--button-text);
+      border: none;
+      border-radius: 8px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    #progress-label {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      opacity: 0.98;
+      font-weight: 700;
+    }
+
+    #progress-container {
+      background: rgba(255,255,255,0.18);
+      border-radius: 999px;
+      height: 14px;
+      overflow: hidden;
+      margin-top: 8px;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    #progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #7eea9a, #baf7c9);
+      transition: width 0.3s ease;
+      border-radius: 999px;
+    }
+
+    .video-resource {
+      background: #fff8e1;
+      border: 1px solid #f0c36d;
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 20px 0;
+      color: #1d2433;
+    }
+    .video-resource a { color: #a05a00; font-weight: 700; }
+    body.dark-mode .video-resource {
+      background: #212f40 !important;
+      border-color: #4b6685 !important;
+      color: var(--text) !important;
+    }
+    body.dark-mode .video-resource a { color: #9fd0ff; }
+
+    .question-card {
+      background: var(--panel);
+      border-left: 10px solid var(--primary);
+      padding: 28px;
+      margin: 25px 0;
+      border-radius: 14px;
+      box-shadow: 0 3px 8px var(--shadow);
+    }
+
+    .option-label {
+      display: block;
+      padding: 12px 14px;
+      margin: 10px 0;
+      background: var(--panel-alt);
+      border: 2px solid var(--panel-border);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .option-label:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+    }
+
+    .check-btn {
+      background: var(--primary);
+      color: var(--button-text);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .check-btn:disabled {
+      background: #bfc9d7;
+      cursor: not-allowed;
+    }
+
+    .feedback {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .correct {
+      display: block;
+      background: var(--primary-soft);
+      color: var(--primary-strong);
+      border: 1px solid var(--primary);
+    }
+
+    .wrong {
+      display: block;
+      background: var(--danger-soft);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+
+    details {
+      margin-top: 15px;
+      background: var(--panel-alt);
+      color: var(--text);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .formula {
+      font-family: "Courier New", Courier, monospace;
+      background: #eee;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 5px 0;
+      font-weight: bold;
+      color: #d63384;
+    }
+
+    #results-card {
+      display: none;
+      background: var(--panel);
+      padding: 40px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px var(--shadow);
+      margin: 40px 0;
+      border: 2px solid var(--primary);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+      #score-bar {
+        padding: 12px 12px 14px;
+      }
+      .score-row {
+        align-items: flex-start;
+      }
+      .score-metrics {
+        width: 100%;
+        gap: 8px;
+      }
+      .metric-box {
+        flex: 1 1 42%;
+        min-width: 0;
+      }
+      .reset-btn {
+        width: 100%;
+      }
+      .question-card {
+        padding: 18px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="top-bar">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙 Dark mode</button>
+    <button class="dev-toggle" id="dev-center-toggle" type="button" aria-label="Open developer sound center" aria-expanded="false" title="Developer sound center">⚙️ Dev Center</button>
+  </div>
+
+  <div id="score-bar">
+    <div class="score-row">
+      <div class="score-metrics">
+        <div class="metric-box">
+          <span class="metric-label">Score</span>
+          <span class="metric-value"><span id="current-score">0</span> / <span id="total-q-count">10</span></span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-label">Accuracy</span>
+          <span class="metric-value"><span id="score-percent">0</span>%</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-label">Answered</span>
+          <span class="metric-value"><span id="answered-count">0</span> / <span id="answered-total">10</span></span>
+        </div>
+      </div>
+      <button class="reset-btn" type="button" onclick="resetQuiz()">Retake Quiz</button>
+    </div>
+    <div id="progress-label">Progress</div>
+    <div id="progress-container"><div id="progress-fill"></div></div>
+  </div>
+
+  <div class="video-resource" style="background:#fff8e1; border:1px solid #f0c36d; border-radius:10px; padding:14px 18px; margin:20px 0; color:#1d2433;">
+    <strong>Study resource:</strong> <a href="https://youtu.be/X3EUy1P3rwc?si=YTdAQ8gKNhldgifS" target="_blank" rel="noopener">Watch the Buddhism video for Test 3</a>
+  </div>
+
+  <div id="celebration-banner" class="celebration-banner">🎉 Nice work! You finished the round.</div>
+  <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+
+  <div id="dev-center-panel" class="sound-panel">
+    <h3>Developer Sound Center</h3>
+    <div class="sound-grid">
+      <label class="sound-field">
+        Correct answer
+        <select id="sound-correct-select">
+          <option value="retro">Retro Nintendo</option>
+          <option value="arcade">Arcade Win</option>
+          <option value="cash">Cash Register</option>
+          <option value="coin">Coin Drop</option>
+          <option value="soft">Soft Chime</option>
+          <option value="bell">Big Bell</option>
+        </select>
+      </label>
+      <label class="sound-field">
+        Wrong answer
+        <select id="sound-wrong-select">
+          <option value="retro">Retro Buzz</option>
+          <option value="arcade">Arcade Error</option>
+          <option value="cash">Low Thud</option>
+          <option value="coin">Soft Drop</option>
+          <option value="soft">Short Beep</option>
+          <option value="bell">Alert Tone</option>
+        </select>
+      </label>
+      <label class="sound-field">
+        Finish sound
+        <select id="sound-finish-select">
+          <option value="retro">Retro Clear</option>
+          <option value="arcade">Arcade Victory</option>
+          <option value="cash">Cash Register Finish</option>
+          <option value="coin">Coin Rain</option>
+          <option value="soft">Happy Chime</option>
+          <option value="bell">Big Celebration</option>
+        </select>
+      </label>
+    </div>
+    <div class="sound-preview-row">
+      <button class="sound-preview-btn" type="button" data-sound="correct">Preview Correct</button>
+      <button class="sound-preview-btn" type="button" data-sound="wrong">Preview Wrong</button>
+      <button class="sound-preview-btn" type="button" data-sound="finish">Preview Finish</button>
+    </div>
+  </div>
+
+  <div id="quiz-root"></div>
+
+  <div id="results-card">
+    <h2>Test Complete!</h2>
+    <p id="result-text" style="font-size: 24px; font-weight: bold;"></p>
+    <p id="result-comment"></p>
+    <button class="reset-btn" onclick="resetQuiz()">Try Again</button>
+  </div>
+
+  <script>
+    let audioCtx = null;
+    const soundChoices = {
+      correct: 'retro',
+      wrong: 'retro',
+      finish: 'retro'
+    };
+
+    function getAudioContext() {
+      const AudioCtor = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtor) return null;
+      if (!audioCtx) {
+        audioCtx = new AudioCtor();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(frequency, duration, { type = 'sine', volume = 0.06, slideTo = null } = {}) {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+
+      const oscillator = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+      oscillator.type = type;
+      oscillator.frequency.setValueAtTime(frequency, ctx.currentTime);
+
+      if (slideTo) {
+        oscillator.frequency.exponentialRampToValueAtTime(slideTo, ctx.currentTime + duration);
+      }
+
+      gainNode.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(volume, ctx.currentTime + 0.02);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(ctx.destination);
+      oscillator.start();
+      oscillator.stop(ctx.currentTime + duration);
+    }
+
+    const soundPresets = {
+      retro: {
+        correct: () => {
+          const notes = [659.25, 783.99, 987.77, 1046.5];
+          notes.forEach((note, index) => {
+            setTimeout(() => playTone(note, 0.09, { type: 'square', volume: 0.04, slideTo: note * 1.06 }), index * 90);
+          });
+        },
+        wrong: () => playTone(210, 0.16, { type: 'sawtooth', volume: 0.05, slideTo: 120 }),
+        finish: () => {
+          const notes = [523.25, 659.25, 783.99, 1046.5, 1046.5, 1174.66, 1318.51];
+          const durations = [0.26, 0.22, 0.22, 0.22, 0.26, 0.34, 0.42];
+          notes.forEach((note, index) => {
+            setTimeout(() => playTone(note, durations[index], { type: 'triangle', volume: 0.06, slideTo: note * 1.08 }), index * 140);
+          });
+        }
+      },
+      arcade: {
+        correct: () => {
+          playTone(660, 0.08, { type: 'square', volume: 0.04, slideTo: 820 });
+          setTimeout(() => playTone(880, 0.09, { type: 'square', volume: 0.04, slideTo: 1040 }), 70);
+          setTimeout(() => playTone(1100, 0.12, { type: 'triangle', volume: 0.03, slideTo: 1260 }), 140);
+        },
+        wrong: () => playTone(240, 0.18, { type: 'square', volume: 0.04, slideTo: 120 }),
+        finish: () => {
+          const notes = [392, 523.25, 659.25, 783.99, 783.99];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.34 : 0.2;
+            setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.06, slideTo: note * 1.08 }), index * 150);
+          });
+        }
+      },
+      cash: {
+        correct: () => {
+          playTone(1200, 0.04, { type: 'square', volume: 0.04, slideTo: 1500 });
+          setTimeout(() => playTone(1600, 0.06, { type: 'triangle', volume: 0.03, slideTo: 1800 }), 40);
+          setTimeout(() => playTone(180, 0.12, { type: 'sine', volume: 0.04, slideTo: 90 }), 70);
+        },
+        wrong: () => playTone(170, 0.2, { type: 'sawtooth', volume: 0.04, slideTo: 80 }),
+        finish: () => {
+          const notes = [440, 587.33, 659.25, 880, 880];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.32 : 0.18;
+            setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.06, slideTo: note * 1.1 }), index * 160);
+          });
+        }
+      },
+      coin: {
+        correct: () => {
+          playTone(880, 0.05, { type: 'triangle', volume: 0.04, slideTo: 1100 });
+          setTimeout(() => playTone(150, 0.18, { type: 'sine', volume: 0.05, slideTo: 70 }), 45);
+          setTimeout(() => playTone(220, 0.1, { type: 'triangle', volume: 0.04, slideTo: 190 }), 95);
+        },
+        wrong: () => playTone(200, 0.18, { type: 'triangle', volume: 0.04, slideTo: 110 }),
+        finish: () => {
+          const notes = [392, 440, 523.25, 659.25, 783.99, 783.99];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.28 : 0.16;
+            setTimeout(() => playTone(note, duration, { type: 'sine', volume: 0.06, slideTo: note * 1.07 }), index * 120);
+          });
+        }
+      },
+      soft: {
+        correct: () => {
+          playTone(740, 0.12, { type: 'triangle', volume: 0.03, slideTo: 900 });
+          setTimeout(() => playTone(960, 0.1, { type: 'triangle', volume: 0.025, slideTo: 1100 }), 80);
+        },
+        wrong: () => playTone(260, 0.14, { type: 'sine', volume: 0.03, slideTo: 180 }),
+        finish: () => {
+          const notes = [523.25, 659.25, 783.99, 783.99];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.3 : 0.2;
+            setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.05, slideTo: note * 1.05 }), index * 150);
+          });
+        }
+      },
+      bell: {
+        correct: () => {
+          playTone(784, 0.18, { type: 'sine', volume: 0.06, slideTo: 980 });
+          setTimeout(() => playTone(1174, 0.16, { type: 'sine', volume: 0.05, slideTo: 1340 }), 90);
+        },
+        wrong: () => playTone(300, 0.22, { type: 'square', volume: 0.05, slideTo: 180 }),
+        finish: () => {
+          const notes = [392, 523.25, 659.25, 783.99, 1046.5, 1046.5];
+          notes.forEach((note, index) => {
+            const duration = index === notes.length - 1 ? 0.36 : 0.2;
+            setTimeout(() => playTone(note, duration, { type: 'triangle', volume: 0.06, slideTo: note * 1.08 }), index * 140);
+          });
+        }
+      }
+    };
+
+    function playSelectedSound(kind) {
+      const presetName = soundChoices[kind];
+      const preset = soundPresets[presetName];
+      if (preset && preset[kind]) {
+        preset[kind]();
+      }
+    }
+
+    function playCorrectSound() {
+      playSelectedSound('correct');
+    }
+
+    function playIncorrectSound() {
+      playSelectedSound('wrong');
+    }
+
+    function playFinishSound() {
+      playSelectedSound('finish');
+    }
+
+    const quizData = [
+{topic:'Hinduism',q:'Which aim of life is associated with ethical duty and right conduct?',options:['Dharma','Artha','Kama','Moksha'],correct:[0],h:'Dharma concerns duty, moral order, and righteous living.'},
+{topic:'Hinduism',q:'Which aim of life refers to material prosperity and economic well-being?',options:['Kama','Artha','Dharma','Moksha'],correct:[1],h:'Artha is the pursuit of wealth and material security.'},
+{topic:'Hinduism',q:'Which aim of life refers to pleasure, love, and aesthetic enjoyment?',options:['Moksha','Dharma','Kama','Artha'],correct:[2],h:'Kama is the pursuit of pleasure, desire, and enjoyment.'},
+{topic:'Hinduism',q:'What is the ultimate aim of life in the traditional Hindu framework?',options:['Artha','Kama','Moksha','Samsara'],correct:[2],h:'Moksha means liberation from samsara.'},
+{topic:'Hinduism',q:'Which sequence correctly lists the four traditional stages of life?',options:['Student, householder, forest-dweller, renouncer','Householder, student, renouncer, forest-dweller','Warrior, priest, merchant, servant','Birth, marriage, death, rebirth'],correct:[0],h:'The ashramas move from education to household life, retirement, and renunciation.'},
+{topic:'Hinduism',q:'Monism teaches that ultimate reality is fundamentally ________, while dualism emphasizes ________ realities.',options:['one; distinct or separate','many; identical','material; ritual','temporary; eternal'],correct:[0],h:'Monism stresses unity; dualism maintains a distinction.'},
+{topic:'Hinduism',q:'Which three are major Hindu devotional traditions? (Select all that apply.)',options:['Vaishnavism','Shaivism','Shaktism','Theravada'],correct:[0,1,2],type: "multi",h:'The first three center on Vishnu, Shiva, and the Goddess.'},
+{topic:'Hinduism',q:'Atman is best described as the ________.',options:['individual self or soul','cycle of rebirth','ritual offering','social class system'],correct:[0],h:'Atman is the deepest self.'},
+{topic:'Hinduism',q:'Karma refers to ________.',options:['the consequences of intentional actions','a sacred language','a temple ceremony','final liberation'],correct:[0],h:'Karma connects actions and their moral consequences.'},
+{topic:'Hinduism',q:'Samsara is the cycle of ________.',options:['birth, death, and rebirth','prayer and fasting','sacred texts','social duties only'],correct:[0],h:'Moksha is release from this cycle.'},
+{topic:'Hinduism',q:'Yoga, in the broad Hindu religious sense, is a disciplined path toward ________.',options:['union, spiritual realization, or liberation','political power','social status','wealth accumulation'],correct:[0],h:'Yoga means a disciplined joining or connection with ultimate reality.'},
+{topic:'Hinduism',q:'Bhakti is the path of ________.',options:['devotion to a chosen deity','philosophical skepticism','military discipline','renouncing all sacred texts'],correct:[0],h:'Bhakti emphasizes loving devotion.'},
+{topic:'Hinduism',q:'Tantra commonly uses ritual, mantra, visualization, and ________ as means of transformation.',options:['the body and sacred energy','political debate','historical criticism','economic exchange'],correct:[0],h:'Tantric traditions view embodied practice and sacred power as significant.'},
+{topic:'Hinduism',q:'Which set correctly names three classic paths to moksha?',options:['Jnana yoga, bhakti yoga, and karma yoga','Dharma, artha, and kama','Shruti, smriti, and tantra','Samsara, atman, and Brahman'],correct:[0],h:'The three paths are knowledge, devotion, and selfless action.'},
+{topic:'Hinduism',q:'Shruti texts are traditionally understood as ________.',options:['revealed or heard sacred knowledge','later remembered traditions','secular histories','Buddhist monastic rules'],correct:[0],h:'The Vedas are the central example of shruti.'},
+{topic:'Hinduism',q:'Smriti texts are traditionally understood as ________.',options:['remembered tradition and authoritative writings based on it','the oldest Vedic revelation only',"Buddha's first sermon",'Jain monastic rules'],correct:[0],h:'Smriti includes the epics, Puranas, and Bhagavad Gita.'},
+{topic:'Buddhism',q:'Siddhartha Gautama, the Buddha, was born in a region associated with present-day ________.',options:['Nepal and northern India','Japan','Egypt','Greece'],correct:[0],h:'Lumbini, his traditional birthplace, is in modern Nepal.'},
+{topic:'Buddhism',q:'What experience traditionally awakened Siddhartha Gautama?',options:['Enlightenment under the Bodhi tree','A coronation ceremony','A pilgrimage to Rome','A military victory'],correct:[0],h:'After awakening, he became the Buddha, or Awakened One.'},
+{topic:'Buddhism',q:'Which three are the Buddhist Marks of Existence? (Select all that apply.)',options:['Impermanence (anicca)','Unsatisfactoriness (dukkha)','Not-self (anatta)','Permanent individual soul'],correct:[0,1,2],type: "multi",h:'The marks describe changing, unsatisfactory, and not-self phenomena.'},
+{topic:'Buddhism',q:'The First Noble Truth teaches that ________.',options:['life as ordinarily experienced involves dukkha','desire should always be increased','the self is permanent','ritual alone brings liberation'],correct:[0],h:'Dukkha includes suffering, stress, and unsatisfactoriness.'},
+{topic:'Buddhism',q:'The Second Noble Truth identifies the origin of dukkha as ________.',options:['craving or attachment',"the gods' anger",'social class','meditation itself'],correct:[0],h:'Tanha, or craving, keeps beings bound to suffering.'},
+{topic:'Buddhism',q:'The Third Noble Truth teaches that dukkha can ________.',options:['cease through the ending of craving','be removed by wealth','be avoided through caste','only be postponed'],correct:[0],h:'Nirvana is associated with cessation of craving and suffering.'},
+{topic:'Buddhism',q:'The Fourth Noble Truth points to ________ as the way to end dukkha.',options:['the Noble Eightfold Path','the caste system','animal sacrifice','astrology'],correct:[0],h:'The path trains wisdom, ethical conduct, and mental discipline.'},
+{topic:'Buddhism',q:'Which three belong to the Noble Eightfold Path? (Select all that apply.)',options:['Right View','Right Speech','Right Mindfulness','Right Wealth','Right Caste'],correct:[0,1,2],type: "multi",h:'The path includes view, intention, speech, action, livelihood, effort, mindfulness, and concentration.'},
+{topic:'Buddhism',q:'Theravada Buddhism is especially associated with ________.',options:['the Pali Canon and the ideal of the arhat','many celestial bodhisattvas only','Tibetan tantric ritual as its defining feature','rejecting monastic life'],correct:[0],h:'Theravada preserves an early Buddhist textual tradition.'},
+{topic:'Buddhism',q:'Mahayana Buddhism is especially associated with the ________ ideal.',options:['bodhisattva','householder king','Vedic priest','arhat as the only model'],correct:[0],h:'A bodhisattva helps all beings awaken.'},
+{topic:'Buddhism',q:'Vajrayana Buddhism is commonly characterized by ________.',options:['mantra, mandala, visualization, and tantric practices','rejecting all ritual','memorizing the Vedas','worshiping a creator god'],correct:[0],h:'Vajrayana uses specialized esoteric practices.'},
+{topic:'Buddhism',q:'Which comparison is most accurate?',options:['Theravada emphasizes early teachings and arhat liberation; Mahayana emphasizes the bodhisattva path; Vajrayana adds esoteric tantric methods.','Theravada is Hindu, Mahayana is Jain, and Vajrayana is Sikh.','All three reject meditation.','Mahayana and Vajrayana use no Buddhist scriptures.'],correct:[0],h:'These are broad distinctions among diverse Buddhist traditions.'},
+{topic:'Buddhism',q:'According to the linked video, Buddhism spread through ________.',options:['different cultural expressions of shared teachings','one identical practice in every country','replacement of all local cultures','a tradition limited to India'],correct:[0],h:'Use the video to compare regional expressions of Buddhism.',video:true},
+{topic:'Comparison',q:'Which statement best connects Hinduism and Buddhism?',options:['Both developed in South Asia and discuss karma, rebirth, and liberation, but they differ over the nature of the self.','Both teach that the Vedas are the only authority.','Both require belief in a creator god.','Both reject ethical conduct as a path to liberation.'],correct:[0],h:'Buddhism shares South Asian concepts while teaching anatta, or not-self.'}
+];
+
+    function shuffleQuestions(items) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    let selectedQuestions = [];
+    let score = 0;
+    let answered = 0;
+
+    function launchConfetti() {
+      const confettiLayer = document.getElementById('confetti-layer');
+      confettiLayer.innerHTML = '';
+      const colors = ['#f9d870', '#7fe394', '#7eb8f3', '#ff8fb1', '#ffd166', '#7cd1ff'];
+
+      for (let i = 0; i < 40; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = `${(Math.random() * 0.2).toFixed(2)}s`;
+        confettiLayer.appendChild(piece);
+      }
+
+      setTimeout(() => {
+        confettiLayer.innerHTML = '';
+      }, 1800);
+    }
+
+    function updateScoreDisplay() {
+      const totalQuestions = selectedQuestions.length || 10;
+      const accuracy = answered ? Math.round((score / answered) * 100) : 0;
+      document.getElementById('current-score').textContent = score;
+      document.getElementById('total-q-count').textContent = totalQuestions;
+      document.getElementById('answered-count').textContent = answered;
+      document.getElementById('answered-total').textContent = totalQuestions;
+      document.getElementById('score-percent').textContent = accuracy;
+      document.getElementById('progress-fill').style.width = `${(answered / totalQuestions) * 100}%`;
+
+      const celebration = document.getElementById('celebration-banner');
+      if (answered === totalQuestions) {
+        const allDone = score >= Math.ceil(totalQuestions * 0.7);
+        celebration.style.display = allDone ? 'block' : 'none';
+        if (allDone) {
+          celebration.textContent = `🎉 Nice work! You scored ${score}/${totalQuestions}.`;
+          launchConfetti();
+          playFinishSound();
+        }
+      } else {
+        celebration.style.display = 'none';
+      }
+    }
+
+    function renderQuiz() {
+      const root = document.getElementById('quiz-root');
+      root.innerHTML = '';
+      document.getElementById('celebration-banner').style.display = 'none';
+      document.getElementById('confetti-layer').innerHTML = '';
+      selectedQuestions = shuffleQuestions(quizData).slice(0, 10);
+      score = 0;
+      answered = 0;
+      updateScoreDisplay();
+
+      selectedQuestions.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        let html = `<h3>Question ${idx + 1}</h3><p>${item.q}</p>`;
+        if (item.video) {
+          html += `<div class="video-resource" style="background:#fff8e1; border:1px solid #f0c36d; border-radius:10px; padding:14px 18px; margin:16px 0; color:#1d2433;"><a href="https://youtu.be/X3EUy1P3rwc?si=YTdAQ8gKNhldgifS" target="_blank" rel="noopener">Review the Buddhism video</a></div>`;
+        }
+
+        item.options.forEach((opt, optIndex) => {
+          html += `
+            <label class="option-label">
+              <input type="${item.type === 'multi' ? 'checkbox' : 'radio'}" name="q${idx}" value="${optIndex}">
+              ${opt}
+            </label>
+          `;
+        });
+
+        html += `<button class="check-btn" onclick="checkAnswer(${idx})">Check Answer</button>`;
+        html += `<div id="fb-${idx}" class="feedback"></div>`;
+        if (item.hint) {
+          html += `<details><summary>Hint</summary><p>${item.hint}</p></details>`;
+        }
+
+        card.innerHTML = html;
+        root.appendChild(card);
+      });
+
+      document.getElementById('results-card').style.display = 'none';
+    }
+
+    function checkAnswer(idx) {
+      const item = selectedQuestions[idx];
+      const selected = Array.from(document.querySelectorAll(`input[name="q${idx}"]:checked`)).map((el) => Number(el.value));
+      if (!selected.length) {
+        alert('Please choose an answer before checking.');
+        return;
+      }
+
+      const isCorrect = selected.length === item.correct.length && selected.every((value) => item.correct.includes(value));
+      const fb = document.getElementById(`fb-${idx}`);
+      fb.className = isCorrect ? 'feedback correct' : 'feedback wrong';
+      fb.textContent = isCorrect
+        ? '✅ Correct!'
+        : `❌ Incorrect. Correct answer: ${item.correct.map((i) => item.options[i]).join(' & ')}`;
+
+      document.querySelectorAll(`input[name="q${idx}"]`).forEach((el) => el.disabled = true);
+      const button = document.querySelectorAll('.check-btn')[idx];
+      if (button) button.disabled = true;
+
+      if (isCorrect) {
+        score += 1;
+      }
+      answered += 1;
+      updateScoreDisplay();
+
+      if (isCorrect) {
+        playCorrectSound();
+      } else {
+        playIncorrectSound();
+      }
+
+      if (answered === selectedQuestions.length) {
+        const percentage = Math.round((score / selectedQuestions.length) * 100);
+        const resultText = document.getElementById('result-text');
+        const resultComment = document.getElementById('result-comment');
+        const resultsCard = document.getElementById('results-card');
+        resultsCard.style.display = 'block';
+        resultText.textContent = `Final Score: ${score} / ${selectedQuestions.length} (${percentage}%)`;
+        resultComment.textContent = percentage >= 70
+          ? 'Great work. You are covering the main ideas well.'
+          : 'Good start—review the missed items and try again.';
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const darkMode = body.classList.toggle('dark-mode');
+      document.querySelector('.theme-toggle').textContent = darkMode ? '☀️ Light mode' : '🌙 Dark mode';
+      localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    }
+
+    function resetQuiz() {
+      renderQuiz();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const soundSelects = {
+      correct: document.getElementById('sound-correct-select'),
+      wrong: document.getElementById('sound-wrong-select'),
+      finish: document.getElementById('sound-finish-select')
+    };
+
+    Object.entries(soundSelects).forEach(([kind, selectEl]) => {
+      selectEl.addEventListener('change', (event) => {
+        soundChoices[kind] = event.target.value;
+      });
+    });
+
+    document.querySelectorAll('.sound-preview-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        playSelectedSound(button.dataset.sound);
+      });
+    });
+
+    const devCenterToggle = document.getElementById('dev-center-toggle');
+    const devCenterPanel = document.getElementById('dev-center-panel');
+
+    devCenterToggle.addEventListener('click', () => {
+      const isOpen = devCenterPanel.classList.toggle('open');
+      devCenterToggle.setAttribute('aria-expanded', String(isOpen));
+      devCenterToggle.title = isOpen ? 'Close developer sound center' : 'Open developer sound center';
+      devCenterToggle.textContent = isOpen ? '⚙️ Dev Center' : '⚙️ Dev Center';
+    });
+
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.theme-toggle').textContent = '☀️ Light mode';
+      }
+      renderQuiz();
+    });
+  </script>
+</body>
+</html>

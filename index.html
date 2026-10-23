@@ -144,11 +144,27 @@
             Macro Economics
             <span>Choose a quiz</span>
         </button>
-        <button class="course-card placeholder" onclick="window.location.href='WorldReligionTest2R1.html'">
+        <button class="course-card placeholder" onclick="showReligionCourseOptions()">
             World Religion
-            <span>Study guide quiz</span>
+            <span>Choose a test</span>
         </button>
     </div>
+</div>
+
+<div id="religion-choice-screen" style="display:none;">
+    <h1>World Religion</h1>
+    <p>Select which study guide test you want to open.</p>
+    <div class="course-grid" style="margin-top: 20px;">
+        <button class="course-card placeholder" onclick="window.location.href='WorldReligionTest2R1.html'">
+            World Religion Test 2
+            <span>Christianity, Islam, and Coptic Christianity</span>
+        </button>
+        <button class="course-card secondary-alt" onclick="window.location.href='WorldReligionTest3R1.html'">
+            World Religion Test 3
+            <span>Hinduism and Buddhism</span>
+        </button>
+    </div>
+    <button class="back-btn" onclick="showCourseScreen()">Back to Courses</button>
 </div>
 
 <div id="macro-choice-screen" style="display:none;">
@@ -206,6 +222,7 @@
     function showCourseScreen() {
         document.getElementById('course-screen').style.display = 'block';
         document.getElementById('macro-choice-screen').style.display = 'none';
+        document.getElementById('religion-choice-screen').style.display = 'none';
         document.getElementById('placeholder-screen').style.display = 'none';
         document.getElementById('setup-screen').style.display = 'none';
         document.getElementById('quiz-container').style.display = 'none';
@@ -215,6 +232,16 @@
     function showMacroCourseOptions() {
         document.getElementById('course-screen').style.display = 'none';
         document.getElementById('macro-choice-screen').style.display = 'block';
+        document.getElementById('religion-choice-screen').style.display = 'none';
+        document.getElementById('placeholder-screen').style.display = 'none';
+        document.getElementById('setup-screen').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'none';
+    }
+
+    function showReligionCourseOptions() {
+        document.getElementById('course-screen').style.display = 'none';
+        document.getElementById('macro-choice-screen').style.display = 'none';
+        document.getElementById('religion-choice-screen').style.display = 'block';
         document.getElementById('placeholder-screen').style.display = 'none';
         document.getElementById('setup-screen').style.display = 'none';
         document.getElementById('quiz-container').style.display = 'none';
